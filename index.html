@@ -2290,6 +2290,296 @@ body.teacher-lab-mode #teacherLabFixed{display:flex!important}
 body.teacher-lab-mode #studentSessionActions{display:none!important}
 body.teacher-lab-mode #gameTopnav{display:flex!important;position:static!important;top:auto!important}
 
+
+/* ===== STABLE 3 • TEACHER LAB STATE FINAL ===== */
+body.teacher-lab-missions #teacherDashboard{display:none!important}
+body.teacher-lab-missions .app{display:block!important}
+body.teacher-lab-missions #missionsMode{display:block!important}
+body.teacher-lab-missions #freeMode{display:none!important}
+body.teacher-lab-missions #gameTopnav{display:flex!important;position:static!important;top:auto!important}
+body.teacher-lab-missions #teacherLabFixed{display:flex!important}
+body.teacher-lab-missions #studentSessionActions{display:none!important}
+
+body.teacher-lab-free #teacherDashboard{display:none!important}
+body.teacher-lab-free .app{display:block!important}
+body.teacher-lab-free #missionsMode{display:none!important}
+body.teacher-lab-free #freeMode{display:block!important}
+body.teacher-lab-free #gameTopnav{display:flex!important;position:static!important;top:auto!important}
+body.teacher-lab-free #teacherLabFixed{display:flex!important}
+body.teacher-lab-free #studentSessionActions{display:none!important}
+
+body.teacher-mode #teacherDashboard{display:block!important}
+body.teacher-mode .app{display:none!important}
+
+
+/* ===== STABLE 4 • CONTRASTE / LEGIBILIDADE ===== */
+/* Painel do professor: superfícies escuras */
+#teacherDashboard,
+#teacherDashboard .teacher-lab-access,
+#teacherDashboard .teacher-create-card,
+#teacherDashboard .teacher-class-card{
+  color:#f7fbff;
+}
+#teacherDashboard h1,
+#teacherDashboard h2,
+#teacherDashboard h3,
+#teacherDashboard strong,
+#teacherDashboard b{
+  color:#f7fbff;
+}
+#teacherDashboard p,
+#teacherDashboard .muted,
+#teacherDashboard small{
+  color:#b9cbe0;
+}
+
+/* Campos escuros */
+#teacherDashboard input,
+#teacherDashboard select,
+#teacherDashboard textarea{
+  color:#f7fbff!important;
+  background:#061b31!important;
+  border-color:#17496c!important;
+  caret-color:#fff;
+}
+#teacherDashboard input::placeholder,
+#teacherDashboard textarea::placeholder{
+  color:#9fb4ca!important;
+  opacity:1!important;
+}
+
+/* Cartões claros: SEMPRE texto escuro */
+#teacherDashboard .class-code,
+#teacherDashboard .created-code,
+#teacherDashboard [class*="code-box"],
+#teacherDashboard [class*="light-card"],
+#teacherDashboard [class*="stat-card"]{
+  color:#12233d!important;
+}
+#teacherDashboard .class-code *,
+#teacherDashboard .created-code *,
+#teacherDashboard [class*="code-box"] *,
+#teacherDashboard [class*="light-card"] *,
+#teacherDashboard [class*="stat-card"] *{
+  color:#12233d!important;
+}
+
+/* Código recém-criado: contraste forte */
+#createdClassCode .class-code,
+#createdClassCode .created-code{
+  background:linear-gradient(135deg,#f2efff,#e8f8ff)!important;
+  border:1px solid #b9a9ff!important;
+}
+#createdClassCode span{
+  color:#33455f!important;
+}
+#createdClassCode b{
+  color:#38208f!important;
+  font-weight:900!important;
+  letter-spacing:.08em;
+}
+
+/* Turmas e métricas */
+#teacherDashboard .teacher-class-card,
+#teacherDashboard .student-card{
+  background:#0b2949!important;
+}
+#teacherDashboard .teacher-class-card *,
+#teacherDashboard .student-card *{
+  color:#eef7ff;
+}
+#teacherDashboard .teacher-class-card .muted,
+#teacherDashboard .student-card .muted{
+  color:#b9cbe0!important;
+}
+
+/* Botões claros */
+#teacherDashboard button.secondary-start,
+#teacherDashboard .secondary-start{
+  color:#14243d!important;
+}
+
+
+/* ===== STABLE 5 • CONTRASTE FINAL DO PROFESSOR ===== */
+
+/* Botões do topo: texto branco, não escuro */
+#teacherDashboard #teacherDemoTop,
+#teacherDashboard #teacherBackTop,
+#teacherDashboard .teacher-actions .secondary-start{
+  color:#f7fbff!important;
+  background:#0d3458!important;
+  border:1px solid #1c668f!important;
+  text-shadow:none!important;
+}
+#teacherDashboard #teacherDemoTop:hover,
+#teacherDashboard #teacherBackTop:hover{
+  background:#12466f!important;
+}
+
+/* Não aplicar regra de texto escuro a botões escuros */
+#teacherDashboard button.secondary-start,
+#teacherDashboard .secondary-start{
+  color:#f7fbff!important;
+}
+
+/* Código criado: fundo claro + texto realmente escuro */
+#createdClassCode .class-code,
+#createdClassCode .created-code{
+  background:linear-gradient(135deg,#eeeaff,#e5f7ff)!important;
+  border:1px solid #a996ff!important;
+}
+#createdClassCode .class-code span,
+#createdClassCode .created-code span{
+  color:#263851!important;
+}
+#createdClassCode .class-code b,
+#createdClassCode .created-code b{
+  color:#32157f!important;
+  text-shadow:none!important;
+}
+
+/* Ações da turma */
+.teacher-class-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:10px 0 12px;
+}
+.teacher-class-actions button{
+  flex:1;
+  min-width:160px;
+  padding:10px 12px;
+  border-radius:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+.teacher-delete-class{
+  background:#4b1628!important;
+  color:#ffdfe6!important;
+  border:1px solid #a83b5d!important;
+}
+.teacher-delete-class:hover{
+  background:#671d34!important;
+}
+
+/* Tabelas e cartões: força contraste consistente */
+#teacherDashboard .teacher-table th{
+  color:#d7e7f5!important;
+  background:#0d2a48!important;
+}
+#teacherDashboard .teacher-table td{
+  color:#eaf5ff!important;
+  border-bottom-color:#173d5e!important;
+}
+#teacherDashboard .empty-state{
+  color:#aec2d5!important;
+}
+
+@media(max-width:760px){
+  .teacher-class-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* ===== STABLE 8 • TURMAS SEM RELOAD ===== */
+#classList .class-item{
+  width:100%;display:block;text-align:left;cursor:pointer;
+  appearance:none;-webkit-appearance:none;
+}
+.teacher-class-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+
+
+/* ===== STABLE 9 • PAINEL PROFESSOR ISOLADO ===== */
+.teacher-stable-shell{max-width:1180px;margin:0 auto;padding:14px}
+.teacher-stable-top{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:18px;border-radius:20px;
+  background:linear-gradient(145deg,#091d37,#07162a)!important;
+  border:1px solid rgba(61,188,248,.22)!important;
+}
+.teacher-stable-top h1{color:#fff!important;margin:4px 0}
+.teacher-stable-exit{
+  background:#4b1628!important;color:#ffe6ec!important;border:1px solid #a23b5c!important;
+  border-radius:12px;padding:10px 14px;font-weight:900
+}
+.teacher-stable-grid{display:grid;grid-template-columns:310px minmax(0,1fr);gap:14px;margin-top:14px}
+.teacher-stable-sidebar{display:grid;gap:14px;align-content:start}
+.teacher-stable-create,.teacher-stable-list-card,.teacher-stable-detail{
+  background:linear-gradient(145deg,#09203c,#07172c)!important;
+  border:1px solid rgba(57,174,236,.19)!important;color:#eef8ff!important
+}
+.teacher-stable-create input{
+  width:100%;box-sizing:border-box;margin:8px 0 10px;padding:11px 12px;border-radius:10px;
+  background:#06182d!important;color:#fff!important;border:1px solid #1b547a!important
+}
+.teacher-stable-demo{
+  width:100%;margin-top:8px;padding:10px;border-radius:10px;
+  background:#0e3a60;color:#eaf7ff;border:1px solid #1f6f9e;font-weight:900
+}
+.teacher-stable-created{
+  margin-top:10px;padding:11px;border-radius:11px;background:#eae7ff;color:#20324d
+}
+.teacher-stable-created b{color:#351a88!important;font-size:16px}
+.teacher-stable-list-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.teacher-stable-list-head button{
+  width:38px;height:38px;border-radius:10px;background:#10395d;color:#fff;border:1px solid #1f678e
+}
+.teacher-stable-list{display:grid;gap:8px;margin-top:10px}
+.teacher-stable-class{
+  display:flex;flex-direction:column;gap:3px;width:100%;text-align:left;padding:11px;border-radius:12px;
+  background:#0a2949;color:#eef8ff;border:1px solid #164c70;cursor:pointer
+}
+.teacher-stable-class b{color:#fff!important}
+.teacher-stable-class span{color:#a9c4d8;font-size:10px}
+.teacher-stable-class.active{
+  border-color:#8b64ff;background:linear-gradient(135deg,#30255f,#0b3557);
+  box-shadow:inset 3px 0 #a56cff
+}
+.teacher-stable-detail{min-height:430px;padding:18px}
+.teacher-stable-empty,.teacher-stable-loading{color:#adc2d5;padding:18px;text-align:center}
+.teacher-stable-detail-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.teacher-stable-detail-head h2{color:#fff!important;margin:0 0 5px}
+.teacher-stable-code{color:#b6cadd}.teacher-stable-code b{color:#fff!important}
+.teacher-stable-actions{display:flex;gap:8px;flex-wrap:wrap}
+.teacher-stable-actions button{
+  padding:9px 11px;border-radius:10px;background:#103a60;color:#fff;border:1px solid #216b95;font-weight:900
+}
+.teacher-stable-actions .danger{background:#50172b!important;color:#ffe2e8!important;border-color:#a53e5e!important}
+.teacher-stable-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:12px 0}
+.teacher-stable-kpis>div{
+  padding:11px;border-radius:12px;background:#0b2949;border:1px solid #174c70
+}
+.teacher-stable-kpis span{display:block;color:#9fb9cd;font-size:10px}
+.teacher-stable-kpis b{display:block;color:#fff!important;font-size:18px;margin-top:3px}
+.teacher-stable-students{display:grid;gap:9px}
+.teacher-stable-student{padding:12px;border-radius:13px;background:#0b2745;border:1px solid #174864}
+.teacher-stable-student-head{display:flex;justify-content:space-between;gap:8px}
+.teacher-stable-student-head b{color:#fff!important}.teacher-stable-student-head span{color:#a9c1d3;font-size:10px}
+.teacher-stable-progress{height:7px;background:#142d49;border-radius:999px;overflow:hidden;margin:8px 0}
+.teacher-stable-progress i{display:block;height:100%;background:linear-gradient(90deg,#7754ff,#21ccff,#46e6ae)}
+.teacher-stable-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.teacher-stable-mini span{padding:7px;border-radius:8px;background:#0d2d4d;color:#9fb8cb;font-size:9px}
+.teacher-stable-mini b{display:block;color:#fff!important;font-size:12px}
+.teacher-stable-message{
+  display:none;margin:10px 0;padding:10px 12px;border-radius:11px;font-weight:800
+}
+.teacher-stable-message.show{display:block}
+.teacher-stable-message.success{background:#0d4938;color:#d9fff0;border:1px solid #279b72}
+.teacher-stable-message.error{background:#581a2f;color:#ffe2e8;border:1px solid #a83e60}
+.teacher-stable-message.info{background:#0c3658;color:#d8efff;border:1px solid #2779a8}
+@media(max-width:760px){
+  .teacher-stable-grid{grid-template-columns:1fr}
+  .teacher-stable-top{align-items:flex-start}
+  .teacher-stable-kpis{grid-template-columns:1fr 1fr}
+  .teacher-stable-mini{grid-template-columns:1fr 1fr}
+  .teacher-stable-actions{width:100%}
+  .teacher-stable-actions button{flex:1}
+}
+
 </style>
 </head>
 <body>
@@ -2387,52 +2677,56 @@ body.teacher-lab-mode #gameTopnav{display:flex!important;position:static!importa
 </div>
 
 
-<div id="teacherDashboard" class="teacher-dashboard">
-  <div class="teacher-shell">
-    <div class="teacher-top">
+
+<div id="teacherDashboard" class="teacher-dashboard" style="display:none">
+  <div class="teacher-shell teacher-stable-shell">
+    <div class="teacher-top teacher-stable-top">
       <div>
         <div class="product-pill">ÁREA DO PROFESSOR • ONLINE</div>
         <h1>👩‍🏫 Painel do Professor</h1>
-        <div class="muted">Gerencie suas turmas e acompanhe o progresso dos alunos em tempo real.</div>
+        <div class="muted">Turmas, desempenho e acesso ao laboratório em um único lugar.</div>
       </div>
-      <div class="teacher-actions">
-        <button class="secondary-start" onclick="seedDemoClass()">✨ Criar turma demo</button>
-        <button class="secondary-start" onclick="closeTeacherDashboard()">← Voltar</button>
-      </div>
+      <button id="teacherStableLogout" class="teacher-stable-exit" type="button">⏻ Sair da conta</button>
     </div>
 
     <div class="teacher-lab-launch">
       <div class="teacher-lab-launch-copy">
         <span>⚗️ MODO DE TESTE DO PROFESSOR</span>
         <h2>Acessar o laboratório</h2>
-        <p>Teste as atividades exatamente como os alunos, sem alterar as estatísticas da turma.</p>
+        <p>Abra Missões ou Modo Livre sem gravar tentativas nas estatísticas dos alunos.</p>
       </div>
       <div class="teacher-lab-launch-buttons">
-        <button id="teacherOpenMissions" type="button">🎯 Abrir Missões</button>
-        <button id="teacherOpenFree" type="button">🧪 Abrir Modo Livre</button>
+        <button id="teacherStableMissions" type="button">🎯 Abrir Missões</button>
+        <button id="teacherStableFree" type="button">🧪 Abrir Modo Livre</button>
       </div>
     </div>
 
-    <div class="teacher-grid-main">
-      <div class="teacher-card2">
-        <h3>➕ Criar turma</h3>
-        <div class="teacher-form">
-          <input id="newClassName" placeholder="Ex.: 1º A - Química">
-          <input id="newTeacherName" placeholder="Nome do professor">
-          <button class="start-btn" onclick="createLocalClass()">Criar turma</button>
-        </div>
-        <div id="createdClassCode"></div>
+    <div id="teacherStableMessage" class="teacher-stable-message" aria-live="polite"></div>
 
-        <h3 style="margin-top:16px">📚 Minhas turmas</h3>
-        <div id="classList" class="teacher-list"></div>
-        <div class="teacher-note">As turmas e os resultados ficam sincronizados com o Supabase.</div>
-      </div>
-
-      <div class="teacher-card2">
-        <div id="teacherClassView" class="empty-state">
-          Selecione ou crie uma turma para visualizar o painel.
+    <div class="teacher-stable-grid">
+      <aside class="teacher-stable-sidebar">
+        <div class="teacher-card2 teacher-stable-create">
+          <h3>➕ Criar turma</h3>
+          <input id="teacherStableClassName" placeholder="Ex.: 1º A - Química">
+          <button id="teacherStableCreate" class="start-btn" type="button">Criar turma</button>
+          <button id="teacherStableDemo" class="teacher-stable-demo" type="button">✨ Criar turma demo</button>
+          <div id="teacherStableCreatedCode"></div>
         </div>
-      </div>
+
+        <div class="teacher-card2 teacher-stable-list-card">
+          <div class="teacher-stable-list-head">
+            <h3>📚 Minhas turmas</h3>
+            <button id="teacherStableReloadList" type="button">↻</button>
+          </div>
+          <div id="teacherStableClassList" class="teacher-stable-list"></div>
+        </div>
+      </aside>
+
+      <main class="teacher-card2 teacher-stable-detail">
+        <div id="teacherStableClassDetail" class="teacher-stable-empty">
+          Selecione ou crie uma turma.
+        </div>
+      </main>
     </div>
   </div>
 </div>
@@ -2465,7 +2759,7 @@ body.teacher-lab-mode #gameTopnav{display:flex!important;position:static!importa
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 1</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 9</div></header>
 
 
 <section id="studentGameHome">
@@ -2702,7 +2996,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 1 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 9 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -3002,50 +3296,16 @@ function loadTeacherData(){
 function saveTeacherData(){
   if(storageAvailable())localStorage.setItem(TEACHER_STORAGE_KEY,JSON.stringify(teacherData));
 }
-function openTeacherDashboard(){
-  if(!authUser || authUser.role!=="teacher"){
-    alert("Entre com um perfil de professor para acessar esta área.");
-    return;
-  }
-  loadTeacherData();
-  document.getElementById("teacherDashboard").style.display="block";
-  renderTeacherDashboard();
-}
-function closeTeacherDashboard(){
-  document.getElementById("teacherDashboard").style.display="none";
-  if(authRole==="teacher"){
-    authScreen.style.display="flex";
-  }
-}
+
+
 function generateClassCode(){
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let s="QMC-";
   for(let i=0;i<4;i++)s+=chars[Math.floor(Math.random()*chars.length)];
   return s;
 }
-function createLocalClass(){
-  const name=newClassName.value.trim();
-  const teacher=newTeacherName.value.trim()||"Professor(a)";
-  if(!name){alert("Informe o nome da turma.");return}
-  const cls={id:"c"+Date.now(),name,teacher,code:generateClassCode(),students:[]};
-  teacherData.classes.push(cls);teacherData.activeClassId=cls.id;
-  saveTeacherData();newClassName.value="";createdClassCode.innerHTML=
-    `<div class="class-code"><span>Código da turma</span><b>${cls.code}</b></div>`;
-  renderTeacherDashboard();
-}
-function seedDemoClass(){
-  const demo={
-    id:"demo"+Date.now(),name:"1º A - Química",teacher:"Professora",
-    code:generateClassCode(),
-    students:[
-      {name:"Ana",progress:18,stars:49,errors:4,accuracy:86},
-      {name:"Bruno",progress:12,stars:31,errors:7,accuracy:74},
-      {name:"Carla",progress:24,stars:68,errors:2,accuracy:94},
-      {name:"Diego",progress:9,stars:21,errors:8,accuracy:65}
-    ]
-  };
-  teacherData.classes.push(demo);teacherData.activeClassId=demo.id;saveTeacherData();renderTeacherDashboard();
-}
+
+
 function deleteClass(id){
   teacherData.classes=teacherData.classes.filter(c=>c.id!==id);
   if(teacherData.activeClassId===id)teacherData.activeClassId=null;
@@ -3541,12 +3801,7 @@ async function afterCloudAuth(){
   if(authRole==="student"){
     showStudentGameHome();
   }else if(authRole==="teacher"){
-    document.body.classList.remove("student-home","student-missions","student-free","teacher-mode");
-    document.body.classList.add("teacher-mode");
-    document.querySelector(".app").style.display="none";
-    teacherDashboard.style.display="block";
-    await renderCloudTeacherDashboard();
-    window.scrollTo({top:0,behavior:"auto"});
+    await openTeacherDashboard();
   }
 }
 
@@ -3599,53 +3854,11 @@ function consequenceError(kind,msg){
   saveCloudExperiment(false);saveCloudProgress();
 }
 
-async function openTeacherDashboard(){
-  if(!cloudUser||authRole!=="teacher"){alert("Entre com uma conta de professor.");return}
-  teacherDashboard.style.display="block";await renderCloudTeacherDashboard();
-}
 
-async function createLocalClass(){
-  if(!cloudUser||authRole!=="teacher")return;
-  const name=newClassName.value.trim();if(!name){alert("Informe o nome da turma.");return}
-  const code=generateClassCode();
-  const {data,error}=await cloud.from("classes").insert({owner_id:cloudUser.id,name,join_code:code}).select().single();
-  if(error){alert(error.message);return}
-  newClassName.value="";
-  createdClassCode.innerHTML=`<div class="class-code"><span>Código da turma</span><b>${data.join_code}</b></div>`;
-  await renderCloudTeacherDashboard(data.id);
-}
 
-async function renderCloudTeacherDashboard(preferredId=null){
-  const {data:classes}=await cloud.from("classes").select("*").eq("owner_id",cloudUser.id).order("created_at");
-  classList.innerHTML="";
-  if(!classes?.length){classList.innerHTML='<div class="muted">Nenhuma turma criada.</div>';teacherClassView.innerHTML="Crie uma turma para começar.";return}
-  const selectedId=preferredId||classes[0].id;
-  classes.forEach(c=>{
-    const el=document.createElement("div");el.className="class-item"+(c.id===selectedId?" active":"");
-    el.innerHTML=`<b>${c.name}</b><small>código ${c.join_code}</small>`;
-    el.onclick=()=>renderCloudTeacherDashboard(c.id);classList.appendChild(el);
-  });
-  const cls=classes.find(c=>c.id===selectedId)||classes[0];
-  const {data:members}=await cloud.from("class_members").select("user_id").eq("class_id",cls.id);
-  const ids=(members||[]).map(x=>x.user_id);let profiles=[],progress=[];
-  if(ids.length){
-    profiles=(await cloud.from("profiles").select("id,display_name").in("id",ids)).data||[];
-    progress=(await cloud.from("module_progress").select("*").eq("class_id",cls.id).eq("module_slug","reacoes-quimicas")).data||[];
-  }
-  const students=ids.map(id=>{
-    const pf=profiles.find(x=>x.id===id)||{display_name:"Aluno"},pg=progress.find(x=>x.user_id===id),total=(pg?.wins||0)+(pg?.errors||0);
-    return {name:pf.display_name,progress:pg?.completed_phases?.length||0,stars:pg?.stars||0,errors:pg?.errors||0,accuracy:total?Math.round((pg.wins/total)*100):0};
-  });
-  const avgProg=students.length?Math.round(students.reduce((s,x)=>s+x.progress,0)/students.length):0;
-  const avgAcc=students.length?Math.round(students.reduce((s,x)=>s+x.accuracy,0)/students.length):0;
-  const totalErrors=students.reduce((s,x)=>s+x.errors,0);
-  teacherClassView.className="";
-  teacherClassView.innerHTML=`<h2 style="margin:0">${cls.name}</h2><div class="muted">Código <b>${cls.join_code}</b></div>
-<div class="teacher-cloud-note">☁️ Dados sincronizados com Supabase.</div>
-  <div class="kpi-grid"><div class="kpi"><span>Alunos</span><b>${students.length}</b></div><div class="kpi"><span>Progresso médio</span><b>${avgProg}/24</b></div><div class="kpi"><span>Precisão média</span><b>${avgAcc}%</b></div><div class="kpi"><span>Erros totais</span><b>${totalErrors}</b></div></div>
-  <table class="teacher-table"><thead><tr><th>Aluno</th><th>Progresso</th><th>Estrelas</th><th>Erros</th><th>Precisão</th></tr></thead><tbody>
-  ${students.length?students.map(s=>`<tr><td><b>${s.name}</b></td><td>${s.progress}/24<div class="progress-bar"><i style="width:${Math.round(s.progress/24*100)}%"></i></div></td><td>⭐ ${s.stars}</td><td>${s.errors}</td><td>${s.accuracy}%</td></tr>`).join(""):'<tr><td colspan="5" class="muted">Ainda não há alunos nesta turma.</td></tr>'}</tbody></table>`;
-}
+
+
+
 
 
 /* ===== V41 CONTROLLER — definido antes do bootstrap Supabase ===== */
@@ -3723,7 +3936,16 @@ switchMode=function(mode){
   if(authRole==="student"){return mode==="free"?openStudentFree():openStudentMissions(false)}
 };
 
-cloud.auth.onAuthStateChange((event)=>{if(event==="SIGNED_OUT")authScreen.style.display="flex";});
+cloud.auth.onAuthStateChange((event)=>{
+  if(event==="SIGNED_OUT"){
+    const auth=document.getElementById("authScreen");
+    const dashboard=document.getElementById("teacherDashboard");
+    const app=document.querySelector(".app");
+    if(dashboard)dashboard.style.display="none";
+    if(app)app.style.display="none";
+    if(auth)auth.style.display="flex";
+  }
+});
 
 (async()=>{
   /* Login é sempre a primeira tela em uma abertura normal.
@@ -4002,87 +4224,7 @@ function performMissionAction(){
 }
 
 /* painel do professor: mostra fase atual, concluídas, XP e última atividade */
-async function renderCloudTeacherDashboard(preferredId=null){
-  const {data:classes}=await cloud.from("classes").select("*").eq("owner_id",cloudUser.id).order("created_at");
-  classList.innerHTML="";
-  if(!classes?.length){
-    classList.innerHTML='<div class="muted">Nenhuma turma criada.</div>';
-    teacherClassView.innerHTML="Crie uma turma para começar.";
-    return;
-  }
-  const selectedId=preferredId||classes[0].id;
-  classes.forEach(c=>{
-    const el=document.createElement("div");
-    el.className="class-item"+(c.id===selectedId?" active":"");
-    el.innerHTML=`<b>${c.name}</b><small>código ${c.join_code}</small>`;
-    el.onclick=()=>renderCloudTeacherDashboard(c.id);
-    classList.appendChild(el);
-  });
-  const cls=classes.find(c=>c.id===selectedId)||classes[0];
-  const {data:members}=await cloud.from("class_members").select("user_id").eq("class_id",cls.id);
-  const ids=(members||[]).map(x=>x.user_id);
-  let profiles=[],progress=[];
-  if(ids.length){
-    profiles=(await cloud.from("profiles").select("id,display_name").in("id",ids)).data||[];
-    progress=(await cloud.from("module_progress")
-      .select("*")
-      .eq("class_id",cls.id)
-      .eq("module_slug","reacoes-quimicas")).data||[];
-  }
-  const students=ids.map(id=>{
-    const pf=profiles.find(x=>x.id===id)||{display_name:"Aluno"};
-    const pg=progress.find(x=>x.user_id===id);
-    const total=(pg?.wins||0)+(pg?.errors||0);
-    const done=pg?.completed_phases?.length||0;
-    return {
-      name:pf.display_name,
-      progress:done,
-      phase:pg?.current_phase||1,
-      unlocked:pg?.max_unlocked||1,
-      stars:pg?.stars||0,
-      xp:pg?.xp||0,
-      errors:pg?.errors||0,
-      accuracy:total?Math.round((pg.wins/total)*100):0,
-      updated:pg?.updated_at?new Date(pg.updated_at).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}):"Sem atividade"
-    };
-  });
-  const avgProg=students.length?Math.round(students.reduce((s,x)=>s+x.progress,0)/students.length):0;
-  const avgAcc=students.length?Math.round(students.reduce((s,x)=>s+x.accuracy,0)/students.length):0;
-  const totalErrors=students.reduce((s,x)=>s+x.errors,0);
 
-  teacherClassView.className="";
-  teacherClassView.innerHTML=`
-    <h2 style="margin:0">🧪 ${cls.name}</h2>
-    <div class="muted">Código <b>${cls.join_code}</b></div>
-    <div class="teacher-cloud-note">☁️ Dados sincronizados com Supabase.</div>
-    <button class="teacher-refresh" onclick="renderCloudTeacherDashboard('${cls.id}')">↻ Atualizar desempenho</button>
-    <div class="kpi-grid">
-      <div class="kpi"><span>Alunos</span><b>${students.length}</b></div>
-      <div class="kpi"><span>Fases médias</span><b>${avgProg}/24</b></div>
-      <div class="kpi"><span>Precisão média</span><b>${avgAcc}%</b></div>
-      <div class="kpi"><span>Erros totais</span><b>${totalErrors}</b></div>
-    </div>
-    <div class="teacher-student-grid">
-      ${students.length?students.map(s=>`
-        <div class="student-progress-card">
-          <div class="student-head">
-            <div class="student-name">🎓 ${s.name}</div>
-            <div class="phase-chip">${s.progress}/24 concluídas</div>
-          </div>
-          <div class="progress-bar"><i style="width:${Math.round(s.progress/24*100)}%"></i></div>
-          <div class="mini-stats">
-            <div><span>Próxima fase</span><b>${Math.min(24,s.unlocked)}</b></div>
-            <div><span>XP</span><b>${s.xp}</b></div>
-            <div><span>Estrelas</span><b>⭐ ${s.stars}</b></div>
-          </div>
-          <div class="mini-stats">
-            <div><span>Erros</span><b>${s.errors}</b></div>
-            <div><span>Precisão</span><b>${s.accuracy}%</b></div>
-            <div><span>Última atividade</span><b style="font-size:10px">${s.updated}</b></div>
-          </div>
-        </div>`).join(""):'<div class="muted">Ainda não há alunos nesta turma.</div>'}
-    </div>`;
-}
 
 
 
@@ -4103,7 +4245,6 @@ function updateHub(){
 }
 function showLabHub(){if(authRole!=="student")return;document.getElementById("labHub").style.display="block";document.getElementById("app").style.display="none";updateHub()}
 function enterReactionModule(){document.getElementById("labHub").style.display="none";document.getElementById("app").style.display="";window.scrollTo({top:0,behavior:"smooth"})}
-const _showStudentPanelV34=showStudentPanel;showStudentPanel=function(){_showStudentPanelV34();setTimeout(showLabHub,80)};
 const _updateUIV34=updateUI;updateUI=function(){_updateUIV34();updateHub()};
 
 
@@ -4196,211 +4337,466 @@ performMissionAction=function(){
 
 
 
-/* ===== V48 • CONTROLE ÚNICO DO LABORATÓRIO DO PROFESSOR ===== */
+
+
+/* ===== STABLE 3 • PROFESSOR CONTROLLER ÚNICO ===== */
 (function(){
-  function el(id){ return document.getElementById(id); }
+  'use strict';
+  const $=id=>document.getElementById(id);
+  window.teacherLabMode=false;
 
-  window.teacherLabMode = false;
+  function setTeacherLab(mode){
+    const isFree=mode==='free';
+    window.teacherLabMode=true;
+    document.body.classList.remove('teacher-mode','teacher-lab-mode','teacher-lab-missions','teacher-lab-free','student-home','student-missions','student-free');
+    document.body.classList.add(isFree?'teacher-lab-free':'teacher-lab-missions');
 
-  window.openTeacherLab = function(target="missions"){
-    window.teacherLabMode = true;
+    const dashboard=$('teacherDashboard'), app=document.querySelector('.app'), nav=$('gameTopnav'), fixed=$('teacherLabFixed');
+    if(dashboard) dashboard.style.display='none';
+    if(app) app.style.display='block';
+    if(nav) nav.style.display='flex';
+    if(fixed) fixed.style.display='flex';
 
-    document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
-    document.body.classList.add("teacher-lab-mode");
-
-    const dashboard = el("teacherDashboard");
-    const app = document.querySelector(".app");
-    const missions = el("missionsMode");
-    const free = el("freeMode");
-    const nav = el("gameTopnav");
-    const fixed = el("teacherLabFixed");
-    const studentActions = el("studentSessionActions");
-
-    if(dashboard) dashboard.style.display = "none";
-    if(app) app.style.display = "block";
-    if(nav) nav.style.display = "flex";
-    if(fixed) fixed.style.display = "flex";
-    if(studentActions) studentActions.style.display = "none";
-
-    if(target === "free"){
-      if(missions) missions.style.display = "none";
-      if(free) free.style.display = "block";
+    if(!isFree){
+      try{ if(typeof buildMissionList==='function') buildMissionList(); }catch(e){console.error(e)}
+      try{ if(typeof renderMission==='function') renderMission(); }catch(e){console.error(e)}
     }else{
-      if(missions) missions.style.display = "block";
-      if(free) free.style.display = "none";
-      try{
-        if(typeof buildMissionList === "function") buildMissionList();
-        if(typeof renderMission === "function") renderMission();
-      }catch(err){ console.error("Erro ao abrir missões do professor:",err); }
+      try{ if(typeof renderFreeShelf==='function') renderFreeShelf(); }catch(e){console.error(e)}
+      try{ if(typeof resetFree==='function') resetFree(); }catch(e){console.error(e)}
     }
 
     if(nav){
-      const btns = nav.querySelectorAll("button");
-      btns.forEach((b,i)=>b.classList.toggle("active", target==="free" ? i===1 : i===0));
+      const btns=[...nav.querySelectorAll('button')];
+      btns.forEach((b,i)=>b.classList.toggle('active',isFree?i===1:i===0));
     }
-
-    try{ if(typeof updateUI === "function") updateUI(); }catch(err){}
     window.scrollTo(0,0);
-  };
-
-  window.backToTeacherDashboard = function(){
-    window.teacherLabMode = false;
-
-    document.body.classList.remove("teacher-lab-mode");
-    document.body.classList.add("teacher-mode");
-
-    const dashboard = el("teacherDashboard");
-    const app = document.querySelector(".app");
-    const fixed = el("teacherLabFixed");
-    const nav = el("gameTopnav");
-
-    if(app) app.style.display = "none";
-    if(fixed) fixed.style.display = "none";
-    if(nav) nav.style.display = "none";
-    if(dashboard) dashboard.style.display = "block";
-
-    try{
-      if(typeof renderCloudTeacherDashboard === "function") renderCloudTeacherDashboard();
-    }catch(err){ console.error(err); }
-    window.scrollTo(0,0);
-  };
-
-  window.logoutTeacher = async function(){
-    if(!confirm("Deseja sair da sua conta do LabQuímica?")) return;
-
-    try{
-      if(typeof cloud !== "undefined" && cloud?.auth) await cloud.auth.signOut();
-    }catch(err){ console.warn(err); }
-
-    window.teacherLabMode = false;
-    document.body.classList.remove("teacher-lab-mode","teacher-mode");
-
-    const dashboard = el("teacherDashboard");
-    const app = document.querySelector(".app");
-    const fixed = el("teacherLabFixed");
-    const auth = el("authScreen");
-
-    if(dashboard) dashboard.style.display = "none";
-    if(app) app.style.display = "none";
-    if(fixed) fixed.style.display = "none";
-    if(auth) auth.style.display = "flex";
-
-    window.scrollTo(0,0);
-  };
-
-  function teacherSwitch(mode){
-    if(window.teacherLabMode){
-      window.openTeacherLab(mode === "free" ? "free" : "missions");
-      return true;
-    }
-    return false;
   }
 
-  const previousSwitchMode = window.switchMode;
-  window.switchMode = function(mode){
-    if(teacherSwitch(mode)) return;
-    if(typeof previousSwitchMode === "function") return previousSwitchMode(mode);
+  window.openTeacherLab=(mode='missions')=>setTeacherLab(mode);
+
+  window.backToTeacherDashboard=()=>{
+    window.teacherLabMode=false;
+    document.body.classList.remove('teacher-lab-mode','teacher-lab-missions','teacher-lab-free');
+    document.body.classList.add('teacher-mode');
+    const dashboard=$('teacherDashboard'), app=document.querySelector('.app'), fixed=$('teacherLabFixed'), nav=$('gameTopnav');
+    if(app) app.style.display='none';
+    if(fixed) fixed.style.display='none';
+    if(nav) nav.style.display='none';
+    if(dashboard) dashboard.style.display='block';
+    try{ if(typeof renderCloudTeacherDashboard==='function') renderCloudTeacherDashboard(); }catch(e){console.error(e)}
+    window.scrollTo(0,0);
   };
 
-  document.addEventListener("DOMContentLoaded",()=>{
-    const miss = el("teacherOpenMissions");
-    const free = el("teacherOpenFree");
-    const back = el("teacherBackPanel");
-    const logout = el("teacherLogout");
+  async function createTeacherClass(isDemo=false){
+    if(authRole!=='teacher' || !cloudUser){
+      alert('Faça login como professora para criar uma turma.');
+      return;
+    }
+    const name=isDemo?'Turma Demo - Química':$('newClassName')?.value.trim();
+    if(!name){ alert('Informe o nome da turma.'); return; }
+    const code=generateClassCode();
+    const teacherName=$('newTeacherName')?.value.trim();
+    const {data,error}=await cloud.from('classes')
+      .insert({owner_id:cloudUser.id,name,join_code:code})
+      .select()
+      .single();
+    if(error){
+      console.error('Erro ao criar turma:',error);
+      alert('Não foi possível criar a turma: '+error.message);
+      return;
+    }
+    if($('newClassName')) $('newClassName').value='';
+    if($('createdClassCode')) $('createdClassCode').innerHTML=`<div class="class-code"><span>Código da turma</span><b>${data.join_code}</b></div>`;
+    await renderCloudTeacherDashboard(data.id);
+  }
 
-    if(miss) miss.addEventListener("click",()=>window.openTeacherLab("missions"));
-    if(free) free.addEventListener("click",()=>window.openTeacherLab("free"));
-    if(back) back.addEventListener("click",window.backToTeacherDashboard);
-    if(logout) logout.addEventListener("click",window.logoutTeacher);
+  window.logoutTeacher=async()=>{
+    if(!confirm('Deseja sair da sua conta do LabQuímica?'))return;
+    try{ if(typeof cloud!=='undefined' && cloud?.auth) await cloud.auth.signOut(); }catch(e){console.warn(e)}
+    window.teacherLabMode=false;
+    document.body.classList.remove('teacher-mode','teacher-lab-mode','teacher-lab-missions','teacher-lab-free');
+    const dashboard=$('teacherDashboard'), app=document.querySelector('.app'), fixed=$('teacherLabFixed'), auth=$('authScreen');
+    if(dashboard)dashboard.style.display='none';
+    if(app)app.style.display='none';
+    if(fixed)fixed.style.display='none';
+    if(auth)auth.style.display='flex';
+    window.scrollTo(0,0);
+  };
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    $('teacherOpenMissions')?.addEventListener('click',()=>setTeacherLab('missions'));
+    $('teacherOpenFree')?.addEventListener('click',()=>setTeacherLab('free'));
+    $('teacherBackPanel')?.addEventListener('click',window.backToTeacherDashboard);
+    $('teacherLogout')?.addEventListener('click',window.logoutTeacher);
+    $('teacherCreateClass')?.addEventListener('click',()=>createTeacherClass(false));
+    $('teacherCreateDemo')?.addEventListener('click',()=>createTeacherClass(true));
+
+    $('gameTopnav')?.addEventListener('click',(ev)=>{
+      if(!window.teacherLabMode)return;
+      const btn=ev.target.closest('button'); if(!btn)return;
+      const btns=[...$('gameTopnav').querySelectorAll('button')];
+      const i=btns.indexOf(btn);
+      if(i===0||i===1){
+        ev.preventDefault();ev.stopImmediatePropagation();
+        setTeacherLab(i===1?'free':'missions');
+      }
+    },true);
   });
 })();
 
 
 
-/* ===== LABQUIMICA STABLE • PROFESSOR CONTROLLER ===== */
+/* ===== STABLE 5 • EXCLUIR TURMA ===== */
+
+
+
+
+
+
+
+
+/* ===== STABLE 9 • PAINEL DO PROFESSOR RECONSTRUÍDO ===== */
 (function(){
   "use strict";
-  const $ = (id)=>document.getElementById(id);
-  window.teacherLabMode = false;
 
-  function setProfessorLabView(target){
-    window.teacherLabMode = true;
-    document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
-    document.body.classList.add("teacher-lab-mode");
+  const $ = (id) => document.getElementById(id);
+  const state = {
+    classes: [],
+    selectedId: null,
+    busy: false
+  };
 
-    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
-          missions=$("missionsMode"), free=$("freeMode"),
-          nav=$("gameTopnav"), fixed=$("teacherLabFixed"), studentActions=$("studentSessionActions");
+  function esc(v){
+    return String(v ?? "")
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
 
+  function message(text, type="info"){
+    const el = $("teacherStableMessage");
+    if(!el) return;
+    el.className = "teacher-stable-message show " + type;
+    el.textContent = text;
+    clearTimeout(message._t);
+    message._t = setTimeout(()=>{ el.className="teacher-stable-message"; }, 3500);
+  }
+
+  function setBusy(on){
+    state.busy = !!on;
+    document.querySelectorAll("#teacherDashboard button").forEach(b=>b.disabled=state.busy);
+  }
+
+  async function queryClasses(){
+    const {data,error} = await cloud
+      .from("classes")
+      .select("id,name,join_code,created_at")
+      .eq("owner_id",cloudUser.id)
+      .order("created_at",{ascending:true});
+    if(error) throw error;
+    state.classes = data || [];
+    if(state.selectedId && !state.classes.some(c=>c.id===state.selectedId)){
+      state.selectedId = null;
+    }
+    if(!state.selectedId && state.classes.length){
+      state.selectedId = state.classes[0].id;
+    }
+  }
+
+  function renderClassList(){
+    const list = $("teacherStableClassList");
+    if(!list) return;
+    if(!state.classes.length){
+      list.innerHTML = '<div class="teacher-stable-empty">Nenhuma turma criada.</div>';
+      return;
+    }
+    list.innerHTML = state.classes.map(c=>`
+      <button type="button"
+        class="teacher-stable-class ${c.id===state.selectedId?"active":""}"
+        data-action="select-class"
+        data-class-id="${c.id}">
+        <b>${esc(c.name)}</b>
+        <span>${esc(c.join_code)}</span>
+      </button>
+    `).join("");
+  }
+
+  async function getStudents(classId){
+    const {data:members,error:memberError}=await cloud
+      .from("class_members")
+      .select("user_id")
+      .eq("class_id",classId);
+    if(memberError) throw memberError;
+
+    const ids=(members||[]).map(m=>m.user_id);
+    if(!ids.length) return [];
+
+    const [profilesRes, progressRes] = await Promise.all([
+      cloud.from("profiles").select("id,display_name").in("id",ids),
+      cloud.from("module_progress").select("*")
+        .eq("class_id",classId)
+        .eq("module_slug","reacoes-quimicas")
+    ]);
+    if(profilesRes.error) throw profilesRes.error;
+    if(progressRes.error) throw progressRes.error;
+
+    const profiles=profilesRes.data||[];
+    const progress=progressRes.data||[];
+
+    return ids.map(id=>{
+      const pf=profiles.find(x=>x.id===id);
+      const pg=progress.find(x=>x.user_id===id);
+      const wins=pg?.wins||0, errors=pg?.errors||0, total=wins+errors;
+      return {
+        name:pf?.display_name||"Aluno",
+        completed:pg?.completed_phases?.length||0,
+        xp:pg?.xp||0,
+        stars:pg?.stars||0,
+        errors,
+        accuracy:total?Math.round(wins/total*100):0
+      };
+    });
+  }
+
+  async function renderSelectedClass(){
+    const detail=$("teacherStableClassDetail");
+    if(!detail) return;
+
+    const cls=state.classes.find(c=>c.id===state.selectedId);
+    if(!cls){
+      detail.innerHTML='<div class="teacher-stable-empty">Selecione ou crie uma turma.</div>';
+      return;
+    }
+
+    detail.innerHTML='<div class="teacher-stable-loading">Carregando turma…</div>';
+
+    try{
+      const students=await getStudents(cls.id);
+      const avgProgress=students.length
+        ? Math.round(students.reduce((s,x)=>s+x.completed,0)/students.length)
+        : 0;
+      const avgAccuracy=students.length
+        ? Math.round(students.reduce((s,x)=>s+x.accuracy,0)/students.length)
+        : 0;
+      const totalErrors=students.reduce((s,x)=>s+x.errors,0);
+
+      detail.innerHTML=`
+        <div class="teacher-stable-detail-head">
+          <div>
+            <h2>${esc(cls.name)}</h2>
+            <div class="teacher-stable-code">Código da turma <b>${esc(cls.join_code)}</b></div>
+          </div>
+          <div class="teacher-stable-actions">
+            <button type="button" data-action="refresh-class" data-class-id="${cls.id}">↻ Atualizar</button>
+            <button type="button" class="danger" data-action="delete-class" data-class-id="${cls.id}" data-class-name="${esc(cls.name)}">🗑️ Excluir turma</button>
+          </div>
+        </div>
+
+        <div class="teacher-cloud-note">☁️ Dados sincronizados com Supabase.</div>
+
+        <div class="teacher-stable-kpis">
+          <div><span>Alunos</span><b>${students.length}</b></div>
+          <div><span>Progresso médio</span><b>${avgProgress}/24</b></div>
+          <div><span>Precisão média</span><b>${avgAccuracy}%</b></div>
+          <div><span>Erros totais</span><b>${totalErrors}</b></div>
+        </div>
+
+        <div class="teacher-stable-students">
+          ${students.length ? students.map(s=>`
+            <div class="teacher-stable-student">
+              <div class="teacher-stable-student-head">
+                <b>${esc(s.name)}</b>
+                <span>${s.accuracy}% de precisão</span>
+              </div>
+              <div class="teacher-stable-progress"><i style="width:${Math.round(s.completed/24*100)}%"></i></div>
+              <div class="teacher-stable-mini">
+                <span>Fases <b>${s.completed}/24</b></span>
+                <span>XP <b>${s.xp}</b></span>
+                <span>⭐ <b>${s.stars}</b></span>
+                <span>Erros <b>${s.errors}</b></span>
+              </div>
+            </div>
+          `).join("") : '<div class="teacher-stable-empty">Ainda não há alunos nesta turma.</div>'}
+        </div>
+      `;
+    }catch(err){
+      console.error("Erro ao abrir turma:",err);
+      detail.innerHTML='<div class="auth-error">Não foi possível carregar esta turma.</div>';
+    }
+  }
+
+  async function refreshDashboard(preferredId=null){
+    if(authRole!=="teacher" || !cloudUser) return;
+    if(state.busy) return;
+    setBusy(true);
+    try{
+      if(preferredId) state.selectedId=preferredId;
+      await queryClasses();
+      renderClassList();
+      await renderSelectedClass();
+    }catch(err){
+      console.error("Erro no painel do professor:",err);
+      message("Não foi possível atualizar o painel.","error");
+    }finally{
+      setBusy(false);
+    }
+  }
+
+  async function createClass(name){
+    const clean=String(name||"").trim();
+    if(!clean){
+      message("Informe o nome da turma.","error");
+      return;
+    }
+    if(state.busy) return;
+    setBusy(true);
+    try{
+      const code=generateClassCode();
+      const {data,error}=await cloud
+        .from("classes")
+        .insert({owner_id:cloudUser.id,name:clean,join_code:code})
+        .select("id,name,join_code,created_at")
+        .single();
+      if(error) throw error;
+      state.selectedId=data.id;
+      const box=$("teacherStableCreatedCode");
+      if(box){
+        box.innerHTML=`<div class="teacher-stable-created">Código criado: <b>${esc(data.join_code)}</b></div>`;
+      }
+      if($("teacherStableClassName")) $("teacherStableClassName").value="";
+      message("Turma criada com sucesso.","success");
+      await queryClasses();
+      renderClassList();
+      await renderSelectedClass();
+    }catch(err){
+      console.error("Erro ao criar turma:",err);
+      message("Não foi possível criar a turma: "+(err?.message||"erro desconhecido"),"error");
+    }finally{
+      setBusy(false);
+    }
+  }
+
+  async function deleteClass(classId,className){
+    if(state.busy) return;
+    const ok=confirm(`Excluir a turma "${className}"?\n\nOs alunos serão removidos da turma, mas o histórico deles será preservado.`);
+    if(!ok) return;
+    const sure=confirm("Tem certeza? Esta ação não pode ser desfeita.");
+    if(!sure) return;
+
+    setBusy(true);
+    try{
+      const {data,error}=await cloud.rpc("delete_owned_class",{target_class_id:classId});
+      if(error) throw error;
+      if(data!==true) throw new Error("O banco não confirmou a exclusão.");
+
+      if(state.selectedId===classId) state.selectedId=null;
+      message("Turma excluída.","success");
+
+      await queryClasses();
+      renderClassList();
+      await renderSelectedClass();
+    }catch(err){
+      console.error("Erro ao excluir turma:",err);
+      message("Não foi possível excluir a turma: "+(err?.message||"erro desconhecido"),"error");
+    }finally{
+      setBusy(false);
+    }
+  }
+
+  window.openTeacherDashboard = async function(){
+    if(!cloudUser || authRole!=="teacher"){
+      alert("Entre com uma conta de professora.");
+      return;
+    }
+    document.body.classList.remove("teacher-lab-mode","teacher-lab-missions","teacher-lab-free");
+    document.body.classList.add("teacher-mode");
+    const auth=$("authScreen"), dashboard=$("teacherDashboard"), app=document.querySelector(".app");
+    if(auth) auth.style.display="none";
+    if(app) app.style.display="none";
+    if(dashboard) dashboard.style.display="block";
+    await refreshDashboard();
+    window.scrollTo(0,0);
+  };
+
+  window.renderCloudTeacherDashboard = refreshDashboard;
+
+  window.closeTeacherDashboard = function(){
+    const dashboard=$("teacherDashboard");
     if(dashboard) dashboard.style.display="none";
-    if(app) app.style.display="block";
-    if(nav) nav.style.display="flex";
-    if(fixed) fixed.style.display="flex";
-    if(studentActions) studentActions.style.display="none";
+    const auth=$("authScreen");
+    if(auth) auth.style.display="flex";
+  };
 
-    const isFree=target==="free";
-    if(missions) missions.style.display=isFree?"none":"block";
-    if(free) free.style.display=isFree?"block":"none";
-
-    if(!isFree){
-      try{ if(typeof buildMissionList==="function") buildMissionList(); }catch(e){console.error(e)}
-      try{ if(typeof renderMission==="function") renderMission(); }catch(e){console.error(e)}
-    }
-
-    if(nav){
-      const buttons=nav.querySelectorAll("button");
-      buttons.forEach((b,i)=>b.classList.toggle("active",isFree?i===1:i===0));
-    }
+  async function logoutTeacherStable(){
+    try{ await cloud.auth.signOut(); }catch(e){ console.warn(e); }
+    state.classes=[];
+    state.selectedId=null;
+    document.body.classList.remove("teacher-mode","teacher-lab-mode","teacher-lab-missions","teacher-lab-free");
+    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"), auth=$("authScreen");
+    if(dashboard) dashboard.style.display="none";
+    if(app) app.style.display="none";
+    if(auth) auth.style.display="flex";
     window.scrollTo(0,0);
   }
 
-  window.openTeacherLab=(target="missions")=>setProfessorLabView(target);
+  document.addEventListener("click",async(ev)=>{
+    const target=ev.target.closest("button");
+    if(!target) return;
 
-  window.backToTeacherDashboard=()=>{
-    window.teacherLabMode=false;
-    document.body.classList.remove("teacher-lab-mode");
-    document.body.classList.add("teacher-mode");
-    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
-          fixed=$("teacherLabFixed"), nav=$("gameTopnav");
-    if(app) app.style.display="none";
-    if(fixed) fixed.style.display="none";
-    if(nav) nav.style.display="none";
-    if(dashboard) dashboard.style.display="block";
-    try{ if(typeof renderCloudTeacherDashboard==="function") renderCloudTeacherDashboard(); }catch(e){console.error(e)}
-    window.scrollTo(0,0);
-  };
+    if(target.id==="teacherStableCreate"){
+      ev.preventDefault();
+      await createClass($("teacherStableClassName")?.value);
+      return;
+    }
+    if(target.id==="teacherStableDemo"){
+      ev.preventDefault();
+      await createClass("Turma Demo - Química");
+      return;
+    }
+    if(target.id==="teacherStableReloadList"){
+      ev.preventDefault();
+      await refreshDashboard();
+      return;
+    }
+    if(target.id==="teacherStableMissions"){
+      ev.preventDefault();
+      if(typeof window.openTeacherLab==="function") window.openTeacherLab("missions");
+      return;
+    }
+    if(target.id==="teacherStableFree"){
+      ev.preventDefault();
+      if(typeof window.openTeacherLab==="function") window.openTeacherLab("free");
+      return;
+    }
+    if(target.id==="teacherStableLogout"){
+      ev.preventDefault();
+      await logoutTeacherStable();
+      return;
+    }
 
-  window.logoutTeacher=async()=>{
-    if(!confirm("Deseja sair da sua conta do LabQuímica?")) return;
-    try{ if(typeof cloud!=="undefined" && cloud?.auth) await cloud.auth.signOut(); }catch(e){console.warn(e)}
-    window.teacherLabMode=false;
-    document.body.classList.remove("teacher-lab-mode","teacher-mode");
-    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
-          fixed=$("teacherLabFixed"), auth=$("authScreen");
-    if(dashboard) dashboard.style.display="none";
-    if(app) app.style.display="none";
-    if(fixed) fixed.style.display="none";
-    if(auth) auth.style.display="flex";
-    window.scrollTo(0,0);
-  };
-
-  document.addEventListener("DOMContentLoaded",()=>{
-    $("teacherOpenMissions")?.addEventListener("click",()=>setProfessorLabView("missions"));
-    $("teacherOpenFree")?.addEventListener("click",()=>setProfessorLabView("free"));
-    $("teacherBackPanel")?.addEventListener("click",window.backToTeacherDashboard);
-    $("teacherLogout")?.addEventListener("click",window.logoutTeacher);
-
-    /* tabs use capture so teacher mode wins without rewriting student navigation */
-    $("gameTopnav")?.addEventListener("click",(ev)=>{
-      if(!window.teacherLabMode) return;
-      const buttons=[...$("gameTopnav").querySelectorAll("button")];
-      const idx=buttons.indexOf(ev.target.closest("button"));
-      if(idx===0 || idx===1){
-        ev.preventDefault(); ev.stopImmediatePropagation();
-        setProfessorLabView(idx===1?"free":"missions");
-      }
-    },true);
+    const action=target.dataset.action;
+    if(action==="select-class"){
+      ev.preventDefault();
+      const id=target.dataset.classId;
+      if(id===state.selectedId) return;
+      state.selectedId=id;
+      renderClassList();
+      await renderSelectedClass();
+      return;
+    }
+    if(action==="refresh-class"){
+      ev.preventDefault();
+      await refreshDashboard(target.dataset.classId);
+      return;
+    }
+    if(action==="delete-class"){
+      ev.preventDefault();
+      await deleteClass(target.dataset.classId,target.dataset.className||"Turma");
+    }
   });
+
 })();
 
 </script>
