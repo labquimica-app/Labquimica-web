@@ -1935,6 +1935,79 @@ body.student-free #tabMissions{
 /* selo */
 #versionBadge{background:#15466f!important;color:#70ecff!important}
 
+
+/* ===== V41 • NAVEGAÇÃO ESTÁVEL ===== */
+#startScreen{display:none!important;visibility:hidden!important;pointer-events:none!important}
+
+/* Missões/Modo Livre: ficam no fluxo normal, NÃO sticky */
+#gameTopnav{
+  position:static!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  margin:0 auto 12px!important;
+}
+
+/* Voltar/Sair: fixos na viewport */
+#studentSessionActions{
+  position:fixed!important;
+  left:12px!important;
+  right:12px!important;
+  bottom:calc(12px + env(safe-area-inset-bottom))!important;
+  top:auto!important;
+  z-index:10050!important;
+  display:none;
+  gap:8px!important;
+  padding:7px!important;
+  margin:0!important;
+  border-radius:15px!important;
+  background:rgba(3,12,26,.94)!important;
+  border:1px solid rgba(60,189,247,.22)!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.48)!important;
+  backdrop-filter:blur(14px)!important;
+}
+#studentSessionActions button{flex:1!important;margin:0!important}
+
+/* Estados controlados por uma única classe */
+body.student-home #studentGameHome{display:block!important}
+body.student-home #gameTopnav,
+body.student-home #missionsMode,
+body.student-home #freeMode,
+body.student-home #studentSessionActions,
+body.student-home #mobileMapButton{display:none!important}
+
+body.student-missions #studentGameHome{display:none!important}
+body.student-missions #gameTopnav{display:flex!important}
+body.student-missions #missionsMode{display:block!important}
+body.student-missions #freeMode{display:none!important}
+body.student-missions #studentSessionActions{display:flex!important}
+
+body.student-free #studentGameHome{display:none!important}
+body.student-free #gameTopnav{display:flex!important}
+body.student-free #missionsMode{display:none!important}
+body.student-free #freeMode{display:block!important}
+body.student-free #studentSessionActions{display:flex!important}
+
+body.student-missions .app,body.student-free .app{padding-bottom:88px!important}
+
+/* Modo Livre não pode ser ocultado por regras mobile antigas */
+@media(max-width:760px){
+  #gameTopnav{position:static!important}
+  body.student-free #freeMode{display:block!important}
+  body.student-missions #missionsMode{display:block!important}
+  #studentSessionActions{
+    position:fixed!important;
+    bottom:calc(10px + env(safe-area-inset-bottom))!important;
+    top:auto!important;
+  }
+}
+
+/* Login sempre começa limpo */
+#authScreen{z-index:11000!important}
+#versionBadge{background:#17517c!important;color:#79efff!important}
+
 </style>
 </head>
 <body>
@@ -2098,7 +2171,7 @@ body.student-free #tabMissions{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v40</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v41</div></header>
 
 
 <section id="studentGameHome">
@@ -2328,7 +2401,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build v40 • laboratório virtual</footer>
+<footer>LabQuímica • build v41 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -3159,7 +3232,13 @@ async function afterCloudAuth(){
     if(code)await joinCloudClass(code);else await findStudentClass();
     await loadCloudProgress();
   }
-  authScreen.style.display="none";updateUserMenu();updateProfileUI();updateUI();buildMissionList?.();renderMission?.();
+  authScreen.style.display="none";
+  updateUserMenu();updateProfileUI();updateUI();buildMissionList?.();renderMission?.();
+  if(authRole==="student"){
+    showStudentGameHome();
+  }else if(authRole==="teacher"){
+    document.querySelector(".app").style.display="none";
+  }
 }
 
 function updateUserMenu(){
@@ -3259,11 +3338,100 @@ async function renderCloudTeacherDashboard(preferredId=null){
   ${students.length?students.map(s=>`<tr><td><b>${s.name}</b></td><td>${s.progress}/24<div class="progress-bar"><i style="width:${Math.round(s.progress/24*100)}%"></i></div></td><td>⭐ ${s.stars}</td><td>${s.errors}</td><td>${s.accuracy}%</td></tr>`).join(""):'<tr><td colspan="5" class="muted">Ainda não há alunos nesta turma.</td></tr>'}</tbody></table>`;
 }
 
+
+/* ===== V41 CONTROLLER — definido antes do bootstrap Supabase ===== */
+function v41HideAllStudentViews(){
+  document.body.classList.remove("student-home","student-missions","student-free");
+  const ids=["studentGameHome","gameTopnav","missionsMode","freeMode","studentSessionActions"];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none";});
+  const s=document.getElementById("startScreen");if(s)s.style.display="none";
+}
+function v41SetState(state){
+  document.body.classList.remove("student-home","student-missions","student-free");
+  document.body.classList.add("student-"+state);
+  const app=document.querySelector(".app");if(app)app.style.display="";
+  const home=document.getElementById("studentGameHome");
+  const nav=document.getElementById("gameTopnav");
+  const missions=document.getElementById("missionsMode");
+  const free=document.getElementById("freeMode");
+  const actions=document.getElementById("studentSessionActions");
+  if(home)home.style.display=state==="home"?"block":"none";
+  if(nav)nav.style.display=state==="home"?"none":"flex";
+  if(missions)missions.style.display=state==="missions"?"block":"none";
+  if(free)free.style.display=state==="free"?"block":"none";
+  if(actions)actions.style.display=state==="home"?"none":"flex";
+  document.getElementById("tabMissions")?.classList.toggle("active",state==="missions");
+  document.getElementById("tabFree")?.classList.toggle("active",state==="free");
+}
+function refreshStudentHome(){
+  const name=cloudProfile?.display_name||studentProfile?.name||"Aluno";
+  const lv=Math.max(1,Math.floor((xp||0)/300)+1);
+  const attempts=(wins||0)+(errors||0);
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+  set("homeStudentName",name);set("homeLevel",`Nível ${lv}`);set("homeXpText",`${xp||0} XP • ⭐ ${totalStars||0}`);
+  set("homeCompleted",completedMissions?.size||0);set("homeAccuracy",attempts?Math.round((wins/attempts)*100)+"%":"0%");set("homeStars",totalStars||0);
+  const bar=document.getElementById("homeXpBar");if(bar)bar.style.width=Math.min(100,((xp||0)%300)/3)+"%";
+}
+function showStudentGameHome(){
+  if(authRole!=="student")return;
+  refreshStudentHome();
+  v41SetState("home");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+function openStudentMissions(showMap=false){
+  if(authRole!=="student")return;
+  v41SetState("missions");
+  const layout=document.getElementById("missionLayout");
+  if(layout)layout.classList.toggle("show-map",!!showMap);
+  const b=document.getElementById("mobileMapButton");
+  if(b)b.textContent=showMap?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
+  buildMissionList?.();renderMission?.();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+function openStudentFree(){
+  if(authRole!=="student")return;
+  v41SetState("free");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+function returnToStudentHome(){
+  try{clearTransientMessages?.();closeGameFail?.();closeModal?.()}catch(e){}
+  showStudentGameHome();
+}
+function toggleMobileMap(){
+  const l=document.getElementById("missionLayout"),b=document.getElementById("mobileMapButton");if(!l)return;
+  const on=l.classList.toggle("show-map");if(b)b.textContent=on?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
+}
+async function logoutStudent(){
+  if(!confirm("Deseja sair da sua conta do LabQuímica?"))return;
+  try{await cloud?.auth?.signOut()}catch(e){}
+  cloudUser=null;cloudProfile=null;cloudClass=null;authUser=null;authRole="student";
+  v41HideAllStudentViews();
+  const app=document.querySelector(".app");if(app)app.style.display="none";
+  const auth=document.getElementById("authScreen");if(auth)auth.style.display="flex";
+  window.scrollTo({top:0,behavior:"auto"});
+}
+switchMode=function(mode){
+  if(authRole==="student"){return mode==="free"?openStudentFree():openStudentMissions(false)}
+};
+
 cloud.auth.onAuthStateChange((event)=>{if(event==="SIGNED_OUT")authScreen.style.display="flex";});
 
 (async()=>{
-  const ok=await restoreAuth();
-  if(!ok)authScreen.style.display="flex";
+  /* Login é sempre a primeira tela em uma abertura normal.
+     Exceção: links do Supabase de confirmação/recuperação precisam processar a sessão. */
+  v41HideAllStudentViews();
+  const app=document.querySelector(".app");if(app)app.style.display="none";
+  const authRedirect=location.hash.includes("access_token=") ||
+                     location.hash.includes("type=recovery") ||
+                     location.search.includes("code=");
+  if(authRedirect){
+    const ok=await restoreAuth();
+    if(!ok)authScreen.style.display="flex";
+  }else{
+    try{await cloud.auth.signOut({scope:"local"})}catch(e){}
+    cloudUser=null;cloudProfile=null;cloudClass=null;authUser=null;
+    authScreen.style.display="flex";
+  }
   updateProfileUI();updateUserMenu();
 })();
 
@@ -3656,345 +3824,6 @@ window.addEventListener("load",()=>setTimeout(updatePlayerMini,300));
 
 
 
-
-/* ===== V38 • HOME / MISSÕES — ESTADO ÚNICO ===== */
-function clearStudentViewClasses(){
-  document.body.classList.remove("student-home","student-missions","student-free");
-}
-function refreshStudentHome(){
-  const name=cloudProfile?.display_name||studentProfile?.name||"Aluno";
-  const n=document.getElementById("homeStudentName");
-  const lv=Math.max(1,Math.floor((xp||0)/300)+1);
-  const pct=Math.min(100,((xp||0)%300)/3);
-  const attempts=(wins||0)+(errors||0);
-  if(n)n.textContent=name;
-  const hl=document.getElementById("homeLevel");
-  const hx=document.getElementById("homeXpText");
-  const hb=document.getElementById("homeXpBar");
-  const hc=document.getElementById("homeCompleted");
-  const ha=document.getElementById("homeAccuracy");
-  const hs=document.getElementById("homeStars");
-  if(hl)hl.textContent=`Nível ${lv}`;
-  if(hx)hx.textContent=`${xp||0} XP • ⭐ ${totalStars||0}`;
-  if(hb)hb.style.width=pct+"%";
-  if(hc)hc.textContent=completedMissions?.size||0;
-  if(ha)ha.textContent=attempts?Math.round((wins/attempts)*100)+"%":"0%";
-  if(hs)hs.textContent=totalStars||0;
-}
-function showStudentGameHome(){
-  if(authRole!=="student" && authUser?.role!=="student")return;
-  clearStudentViewClasses();
-  document.body.classList.add("student-home");
-  refreshStudentHome();
-  window.scrollTo({top:0,behavior:"auto"});
-}
-function openStudentMissions(showMap=false){
-  clearStudentViewClasses();
-  document.body.classList.add("student-missions");
-  const layout=document.getElementById("missionLayout");
-  if(layout)layout.classList.toggle("show-map",!!showMap);
-  const b=document.getElementById("mobileMapButton");
-  if(b)b.textContent=showMap?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
-  renderMission?.();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function openStudentFree(){
-  clearStudentViewClasses();
-  document.body.classList.add("student-free");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function toggleMobileMap(){
-  const l=document.getElementById("missionLayout"),b=document.getElementById("mobileMapButton");
-  if(!l)return;
-  const on=l.classList.toggle("show-map");
-  if(b)b.textContent=on?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
-}
-
-/* Override mode switching so it cannot re-open old stacked panels */
-const _switchModeCore=switchMode;
-switchMode=function(mode){
-  if(authRole==="student" || authUser?.role==="student"){
-    if(mode==="free")return openStudentFree();
-    return openStudentMissions(false);
-  }
-  return _switchModeCore(mode);
-};
-
-const _afterCloudAuthV38=afterCloudAuth;
-afterCloudAuth=async function(){
-  await _afterCloudAuthV38();
-  if(authRole==="student")setTimeout(showStudentGameHome,80);
-};
-
-const _afterAuthV38=afterAuth;
-afterAuth=function(){
-  _afterAuthV38();
-  if(authUser?.role==="student")setTimeout(showStudentGameHome,80);
-};
-
-const _updateUIV38=updateUI;
-updateUI=function(){
-  _updateUIV38();
-  refreshStudentHome();
-};
-
-/* If a restored student session renders immediately, force HOME after full load */
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    if(authRole==="student" || authUser?.role==="student") showStudentGameHome();
-  },250);
-});
-
-
-
-/* ===== V39 • RETORNO E LOGOUT DO ALUNO ===== */
-function returnToStudentHome(){
-  try{
-    clearTransientMessages?.();
-    closeGameFail?.();
-    closeModal?.();
-  }catch(e){}
-  showStudentGameHome();
-}
-
-async function logoutStudent(){
-  const ok=confirm("Deseja sair da sua conta do LabQuímica?");
-  if(!ok)return;
-  try{
-    if(typeof cloud!=="undefined" && cloud?.auth){
-      await cloud.auth.signOut();
-    }
-  }catch(e){
-    console.warn("Falha ao encerrar sessão no Supabase:",e);
-  }
-  try{
-    localStorage.removeItem("labquimica-auth");
-    localStorage.removeItem("labquimica-user");
-    localStorage.removeItem("labquimica-role");
-  }catch(e){}
-  cloudUser=null;
-  cloudProfile=null;
-  cloudClass=null;
-  authUser=null;
-  authRole=null;
-  clearStudentViewClasses?.();
-  document.body.classList.remove("student-home","student-missions","student-free");
-  const home=document.getElementById("studentGameHome");
-  const app=document.getElementById("app");
-  const top=document.getElementById("gameTopnav");
-  if(home)home.style.display="none";
-  if(app)app.style.display="none";
-  if(top)top.style.display="none";
-  showAuthScreen?.();
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-/* Garante botões disponíveis em Missões e Modo Livre */
-const _openStudentMissionsV39=openStudentMissions;
-openStudentMissions=function(showMap=false){
-  _openStudentMissionsV39(showMap);
-  const a=document.getElementById("studentSessionActions");
-  if(a)a.style.display="flex";
-};
-const _openStudentFreeV39=openStudentFree;
-openStudentFree=function(){
-  _openStudentFreeV39();
-  const a=document.getElementById("studentSessionActions");
-  if(a)a.style.display="flex";
-};
-const _showStudentGameHomeV39=showStudentGameHome;
-showStudentGameHome=function(){
-  _showStudentGameHomeV39();
-  const a=document.getElementById("studentSessionActions");
-  if(a)a.style.display="none";
-};
-
-/* Ao exibir login, evita que qualquer tela anterior continue por baixo */
-const _showAuthScreenV39=showAuthScreen;
-showAuthScreen=function(){
-  clearStudentViewClasses?.();
-  document.body.classList.remove("student-home","student-missions","student-free");
-  const home=document.getElementById("studentGameHome");
-  const top=document.getElementById("gameTopnav");
-  const sa=document.getElementById("studentSessionActions");
-  if(home)home.style.display="none";
-  if(top)top.style.display="none";
-  if(sa)sa.style.display="none";
-  return _showAuthScreenV39();
-};
-
-
-
-/* ===== V40 • NAVEGAÇÃO EXPLÍCITA, SEM HERANÇA DO STARTSCREEN ===== */
-
-function hideLegacyScreens(){
-  const start=document.getElementById("startScreen");
-  const teach=document.getElementById("teacherDashboard");
-  const end=document.getElementById("endScreen");
-  if(start)start.style.display="none";
-  if(teach)teach.style.display="none";
-  if(end)end.style.display="none";
-}
-
-function setStudentState(state){
-  document.body.classList.remove("student-home","student-missions","student-free");
-  document.body.classList.add("student-"+state);
-
-  hideLegacyScreens();
-
-  const app=document.querySelector(".app");
-  const home=document.getElementById("studentGameHome");
-  const missions=document.getElementById("missionsMode");
-  const free=document.getElementById("freeMode");
-  const nav=document.getElementById("gameTopnav");
-  const actions=document.getElementById("studentSessionActions");
-
-  if(app)app.style.display="";
-  if(home)home.style.display=state==="home"?"block":"none";
-  if(missions)missions.style.display=state==="missions"?"block":"none";
-  if(free)free.style.display=state==="free"?"block":"none";
-  if(nav)nav.style.display=state==="home"?"none":"flex";
-  if(actions)actions.style.display=state==="home"?"none":"flex";
-
-  document.getElementById("tabMissions")?.classList.toggle("active",state==="missions");
-  document.getElementById("tabFree")?.classList.toggle("active",state==="free");
-}
-
-function showStudentGameHome(){
-  if(authRole!=="student" && authUser?.role!=="student")return;
-  refreshStudentHome?.();
-  setStudentState("home");
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-function openStudentMissions(showMap=false){
-  if(authRole!=="student" && authUser?.role!=="student")return;
-  setStudentState("missions");
-  const layout=document.getElementById("missionLayout");
-  if(layout)layout.classList.toggle("show-map",!!showMap);
-  const b=document.getElementById("mobileMapButton");
-  if(b)b.textContent=showMap?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
-  renderMission?.();
-  buildMissionList?.();
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-function openStudentFree(){
-  if(authRole!=="student" && authUser?.role!=="student")return;
-  setStudentState("free");
-
-  /* usa a lógica original apenas para preparar o conteúdo do Modo Livre,
-     mas reimpõe o estado visual depois para evitar que ela troque telas */
-  try{
-    const original = (typeof _switchModeCore!=="undefined") ? _switchModeCore : null;
-    if(original) original("free");
-  }catch(e){}
-  setStudentState("free");
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-function returnToStudentHome(){
-  try{
-    clearTransientMessages?.();
-    closeGameFail?.();
-    closeModal?.();
-  }catch(e){}
-  showStudentGameHome();
-}
-
-/* neutraliza a tela inicial antiga */
-function startGame(){
-  if(authRole==="student" || authUser?.role==="student"){
-    openStudentMissions(false);
-    return;
-  }
-  document.getElementById("startScreen").style.display="none";
-}
-function continueGame(){ openStudentMissions(false); }
-function restartGame(){
-  document.getElementById("endScreen").style.display="none";
-  if(authRole==="student" || authUser?.role==="student"){
-    showStudentGameHome();
-  }
-}
-
-/* switchMode passa a ser somente um roteador */
-switchMode=function(mode){
-  if(authRole==="student" || authUser?.role==="student"){
-    if(mode==="free")return openStudentFree();
-    return openStudentMissions(false);
-  }
-};
-
-/* Depois de autenticar: HOME, jamais startScreen */
-const _afterCloudAuthV40=afterCloudAuth;
-afterCloudAuth=async function(){
-  await _afterCloudAuthV40();
-  hideLegacyScreens();
-  if(authRole==="student"){
-    setTimeout(showStudentGameHome,50);
-  }
-};
-
-const _afterAuthV40=afterAuth;
-afterAuth=function(){
-  _afterAuthV40();
-  hideLegacyScreens();
-  if(authUser?.role==="student"){
-    setTimeout(showStudentGameHome,50);
-  }
-};
-
-/* Logout limpo */
-async function logoutStudent(){
-  const ok=confirm("Deseja sair da sua conta do LabQuímica?");
-  if(!ok)return;
-
-  try{
-    if(typeof cloud!=="undefined" && cloud?.auth){
-      await cloud.auth.signOut();
-    }
-  }catch(e){console.warn(e)}
-
-  cloudUser=null;
-  cloudProfile=null;
-  cloudClass=null;
-  authUser=null;
-  authRole="student";
-
-  document.body.classList.remove("student-home","student-missions","student-free");
-  hideLegacyScreens();
-
-  const app=document.querySelector(".app");
-  const home=document.getElementById("studentGameHome");
-  const actions=document.getElementById("studentSessionActions");
-  const nav=document.getElementById("gameTopnav");
-
-  if(app)app.style.display="none";
-  if(home)home.style.display="none";
-  if(actions)actions.style.display="none";
-  if(nav)nav.style.display="none";
-
-  const auth=document.getElementById("authScreen");
-  if(auth)auth.style.display="flex";
-
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-/* Antes mesmo do Supabase responder, esconde a tela antiga */
-document.addEventListener("DOMContentLoaded",()=>{
-  hideLegacyScreens();
-});
-
-/* Sessão restaurada: força a HOME após a recuperação */
-window.addEventListener("load",()=>{
-  hideLegacyScreens();
-  setTimeout(()=>{
-    if(authRole==="student" && (cloudUser||authUser)){
-      showStudentGameHome();
-    }
-  },400);
-});
 
 </script>
 
