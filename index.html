@@ -2118,6 +2118,150 @@ body.teacher-lab-mode .teacher-lab-fixed{display:flex}
   .teacher-lab-actions button{min-width:0}
 }
 
+
+/* ===== V44 • TEACHER LAB CTA ===== */
+.teacher-top .teacher-open-lab{
+  color:#fff!important;
+  background:linear-gradient(135deg,#6548ff,#159fff)!important;
+  border:1px solid rgba(94,215,255,.35)!important;
+  box-shadow:0 0 20px rgba(36,156,255,.18)!important;
+  padding:10px 13px!important;
+  border-radius:12px!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+}
+.teacher-top .teacher-open-lab:hover{filter:brightness(1.1)}
+@media(max-width:760px){
+  .teacher-top .teacher-actions{display:grid!important;grid-template-columns:1fr!important;width:100%!important}
+  .teacher-top .teacher-open-lab{width:100%!important}
+}
+
+
+/* ===== V45 • PROFESSOR = MESMO PADRÃO DO ALUNO ===== */
+.teacher-dashboard{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(111,63,255,.18),transparent 27%),
+    radial-gradient(circle at 88% 14%,rgba(24,195,255,.12),transparent 25%),
+    linear-gradient(160deg,#050c18,#08172d 54%,#06101f)!important;
+  color:#eaf7ff!important;
+  min-height:100vh!important;
+}
+.teacher-shell{max-width:1180px!important;padding:18px!important}
+.teacher-top,
+.teacher-card2{
+  background:linear-gradient(150deg,rgba(7,23,47,.97),rgba(5,16,34,.98))!important;
+  border:1px solid rgba(56,184,244,.20)!important;
+  color:#eaf7ff!important;
+  box-shadow:0 18px 42px rgba(0,0,0,.30),inset 0 1px rgba(255,255,255,.025)!important;
+}
+.teacher-top h1,.teacher-card2 h2,.teacher-card2 h3,
+#teacherClassView h2,#teacherClassView h3{
+  color:#f5fbff!important;
+}
+.teacher-top .muted,.teacher-note,.teacher-card2 .muted,
+#teacherClassView .muted{
+  color:#9fb6ca!important;
+}
+.teacher-card2 input{
+  background:#07182d!important;color:#eef9ff!important;
+  border:1px solid rgba(65,166,226,.22)!important;
+}
+.teacher-card2 input::placeholder{color:#8ea5bb!important}
+.teacher-card2 .start-btn{
+  color:#fff!important;background:linear-gradient(135deg,#6548ff,#159fff)!important;
+  border:1px solid rgba(86,210,255,.28)!important;
+}
+.teacher-actions .secondary-start{
+  background:#0b2848!important;color:#d9efff!important;
+  border:1px solid rgba(71,177,235,.22)!important;
+}
+.class-item{
+  background:#0a213e!important;color:#e9f7ff!important;
+  border:1px solid rgba(62,159,220,.17)!important;
+}
+.class-item b{color:#f3fbff!important}
+.class-item small{color:#a4bad0!important}
+.class-item.active{
+  background:linear-gradient(135deg,rgba(102,59,255,.30),rgba(25,147,238,.20))!important;
+  border-color:#7f5cff!important;
+}
+.teacher-cloud-note{
+  background:#0d2947!important;color:#cde9fa!important;
+  border:1px solid rgba(68,172,231,.20)!important;
+}
+.teacher-refresh{
+  background:linear-gradient(135deg,#112b57,#172f65)!important;
+  color:#b9d4ff!important;border:1px solid rgba(96,142,255,.20)!important;
+}
+.kpi{
+  background:#0c2746!important;border:1px solid rgba(63,158,218,.16)!important
+}
+.kpi span{color:#9eb4c9!important}
+.kpi b{color:#f3fbff!important}
+.student-progress-card{
+  background:linear-gradient(145deg,#0b2747,#091e37)!important;
+  border:1px solid rgba(58,171,232,.20)!important;
+  color:#eaf7ff!important;
+}
+.student-name{color:#fff!important}
+.phase-chip{
+  background:rgba(112,72,255,.20)!important;color:#cbb9ff!important;
+  border:1px solid rgba(143,100,255,.22)!important;
+}
+.mini-stats>div{
+  background:#102a48!important;border:1px solid rgba(57,145,201,.14)!important;
+}
+.mini-stats span{color:#9eb5ca!important}
+.mini-stats b{color:#f4fbff!important}
+.progress-bar{background:#122b49!important}
+.progress-bar i{background:linear-gradient(90deg,#6f4cff,#26d1ff,#45e9ad)!important}
+
+/* Permanent professor lab launcher */
+.teacher-lab-launch{
+  margin:14px 0;
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+  padding:18px;border-radius:20px;
+  background:
+    radial-gradient(circle at 88% 20%,rgba(41,201,255,.12),transparent 24%),
+    linear-gradient(135deg,rgba(19,31,69,.98),rgba(10,28,53,.98));
+  border:1px solid rgba(70,203,255,.28);
+  box-shadow:0 0 28px rgba(37,159,255,.08),0 14px 32px rgba(0,0,0,.25)
+}
+.teacher-lab-launch-copy span{
+  color:#65e4ff;font-size:10px;font-weight:950;letter-spacing:.8px
+}
+.teacher-lab-launch-copy h2{
+  color:#fff!important;margin:4px 0 4px!important;font-size:22px!important
+}
+.teacher-lab-launch-copy p{
+  color:#a8bfd2!important;margin:0;font-size:12px;line-height:1.45
+}
+.teacher-lab-launch-buttons{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;min-width:360px
+}
+.teacher-lab-launch-buttons button{
+  padding:13px 15px;border-radius:13px;font-weight:950;cursor:pointer;color:white;
+  border:1px solid rgba(91,217,255,.28);
+  background:linear-gradient(135deg,#6847ff,#168fff);
+  box-shadow:0 0 18px rgba(51,137,255,.13)
+}
+.teacher-lab-launch-buttons button:nth-child(2){
+  background:linear-gradient(135deg,#0f7f9d,#16b67b)
+}
+.teacher-lab-launch-buttons button:hover{filter:brightness(1.08)}
+
+@media(max-width:760px){
+  .teacher-shell{padding:10px!important}
+  .teacher-top{padding:15px!important}
+  .teacher-top h1{font-size:27px!important}
+  .teacher-grid-main{display:block!important}
+  .teacher-card2{margin-bottom:12px!important}
+  .teacher-lab-launch{grid-template-columns:1fr;padding:15px}
+  .teacher-lab-launch-buttons{min-width:0;grid-template-columns:1fr}
+  .teacher-lab-launch-buttons button{width:100%}
+  .mini-stats{grid-template-columns:1fr 1fr!important}
+}
+
 </style>
 </head>
 <body>
@@ -2229,6 +2373,18 @@ body.teacher-lab-mode .teacher-lab-fixed{display:flex}
       </div>
     </div>
 
+    <div class="teacher-lab-launch">
+      <div class="teacher-lab-launch-copy">
+        <span>⚗️ MODO DE TESTE DO PROFESSOR</span>
+        <h2>Acessar o laboratório</h2>
+        <p>Teste as atividades exatamente como os alunos, sem alterar as estatísticas da turma.</p>
+      </div>
+      <div class="teacher-lab-launch-buttons">
+        <button onclick="openTeacherLab('missions')">🎯 Abrir Missões</button>
+        <button onclick="openTeacherLab('free')">🧪 Abrir Modo Livre</button>
+      </div>
+    </div>
+
     <div class="teacher-grid-main">
       <div class="teacher-card2">
         <h3>➕ Criar turma</h3>
@@ -2281,7 +2437,7 @@ body.teacher-lab-mode .teacher-lab-fixed{display:flex}
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v43</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v45</div></header>
 
 
 <section id="studentGameHome">
@@ -2518,7 +2674,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build v43 • laboratório virtual</footer>
+<footer>LabQuímica • build v45 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -3457,10 +3613,6 @@ async function renderCloudTeacherDashboard(preferredId=null){
   const totalErrors=students.reduce((s,x)=>s+x.errors,0);
   teacherClassView.className="";
   teacherClassView.innerHTML=`<h2 style="margin:0">${cls.name}</h2><div class="muted">Código <b>${cls.join_code}</b></div>
-  
-<div class="teacher-lab-actions">
-  <button type="button" class="teacher-open-lab" onclick="openTeacherLab()">🧪 Entrar no laboratório</button>
-</div>
 <div class="teacher-cloud-note">☁️ Dados sincronizados com Supabase.</div>
   <div class="kpi-grid"><div class="kpi"><span>Alunos</span><b>${students.length}</b></div><div class="kpi"><span>Progresso médio</span><b>${avgProg}/24</b></div><div class="kpi"><span>Precisão média</span><b>${avgAcc}%</b></div><div class="kpi"><span>Erros totais</span><b>${totalErrors}</b></div></div>
   <table class="teacher-table"><thead><tr><th>Aluno</th><th>Progresso</th><th>Estrelas</th><th>Erros</th><th>Precisão</th></tr></thead><tbody>
@@ -3959,19 +4111,37 @@ window.addEventListener("load",()=>setTimeout(updatePlayerMini,300));
 /* ===== V43 • PROFESSOR LAB MODE + SUCCESS ===== */
 let teacherLabMode=false;
 
-function openTeacherLab(){
+function openTeacherLab(target="missions"){
   teacherLabMode=true;
-  document.body.classList.add("teacher-lab-mode");
   document.body.classList.remove("teacher-mode");
-  teacherDashboard.style.display="none";
+  document.body.classList.add("teacher-lab-mode");
+
+  if(typeof teacherDashboard!=="undefined" && teacherDashboard) teacherDashboard.style.display="none";
   const app=document.querySelector(".app");
   if(app)app.style.display="";
-  document.getElementById("missionsMode").style.display="block";
-  document.getElementById("freeMode").style.display="none";
-  document.getElementById("gameTopnav").style.display="flex";
-  document.getElementById("tabMissions")?.classList.add("active");
-  document.getElementById("tabFree")?.classList.remove("active");
-  buildMissionList?.();renderMission?.();updateUI?.();
+
+  const missions=document.getElementById("missionsMode");
+  const free=document.getElementById("freeMode");
+  const nav=document.getElementById("gameTopnav");
+  const fixed=document.getElementById("teacherLabFixed");
+
+  if(nav)nav.style.display="flex";
+  if(fixed)fixed.style.display="flex";
+
+  if(target==="free"){
+    if(missions)missions.style.display="none";
+    if(free)free.style.display="block";
+  }else{
+    if(missions)missions.style.display="block";
+    if(free)free.style.display="none";
+    buildMissionList?.();
+    renderMission?.();
+  }
+
+  const navButtons=nav?.querySelectorAll("button")||[];
+  navButtons.forEach((b,i)=>b.classList.toggle("active",target==="free"?i===1:i===0));
+
+  updateUI?.();
   window.scrollTo({top:0,behavior:"auto"});
 }
 function backToTeacherDashboard(){
@@ -4061,6 +4231,66 @@ performMissionAction=function(){
     }
   },4300);
   return result;
+};
+
+
+
+/* ===== V44 • PROFESSOR LAB BUTTON PERMANENTE ===== */
+function openTeacherLab(){
+  teacherLabMode=true;
+  document.body.classList.remove("teacher-mode");
+  document.body.classList.add("teacher-lab-mode");
+
+  if(typeof teacherDashboard!=="undefined" && teacherDashboard) teacherDashboard.style.display="none";
+  const app=document.querySelector(".app");
+  if(app)app.style.display="";
+
+  const missions=document.getElementById("missionsMode");
+  const free=document.getElementById("freeMode");
+  const nav=document.getElementById("gameTopnav");
+  const fixed=document.getElementById("teacherLabFixed");
+
+  if(missions)missions.style.display="block";
+  if(free)free.style.display="none";
+  if(nav)nav.style.display="flex";
+  if(fixed)fixed.style.display="flex";
+
+  const navButtons=nav?.querySelectorAll("button")||[];
+  navButtons.forEach((b,i)=>b.classList.toggle("active",i===0));
+
+  buildMissionList?.();
+  renderMission?.();
+  updateUI?.();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+function teacherLabSwitch(mode){
+  if(!teacherLabMode)return;
+  const missions=document.getElementById("missionsMode");
+  const free=document.getElementById("freeMode");
+  const nav=document.getElementById("gameTopnav");
+  if(mode==="free"){
+    if(missions)missions.style.display="none";
+    if(free)free.style.display="block";
+  }else{
+    if(missions)missions.style.display="block";
+    if(free)free.style.display="none";
+    buildMissionList?.();
+    renderMission?.();
+  }
+  const navButtons=nav?.querySelectorAll("button")||[];
+  navButtons.forEach((b,i)=>b.classList.toggle("active",mode==="missions"?i===0:i===1));
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+/* Teacher lab gets priority over ordinary routing */
+const __switchModeV44=switchMode;
+switchMode=function(mode){
+  if(teacherLabMode){
+    teacherLabSwitch(mode==="free"?"free":"missions");
+    return;
+  }
+  return __switchModeV44(mode);
 };
 
 </script>
