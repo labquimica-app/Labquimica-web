@@ -2262,6 +2262,12 @@ body.teacher-lab-mode .teacher-lab-fixed{display:flex}
   .mini-stats{grid-template-columns:1fr 1fr!important}
 }
 
+
+/* ===== V46 • PROFESSOR ROUTER SAFETY ===== */
+body.teacher-lab-mode #teacherLabFixed{display:flex!important}
+body.teacher-lab-mode #studentSessionActions{display:none!important}
+body.teacher-lab-mode #gameTopnav{position:static!important;display:flex!important}
+
 </style>
 </head>
 <body>
@@ -2437,7 +2443,7 @@ body.teacher-lab-mode .teacher-lab-fixed{display:flex}
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v45</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v46</div></header>
 
 
 <section id="studentGameHome">
@@ -2674,7 +2680,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build v45 • laboratório virtual</footer>
+<footer>LabQuímica • build v46 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -4235,62 +4241,77 @@ performMissionAction=function(){
 
 
 
-/* ===== V44 • PROFESSOR LAB BUTTON PERMANENTE ===== */
-function openTeacherLab(){
-  teacherLabMode=true;
-  document.body.classList.remove("teacher-mode");
+
+
+/* ===== V46 • ROUTER ÚNICO DO LABORATÓRIO DO PROFESSOR ===== */
+function openTeacherLab(target="missions"){
+  teacherLabMode = true;
+
+  document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
   document.body.classList.add("teacher-lab-mode");
 
-  if(typeof teacherDashboard!=="undefined" && teacherDashboard) teacherDashboard.style.display="none";
-  const app=document.querySelector(".app");
-  if(app)app.style.display="";
+  if (teacherDashboard) teacherDashboard.style.display = "none";
 
-  const missions=document.getElementById("missionsMode");
-  const free=document.getElementById("freeMode");
-  const nav=document.getElementById("gameTopnav");
-  const fixed=document.getElementById("teacherLabFixed");
+  const app = document.querySelector(".app");
+  const missions = document.getElementById("missionsMode");
+  const free = document.getElementById("freeMode");
+  const nav = document.getElementById("gameTopnav");
+  const fixed = document.getElementById("teacherLabFixed");
+  const studentActions = document.getElementById("studentSessionActions");
 
-  if(missions)missions.style.display="block";
-  if(free)free.style.display="none";
-  if(nav)nav.style.display="flex";
-  if(fixed)fixed.style.display="flex";
+  if (app) app.style.display = "";
+  if (nav) nav.style.display = "flex";
+  if (fixed) fixed.style.display = "flex";
+  if (studentActions) studentActions.style.display = "none";
 
-  const navButtons=nav?.querySelectorAll("button")||[];
-  navButtons.forEach((b,i)=>b.classList.toggle("active",i===0));
+  if (target === "free"){
+    if (missions) missions.style.display = "none";
+    if (free) free.style.display = "block";
+  } else {
+    if (missions) missions.style.display = "block";
+    if (free) free.style.display = "none";
+    try { buildMissionList?.(); renderMission?.(); } catch(e) { console.warn(e); }
+  }
 
-  buildMissionList?.();
-  renderMission?.();
-  updateUI?.();
-  window.scrollTo({top:0,behavior:"auto"});
+  const buttons = nav?.querySelectorAll("button") || [];
+  buttons.forEach((b,i)=>{
+    b.classList.toggle("active", target==="free" ? i===1 : i===0);
+  });
+
+  try { updateUI?.(); } catch(e) {}
+  window.scrollTo({top:0, behavior:"auto"});
 }
 
 function teacherLabSwitch(mode){
-  if(!teacherLabMode)return;
-  const missions=document.getElementById("missionsMode");
-  const free=document.getElementById("freeMode");
-  const nav=document.getElementById("gameTopnav");
-  if(mode==="free"){
-    if(missions)missions.style.display="none";
-    if(free)free.style.display="block";
-  }else{
-    if(missions)missions.style.display="block";
-    if(free)free.style.display="none";
-    buildMissionList?.();
-    renderMission?.();
-  }
-  const navButtons=nav?.querySelectorAll("button")||[];
-  navButtons.forEach((b,i)=>b.classList.toggle("active",mode==="missions"?i===0:i===1));
-  window.scrollTo({top:0,behavior:"auto"});
+  if (!teacherLabMode) return;
+  openTeacherLab(mode === "free" ? "free" : "missions");
 }
 
-/* Teacher lab gets priority over ordinary routing */
-const __switchModeV44=switchMode;
-switchMode=function(mode){
-  if(teacherLabMode){
-    teacherLabSwitch(mode==="free"?"free":"missions");
-    return;
+function backToTeacherDashboard(){
+  teacherLabMode = false;
+  document.body.classList.remove("teacher-lab-mode");
+  document.body.classList.add("teacher-mode");
+
+  const app = document.querySelector(".app");
+  const fixed = document.getElementById("teacherLabFixed");
+  const nav = document.getElementById("gameTopnav");
+
+  if (app) app.style.display = "none";
+  if (fixed) fixed.style.display = "none";
+  if (nav) nav.style.display = "none";
+
+  if (teacherDashboard) teacherDashboard.style.display = "block";
+  try { renderCloudTeacherDashboard?.(); } catch(e) {}
+  window.scrollTo({top:0, behavior:"auto"});
+}
+
+/* final router: professor test mode first, student routing second */
+const __switchModeBeforeV46 = switchMode;
+switchMode = function(mode){
+  if (teacherLabMode || authRole === "teacher"){
+    return openTeacherLab(mode === "free" ? "free" : "missions");
   }
-  return __switchModeV44(mode);
+  return __switchModeBeforeV46(mode);
 };
 
 </script>
