@@ -2268,6 +2268,28 @@ body.teacher-lab-mode #teacherLabFixed{display:flex!important}
 body.teacher-lab-mode #studentSessionActions{display:none!important}
 body.teacher-lab-mode #gameTopnav{position:static!important;display:flex!important}
 
+
+/* ===== V47 • TEACHER LAB VISIBILITY ===== */
+body.teacher-lab-mode #teacherDashboard{display:none!important}
+body.teacher-lab-mode .app{display:block!important}
+body.teacher-lab-mode #teacherLabFixed{display:flex!important}
+body.teacher-lab-mode #studentSessionActions{display:none!important}
+body.teacher-lab-mode #gameTopnav{
+  display:flex!important;
+  position:static!important;
+  top:auto!important;
+}
+
+
+/* ===== LABQUIMICA STABLE • PROFESSOR STATE ===== */
+body.teacher-mode #teacherDashboard{display:block!important}
+body.teacher-mode .app{display:none!important}
+body.teacher-lab-mode #teacherDashboard{display:none!important}
+body.teacher-lab-mode .app{display:block!important}
+body.teacher-lab-mode #teacherLabFixed{display:flex!important}
+body.teacher-lab-mode #studentSessionActions{display:none!important}
+body.teacher-lab-mode #gameTopnav{display:flex!important;position:static!important;top:auto!important}
+
 </style>
 </head>
 <body>
@@ -2386,8 +2408,8 @@ body.teacher-lab-mode #gameTopnav{position:static!important;display:flex!importa
         <p>Teste as atividades exatamente como os alunos, sem alterar as estatísticas da turma.</p>
       </div>
       <div class="teacher-lab-launch-buttons">
-        <button onclick="openTeacherLab('missions')">🎯 Abrir Missões</button>
-        <button onclick="openTeacherLab('free')">🧪 Abrir Modo Livre</button>
+        <button id="teacherOpenMissions" type="button">🎯 Abrir Missões</button>
+        <button id="teacherOpenFree" type="button">🧪 Abrir Modo Livre</button>
       </div>
     </div>
 
@@ -2443,7 +2465,7 @@ body.teacher-lab-mode #gameTopnav{position:static!important;display:flex!importa
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v46</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 1</div></header>
 
 
 <section id="studentGameHome">
@@ -2492,8 +2514,8 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 
 
 <div id="teacherLabFixed" class="teacher-lab-fixed">
-  <button class="back" type="button" onclick="backToTeacherDashboard()">← Voltar ao painel</button>
-  <button class="logout" type="button" onclick="logoutTeacher()">⏻ Sair da conta</button>
+  <button id="teacherBackPanel" class="back" type="button">← Voltar ao painel</button>
+  <button id="teacherLogout" class="logout" type="button">⏻ Sair da conta</button>
 </div>
 
 <div id="studentSessionActions" class="student-session-actions">
@@ -2680,7 +2702,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build v46 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 1 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -4117,80 +4139,11 @@ window.addEventListener("load",()=>setTimeout(updatePlayerMini,300));
 /* ===== V43 • PROFESSOR LAB MODE + SUCCESS ===== */
 let teacherLabMode=false;
 
-function openTeacherLab(target="missions"){
-  teacherLabMode=true;
-  document.body.classList.remove("teacher-mode");
-  document.body.classList.add("teacher-lab-mode");
 
-  if(typeof teacherDashboard!=="undefined" && teacherDashboard) teacherDashboard.style.display="none";
-  const app=document.querySelector(".app");
-  if(app)app.style.display="";
 
-  const missions=document.getElementById("missionsMode");
-  const free=document.getElementById("freeMode");
-  const nav=document.getElementById("gameTopnav");
-  const fixed=document.getElementById("teacherLabFixed");
 
-  if(nav)nav.style.display="flex";
-  if(fixed)fixed.style.display="flex";
 
-  if(target==="free"){
-    if(missions)missions.style.display="none";
-    if(free)free.style.display="block";
-  }else{
-    if(missions)missions.style.display="block";
-    if(free)free.style.display="none";
-    buildMissionList?.();
-    renderMission?.();
-  }
 
-  const navButtons=nav?.querySelectorAll("button")||[];
-  navButtons.forEach((b,i)=>b.classList.toggle("active",target==="free"?i===1:i===0));
-
-  updateUI?.();
-  window.scrollTo({top:0,behavior:"auto"});
-}
-function backToTeacherDashboard(){
-  teacherLabMode=false;
-  document.body.classList.remove("teacher-lab-mode");
-  document.body.classList.add("teacher-mode");
-  const app=document.querySelector(".app");
-  if(app)app.style.display="none";
-  teacherDashboard.style.display="block";
-  renderCloudTeacherDashboard?.();
-  window.scrollTo({top:0,behavior:"auto"});
-}
-async function logoutTeacher(){
-  if(!confirm("Deseja sair da sua conta do LabQuímica?"))return;
-  try{await cloud?.auth?.signOut()}catch(e){}
-  teacherLabMode=false;
-  cloudUser=null;cloudProfile=null;cloudClass=null;authUser=null;authRole=null;
-  document.body.classList.remove("teacher-lab-mode","teacher-mode");
-  teacherDashboard.style.display="none";
-  const app=document.querySelector(".app");if(app)app.style.display="none";
-  authScreen.style.display="flex";
-  window.scrollTo({top:0,behavior:"auto"});
-}
-
-/* teacher can use Missions/Free without changing auth role */
-const _switchModeV43=switchMode;
-switchMode=function(mode){
-  if(teacherLabMode){
-    const missions=document.getElementById("missionsMode"),free=document.getElementById("freeMode");
-    const tm=document.getElementById("tabMissions"),tf=document.getElementById("tabFree");
-    if(mode==="free"){
-      missions.style.display="none";free.style.display="block";
-      tm?.classList.remove("active");tf?.classList.add("active");
-    }else{
-      missions.style.display="block";free.style.display="none";
-      tm?.classList.add("active");tf?.classList.remove("active");
-      buildMissionList?.();renderMission?.();
-    }
-    window.scrollTo({top:0,behavior:"auto"});
-    return;
-  }
-  return _switchModeV43(mode);
-};
 
 /* don't save teacher test attempts */
 const _saveCloudProgressV43=saveCloudProgress;
@@ -4243,76 +4196,212 @@ performMissionAction=function(){
 
 
 
-/* ===== V46 • ROUTER ÚNICO DO LABORATÓRIO DO PROFESSOR ===== */
-function openTeacherLab(target="missions"){
-  teacherLabMode = true;
+/* ===== V48 • CONTROLE ÚNICO DO LABORATÓRIO DO PROFESSOR ===== */
+(function(){
+  function el(id){ return document.getElementById(id); }
 
-  document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
-  document.body.classList.add("teacher-lab-mode");
+  window.teacherLabMode = false;
 
-  if (teacherDashboard) teacherDashboard.style.display = "none";
+  window.openTeacherLab = function(target="missions"){
+    window.teacherLabMode = true;
 
-  const app = document.querySelector(".app");
-  const missions = document.getElementById("missionsMode");
-  const free = document.getElementById("freeMode");
-  const nav = document.getElementById("gameTopnav");
-  const fixed = document.getElementById("teacherLabFixed");
-  const studentActions = document.getElementById("studentSessionActions");
+    document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
+    document.body.classList.add("teacher-lab-mode");
 
-  if (app) app.style.display = "";
-  if (nav) nav.style.display = "flex";
-  if (fixed) fixed.style.display = "flex";
-  if (studentActions) studentActions.style.display = "none";
+    const dashboard = el("teacherDashboard");
+    const app = document.querySelector(".app");
+    const missions = el("missionsMode");
+    const free = el("freeMode");
+    const nav = el("gameTopnav");
+    const fixed = el("teacherLabFixed");
+    const studentActions = el("studentSessionActions");
 
-  if (target === "free"){
-    if (missions) missions.style.display = "none";
-    if (free) free.style.display = "block";
-  } else {
-    if (missions) missions.style.display = "block";
-    if (free) free.style.display = "none";
-    try { buildMissionList?.(); renderMission?.(); } catch(e) { console.warn(e); }
+    if(dashboard) dashboard.style.display = "none";
+    if(app) app.style.display = "block";
+    if(nav) nav.style.display = "flex";
+    if(fixed) fixed.style.display = "flex";
+    if(studentActions) studentActions.style.display = "none";
+
+    if(target === "free"){
+      if(missions) missions.style.display = "none";
+      if(free) free.style.display = "block";
+    }else{
+      if(missions) missions.style.display = "block";
+      if(free) free.style.display = "none";
+      try{
+        if(typeof buildMissionList === "function") buildMissionList();
+        if(typeof renderMission === "function") renderMission();
+      }catch(err){ console.error("Erro ao abrir missões do professor:",err); }
+    }
+
+    if(nav){
+      const btns = nav.querySelectorAll("button");
+      btns.forEach((b,i)=>b.classList.toggle("active", target==="free" ? i===1 : i===0));
+    }
+
+    try{ if(typeof updateUI === "function") updateUI(); }catch(err){}
+    window.scrollTo(0,0);
+  };
+
+  window.backToTeacherDashboard = function(){
+    window.teacherLabMode = false;
+
+    document.body.classList.remove("teacher-lab-mode");
+    document.body.classList.add("teacher-mode");
+
+    const dashboard = el("teacherDashboard");
+    const app = document.querySelector(".app");
+    const fixed = el("teacherLabFixed");
+    const nav = el("gameTopnav");
+
+    if(app) app.style.display = "none";
+    if(fixed) fixed.style.display = "none";
+    if(nav) nav.style.display = "none";
+    if(dashboard) dashboard.style.display = "block";
+
+    try{
+      if(typeof renderCloudTeacherDashboard === "function") renderCloudTeacherDashboard();
+    }catch(err){ console.error(err); }
+    window.scrollTo(0,0);
+  };
+
+  window.logoutTeacher = async function(){
+    if(!confirm("Deseja sair da sua conta do LabQuímica?")) return;
+
+    try{
+      if(typeof cloud !== "undefined" && cloud?.auth) await cloud.auth.signOut();
+    }catch(err){ console.warn(err); }
+
+    window.teacherLabMode = false;
+    document.body.classList.remove("teacher-lab-mode","teacher-mode");
+
+    const dashboard = el("teacherDashboard");
+    const app = document.querySelector(".app");
+    const fixed = el("teacherLabFixed");
+    const auth = el("authScreen");
+
+    if(dashboard) dashboard.style.display = "none";
+    if(app) app.style.display = "none";
+    if(fixed) fixed.style.display = "none";
+    if(auth) auth.style.display = "flex";
+
+    window.scrollTo(0,0);
+  };
+
+  function teacherSwitch(mode){
+    if(window.teacherLabMode){
+      window.openTeacherLab(mode === "free" ? "free" : "missions");
+      return true;
+    }
+    return false;
   }
 
-  const buttons = nav?.querySelectorAll("button") || [];
-  buttons.forEach((b,i)=>{
-    b.classList.toggle("active", target==="free" ? i===1 : i===0);
+  const previousSwitchMode = window.switchMode;
+  window.switchMode = function(mode){
+    if(teacherSwitch(mode)) return;
+    if(typeof previousSwitchMode === "function") return previousSwitchMode(mode);
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    const miss = el("teacherOpenMissions");
+    const free = el("teacherOpenFree");
+    const back = el("teacherBackPanel");
+    const logout = el("teacherLogout");
+
+    if(miss) miss.addEventListener("click",()=>window.openTeacherLab("missions"));
+    if(free) free.addEventListener("click",()=>window.openTeacherLab("free"));
+    if(back) back.addEventListener("click",window.backToTeacherDashboard);
+    if(logout) logout.addEventListener("click",window.logoutTeacher);
   });
+})();
 
-  try { updateUI?.(); } catch(e) {}
-  window.scrollTo({top:0, behavior:"auto"});
-}
 
-function teacherLabSwitch(mode){
-  if (!teacherLabMode) return;
-  openTeacherLab(mode === "free" ? "free" : "missions");
-}
 
-function backToTeacherDashboard(){
-  teacherLabMode = false;
-  document.body.classList.remove("teacher-lab-mode");
-  document.body.classList.add("teacher-mode");
+/* ===== LABQUIMICA STABLE • PROFESSOR CONTROLLER ===== */
+(function(){
+  "use strict";
+  const $ = (id)=>document.getElementById(id);
+  window.teacherLabMode = false;
 
-  const app = document.querySelector(".app");
-  const fixed = document.getElementById("teacherLabFixed");
-  const nav = document.getElementById("gameTopnav");
+  function setProfessorLabView(target){
+    window.teacherLabMode = true;
+    document.body.classList.remove("teacher-mode","student-home","student-missions","student-free");
+    document.body.classList.add("teacher-lab-mode");
 
-  if (app) app.style.display = "none";
-  if (fixed) fixed.style.display = "none";
-  if (nav) nav.style.display = "none";
+    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
+          missions=$("missionsMode"), free=$("freeMode"),
+          nav=$("gameTopnav"), fixed=$("teacherLabFixed"), studentActions=$("studentSessionActions");
 
-  if (teacherDashboard) teacherDashboard.style.display = "block";
-  try { renderCloudTeacherDashboard?.(); } catch(e) {}
-  window.scrollTo({top:0, behavior:"auto"});
-}
+    if(dashboard) dashboard.style.display="none";
+    if(app) app.style.display="block";
+    if(nav) nav.style.display="flex";
+    if(fixed) fixed.style.display="flex";
+    if(studentActions) studentActions.style.display="none";
 
-/* final router: professor test mode first, student routing second */
-const __switchModeBeforeV46 = switchMode;
-switchMode = function(mode){
-  if (teacherLabMode || authRole === "teacher"){
-    return openTeacherLab(mode === "free" ? "free" : "missions");
+    const isFree=target==="free";
+    if(missions) missions.style.display=isFree?"none":"block";
+    if(free) free.style.display=isFree?"block":"none";
+
+    if(!isFree){
+      try{ if(typeof buildMissionList==="function") buildMissionList(); }catch(e){console.error(e)}
+      try{ if(typeof renderMission==="function") renderMission(); }catch(e){console.error(e)}
+    }
+
+    if(nav){
+      const buttons=nav.querySelectorAll("button");
+      buttons.forEach((b,i)=>b.classList.toggle("active",isFree?i===1:i===0));
+    }
+    window.scrollTo(0,0);
   }
-  return __switchModeBeforeV46(mode);
-};
+
+  window.openTeacherLab=(target="missions")=>setProfessorLabView(target);
+
+  window.backToTeacherDashboard=()=>{
+    window.teacherLabMode=false;
+    document.body.classList.remove("teacher-lab-mode");
+    document.body.classList.add("teacher-mode");
+    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
+          fixed=$("teacherLabFixed"), nav=$("gameTopnav");
+    if(app) app.style.display="none";
+    if(fixed) fixed.style.display="none";
+    if(nav) nav.style.display="none";
+    if(dashboard) dashboard.style.display="block";
+    try{ if(typeof renderCloudTeacherDashboard==="function") renderCloudTeacherDashboard(); }catch(e){console.error(e)}
+    window.scrollTo(0,0);
+  };
+
+  window.logoutTeacher=async()=>{
+    if(!confirm("Deseja sair da sua conta do LabQuímica?")) return;
+    try{ if(typeof cloud!=="undefined" && cloud?.auth) await cloud.auth.signOut(); }catch(e){console.warn(e)}
+    window.teacherLabMode=false;
+    document.body.classList.remove("teacher-lab-mode","teacher-mode");
+    const dashboard=$("teacherDashboard"), app=document.querySelector(".app"),
+          fixed=$("teacherLabFixed"), auth=$("authScreen");
+    if(dashboard) dashboard.style.display="none";
+    if(app) app.style.display="none";
+    if(fixed) fixed.style.display="none";
+    if(auth) auth.style.display="flex";
+    window.scrollTo(0,0);
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    $("teacherOpenMissions")?.addEventListener("click",()=>setProfessorLabView("missions"));
+    $("teacherOpenFree")?.addEventListener("click",()=>setProfessorLabView("free"));
+    $("teacherBackPanel")?.addEventListener("click",window.backToTeacherDashboard);
+    $("teacherLogout")?.addEventListener("click",window.logoutTeacher);
+
+    /* tabs use capture so teacher mode wins without rewriting student navigation */
+    $("gameTopnav")?.addEventListener("click",(ev)=>{
+      if(!window.teacherLabMode) return;
+      const buttons=[...$("gameTopnav").querySelectorAll("button")];
+      const idx=buttons.indexOf(ev.target.closest("button"));
+      if(idx===0 || idx===1){
+        ev.preventDefault(); ev.stopImmediatePropagation();
+        setProfessorLabView(idx===1?"free":"missions");
+      }
+    },true);
+  });
+})();
 
 </script>
 
