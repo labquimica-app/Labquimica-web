@@ -1358,9 +1358,7 @@ header{
   border:1px solid rgba(45,187,255,.21)!important;border-radius:18px!important;
   box-shadow:0 0 28px rgba(40,120,255,.07)!important
 }
-.hero:after{
-  content:"⚗";position:absolute;right:20px;top:-25px;font-size:118px;color:rgba(44,199,255,.035);transform:rotate(12deg)
-}
+.hero:after{display:none!important;content:none!important}
 .hero h2{color:#fff!important;font-size:22px!important}
 .challenge{
   color:#dceeff!important;background:rgba(81,35,135,.20)!important;
@@ -1529,6 +1527,232 @@ input:focus,select:focus{outline:none;border-color:#24caff!important;box-shadow:
   .topnav{top:5px}
 }
 
+
+/* ===== V37 • CORREÇÕES MOBILE + HOME DO ALUNO ===== */
+
+/* Remove elemento decorativo que estava cobrindo o texto da missão */
+.hero:after{display:none!important;content:none!important}
+.reagent:before{display:none!important}
+
+/* HOME: tela inicial do aluno, sem lista de fases */
+#studentGameHome{
+  display:none;position:relative;overflow:hidden;min-height:510px;margin:0 0 14px;
+  border-radius:23px;border:1px solid rgba(40,185,255,.25);
+  background:
+    radial-gradient(circle at 70% 18%,rgba(62,48,255,.22),transparent 25%),
+    radial-gradient(circle at 88% 75%,rgba(0,216,255,.10),transparent 25%),
+    linear-gradient(145deg,#061126,#091b38 55%,#061124);
+  box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.03)
+}
+#studentGameHome:before{
+  content:"";position:absolute;left:0;right:0;top:54%;height:8px;
+  background:linear-gradient(90deg,transparent,#1f4e71 8%,#8fb2c7 50%,#1f4e71 92%,transparent);
+  box-shadow:0 25px 45px rgba(0,0,0,.45)
+}
+#studentGameHome:after{
+  content:"";position:absolute;left:0;right:0;top:56%;bottom:0;
+  background:linear-gradient(180deg,rgba(4,16,32,.78),rgba(2,8,18,.96));z-index:0
+}
+.homeWelcome{
+  position:absolute;left:22px;top:24px;z-index:10;width:min(310px,42%);
+  padding:18px;border-radius:19px;background:rgba(5,20,42,.90);
+  border:1px solid rgba(62,192,255,.23);box-shadow:0 14px 30px rgba(0,0,0,.28)
+}
+.homeAvatar{
+  width:70px;height:70px;display:grid;place-items:center;border-radius:50%;font-size:43px;margin-bottom:10px;
+  background:linear-gradient(145deg,#6443ff,#1bb7ff);border:2px solid #77dcff;
+  box-shadow:0 0 22px rgba(49,183,255,.25)
+}
+.homeWelcome h2{margin:0 0 4px;color:#fff!important;font-size:21px}.homeWelcome p{margin:0;color:#a7bdd2;font-size:12px;line-height:1.45}
+.homeXpBox{margin-top:13px;padding:10px;border-radius:12px;background:rgba(3,12,28,.70);border:1px solid rgba(72,161,222,.16)}
+.homeXpLine{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#c9e1f2}.homeXpTrack{height:7px;margin-top:7px;border-radius:999px;background:#142b48;overflow:hidden}
+.homeXpTrack i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a4cff,#24cbff);border-radius:999px;transition:.4s}
+.homeActions{display:grid;gap:9px;margin-top:13px}
+.homeActions button{width:100%;border-radius:12px;padding:11px 13px;font-weight:900}
+.homePrimary{border:1px solid #55dfff;background:linear-gradient(135deg,#5745ff,#04aef1);color:#fff;box-shadow:0 0 18px rgba(32,182,255,.22)}
+.homeSecondary{border:1px solid rgba(78,177,235,.25);background:rgba(7,29,55,.85);color:#bdeaff}
+
+.homeLabScene{position:absolute;left:38%;right:20px;top:30px;bottom:95px;z-index:4}
+.homeBoard{
+  position:absolute;left:9%;right:9%;top:2%;height:45%;border-radius:14px;
+  border:4px solid #152e4c;background:
+    linear-gradient(rgba(16,61,92,.13),rgba(5,23,40,.42)),
+    #07172b;
+  box-shadow:inset 0 0 34px rgba(25,153,255,.08),0 8px 24px rgba(0,0,0,.25)
+}
+.homeBoard:after{
+  content:"H₂SO₄     NaOH     Ag⁺ + Cl⁻ → AgCl↓\A\A CO₃²⁻ + 2H⁺ → CO₂ + H₂O";
+  white-space:pre;position:absolute;left:8%;top:19%;color:rgba(115,195,255,.24);font:800 15px/1.8 monospace;transform:rotate(-2deg)
+}
+.homeShelf{
+  position:absolute;right:3%;top:7%;width:22%;height:40%;border:2px solid #254364;border-radius:10px;
+  background:linear-gradient(#102742,#08172a);box-shadow:0 10px 24px rgba(0,0,0,.25)
+}
+.homeShelf:before{content:"";position:absolute;left:8px;right:8px;top:50%;height:3px;background:#294766}
+.homeShelfBottles{position:absolute;inset:14px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:end}
+.homeShelfBottles i{display:block;height:43px;border:2px solid rgba(153,224,255,.38);border-radius:5px 5px 11px 11px;background:linear-gradient(transparent 40%,var(--bc))}
+.homeBench{
+  position:absolute;left:3%;right:3%;bottom:8%;height:24%;border-radius:8px;
+  background:linear-gradient(#4a5260 0 10%,#172332 10% 17%,#071423 17%);
+  box-shadow:0 -8px 24px rgba(0,0,0,.25)
+}
+.homeRack{position:absolute;left:25%;bottom:26%;width:38%;height:42px;border:2px solid #5d3b24;border-radius:7px;background:linear-gradient(#a06b40,#664126);z-index:8}
+.homeRack:before{content:"";position:absolute;left:8px;right:8px;top:10px;height:6px;background:#54351f}
+.homeTube{position:absolute;bottom:31px;width:19px;height:65px;border:2px solid rgba(204,237,255,.75);border-top:0;border-radius:0 0 9px 9px;background:linear-gradient(transparent 45%,var(--tc))}
+.t1{left:12px;--tc:#974cff}.t2{left:44px;--tc:#27c6ff}.t3{left:76px;--tc:#ffc54d}.t4{left:108px;--tc:#4cdd90}.t5{left:140px;--tc:#ff6784}
+.homeFlask{
+  position:absolute;left:70%;bottom:24%;width:55px;height:75px;border:4px solid rgba(197,231,250,.80);
+  border-radius:8px 8px 22px 22px;background:linear-gradient(transparent 48%,rgba(79,95,255,.54) 49%);
+  box-shadow:0 0 18px rgba(95,69,255,.14)
+}
+.homeMicroscope{position:absolute;left:7%;bottom:25%;font-size:72px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.35));opacity:.84}
+
+.homeSummary{
+  position:absolute;right:18px;top:100px;z-index:11;width:165px;padding:13px;border-radius:16px;
+  background:rgba(4,18,38,.92);border:1px solid rgba(55,198,255,.27);box-shadow:0 0 22px rgba(35,188,255,.08)
+}
+.homeSummary h3{font-size:11px;color:#5bdcff!important;text-transform:uppercase;letter-spacing:.6px;margin:0 0 8px}
+.homeSummary div{padding:7px 0;border-bottom:1px solid rgba(66,126,167,.14);font-size:10px;color:#9fb7ca}
+.homeSummary div:last-child{border-bottom:0}.homeSummary b{display:block;color:#f1faff;font-size:14px;margin-top:2px}
+.homeTag{
+  position:absolute;z-index:10;left:38%;right:20px;bottom:23px;text-align:center;color:#bad7e9;font-size:12px;
+  padding:10px;border-radius:14px;background:rgba(4,18,37,.86);border:1px solid rgba(56,182,244,.14)
+}
+
+/* modal/result: elimina branco sobre branco */
+.overlay{background:rgba(1,6,15,.82)!important;backdrop-filter:blur(8px)}
+.modal{
+  color:#eaf6ff!important;background:linear-gradient(150deg,#0d1e37,#071427)!important;
+  border:1px solid rgba(64,190,255,.25)!important;border-radius:24px!important;
+  box-shadow:0 30px 80px rgba(0,0,0,.60),0 0 36px rgba(27,168,255,.07)!important
+}
+.modal h2,.modal h3{color:#f3fbff!important}
+.modal .muted{color:#a4bbcf!important}
+.report-card{
+  color:#dbeafa!important;background:rgba(4,17,34,.72)!important;
+  border:1px solid rgba(57,155,215,.18)!important;border-radius:17px!important
+}
+.report-row{border-bottom-color:rgba(81,138,179,.14)!important}
+.report-row span{color:#91a9bd!important}
+.report-row b{color:#eef9ff!important}
+.starsBox{color:#ffd35b!important}
+.resultCard{
+  color:#e7f4ff!important;background:rgba(5,20,41,.88)!important;
+  border-color:rgba(57,167,230,.18)!important
+}
+
+/* Força contraste em qualquer painel claro legado */
+.analysis-panel,.analysis-cell{
+  background:rgba(6,23,45,.93)!important;color:#e8f6ff!important;border-color:rgba(58,160,219,.18)!important
+}
+.analysis-cell span{color:#9bb1c6!important}.analysis-cell b{color:#f3fbff!important}
+.achievementToast{
+  color:#eef9ff!important;background:#0b223d!important;border-color:rgba(55,190,255,.25)!important
+}
+
+/* Área da missão não recebe decoração sobre conteúdo */
+.hero{overflow:visible!important}
+.hero img,.hero>svg{max-width:28%!important;position:static!important}
+.hero:before,.hero:after{display:none!important;content:none!important}
+
+/* Mobile */
+@media(max-width:760px){
+  #studentGameHome{min-height:675px}
+  .homeWelcome{left:12px;right:12px;top:12px;width:auto;padding:14px}
+  .homeAvatar{width:51px;height:51px;font-size:31px;float:left;margin:0 11px 7px 0}
+  .homeWelcome h2{font-size:18px}
+  .homeLabScene{left:12px;right:12px;top:260px;bottom:80px}
+  .homeSummary{display:none}
+  .homeTag{left:12px;right:12px;bottom:13px}
+  .homeBoard{left:4%;right:4%}.homeBoard:after{font-size:11px}
+  .homeShelf{width:28%}.homeMicroscope{font-size:57px}
+  .homeRack{left:27%;width:48%}.t5{display:none}
+
+  /* No celular, mapa não ocupa o topo inteiro da missão */
+  .layout>aside.panel:first-child{display:none}
+  .layout.show-map>aside.panel:first-child{display:block;max-height:none!important}
+  #mobileMapButton{display:block!important}
+
+  .modal{width:min(94vw,540px)!important;max-height:88vh;overflow:auto;padding:18px!important}
+  .bigfx{font-size:55px!important}
+  .report-card{text-align:left!important}
+}
+#mobileMapButton{display:none;margin:0 0 10px;width:100%;padding:10px;border-radius:12px;background:rgba(8,30,57,.90);color:#bdeaff;border:1px solid rgba(56,180,240,.20);font-weight:900}
+
+
+/* ===== V38 • HARD FIXES ===== */
+.hero:before,.hero:after{display:none!important;content:none!important;background:none!important}
+.hero{position:relative!important;overflow:hidden!important}
+.hero>*{position:relative!important;z-index:2!important}
+.hero img,.hero svg{display:none!important}
+
+/* Student home must replace, not stack above, the mission UI */
+body.student-home #studentGameHome{display:block!important}
+body.student-home #gameTopnav,
+body.student-home #missionsMode,
+body.student-home #freeMode,
+body.student-home #mobileMapButton{display:none!important}
+
+/* Mission mode */
+body.student-missions #studentGameHome{display:none!important}
+body.student-missions #gameTopnav{display:flex!important}
+body.student-missions #missionsMode{display:block!important}
+body.student-missions #freeMode{display:none!important}
+
+/* Free mode */
+body.student-free #studentGameHome{display:none!important}
+body.student-free #gameTopnav{display:flex!important}
+body.student-free #missionsMode{display:none!important}
+body.student-free #freeMode{display:block!important}
+
+/* Absolute contrast safety */
+.modal,.modal *{box-sizing:border-box}
+.modal{
+ background:#0b1b31!important;color:#f3fbff!important;border:1px solid #287bb4!important
+}
+.modal h1,.modal h2,.modal h3,.modal h4,.modal strong,.modal b{color:#ffffff!important}
+.modal p,.modal div,.modal span,.modal small{color:#c3d7e8}
+.modal .report-card,.modal .resultCard,.modal .analysis-panel,.modal .analysis-cell{
+ background:#10243d!important;color:#eaf7ff!important;border-color:#284a67!important
+}
+.modal .report-row span,.modal .muted{color:#9fb7ca!important}
+.modal .report-row b{color:#fff!important}
+.modal button.primary{color:white!important}
+.modal button.secondary{color:#dff4ff!important;background:#122b49!important}
+
+/* Any legacy pale boxes inside app get dark readable text if they remain pale */
+.chapter-label{
+ color:#402f84!important;background:linear-gradient(90deg,#f0eaff,#eaf6ff)!important;
+ border:1px solid #d9d2f3!important
+}
+/* But dark mission/card text stays bright */
+.panel,.card,.missionBtn,.reagent,.metric,.challenge,.eq,.contents,.log{
+ color:#eaf7ff!important
+}
+.panel .muted,.card .muted,.missionBtn small,.reagent small{color:#9db4ca!important}
+
+/* Never position feedback inside/over lab reaction */
+#missionStatusPanel,.mission-status-panel{display:none!important}
+#externalReactionFeedback{position:static!important;inset:auto!important;transform:none!important;z-index:auto!important;margin-top:12px!important}
+
+/* Keep the test tube fully visible */
+.labstage{overflow:hidden!important}
+.vessel.testtube{z-index:10!important}
+
+/* Mobile cleanup */
+@media(max-width:760px){
+  body.student-home .layout,
+  body.student-home .workspace,
+  body.student-home footer{display:none!important}
+  body.student-missions .layout{display:block!important}
+  body.student-missions .layout>aside.panel:first-child{display:none!important}
+  body.student-missions .layout.show-map>aside.panel:first-child{display:block!important}
+  .hero{min-height:0!important}
+  .hero h2{font-size:24px!important;line-height:1.15!important}
+  .hero p{font-size:15px!important;line-height:1.45!important}
+  .challenge{font-size:15px!important;line-height:1.4!important}
+}
+
 </style>
 </head>
 <body>
@@ -1692,15 +1916,53 @@ input:focus,select:focus{outline:none;border-color:#24caff!important;box-shadow:
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-</header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v38</div></header>
 
-<div class="topnav">
-  <button id="tabMissions" class="active" onclick="switchMode('missions')">🎯 Missões</button>
-  <button id="tabFree" onclick="switchMode('free')">🧪 Modo Livre</button>
+
+<section id="studentGameHome">
+  <div class="homeWelcome">
+    <div class="homeAvatar">🧑‍🔬</div>
+    <h2>Bem-vindo de volta, <span id="homeStudentName">Aluno</span>!</h2>
+    <p>Seu laboratório está pronto. Continue sua investigação química de onde parou.</p>
+    <div class="homeXpBox">
+      <div class="homeXpLine"><b id="homeLevel">Nível 1</b><span id="homeXpText">0 XP</span></div>
+      <div class="homeXpTrack"><i id="homeXpBar"></i></div>
+    </div>
+    <div class="homeActions">
+      <button class="homePrimary" onclick="openStudentMissions(false)">🧪 Continuar experimento ▶</button>
+      <button class="homeSecondary" onclick="openStudentMissions(true)">📊 Ver meu progresso</button>
+    </div>
+  </div>
+  <div class="homeLabScene">
+    <div class="homeBoard"></div>
+    <div class="homeShelf"><div class="homeShelfBottles">
+      <i style="--bc:#824cff"></i><i style="--bc:#20caff"></i><i style="--bc:#ffb748"></i>
+      <i style="--bc:#45db8b"></i><i style="--bc:#f45d85"></i><i style="--bc:#567bff"></i>
+    </div></div>
+    <div class="homeBench"></div>
+    <div class="homeMicroscope">🔬</div>
+    <div class="homeRack">
+      <i class="homeTube t1"></i><i class="homeTube t2"></i><i class="homeTube t3"></i><i class="homeTube t4"></i><i class="homeTube t5"></i>
+    </div>
+    <div class="homeFlask"></div>
+  </div>
+  <aside class="homeSummary">
+    <h3>⚗ Seu resumo</h3>
+    <div>Missões concluídas<b id="homeCompleted">0</b></div>
+    <div>Taxa de acerto<b id="homeAccuracy">0%</b></div>
+    <div>Estrelas conquistadas<b id="homeStars">0</b></div>
+  </aside>
+  <div class="homeTag">⚛ A química está em tudo. Vamos descobrir juntos!</div>
+</section>
+
+<div class="topnav" id="gameTopnav">
+  <button id="tabMissions" class="active" onclick="openStudentMissions(false)">🎯 Missões</button>
+  <button id="tabFree" onclick="openStudentFree()">🧪 Modo Livre</button>
 </div>
 
 <div id="missionsMode" class="modePanel active">
-<div class="layout">
+<button id="mobileMapButton" onclick="toggleMobileMap()">🗺️ Mostrar mapa de fases</button>
+<div class="layout" id="missionLayout">
 <aside class="panel">
   <div class="section-title"><h3>🗺️ Mapa de fases</h3></div>
   <div id="missionList" class="missions"></div>
@@ -1871,7 +2133,7 @@ input:focus,select:focus{outline:none;border-color:#24caff!important;box-shadow:
 </div>
 </div>
 
-<footer>LabQuímica — protótipo educacional em evolução</footer>
+<footer>LabQuímica • build v38 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -3196,6 +3458,97 @@ function updatePlayerMini(){
 const _updateUIV36=updateUI;
 updateUI=function(){_updateUIV36();updatePlayerMini();};
 window.addEventListener("load",()=>setTimeout(updatePlayerMini,300));
+
+
+
+
+/* ===== V38 • HOME / MISSÕES — ESTADO ÚNICO ===== */
+function clearStudentViewClasses(){
+  document.body.classList.remove("student-home","student-missions","student-free");
+}
+function refreshStudentHome(){
+  const name=cloudProfile?.display_name||studentProfile?.name||"Aluno";
+  const n=document.getElementById("homeStudentName");
+  const lv=Math.max(1,Math.floor((xp||0)/300)+1);
+  const pct=Math.min(100,((xp||0)%300)/3);
+  const attempts=(wins||0)+(errors||0);
+  if(n)n.textContent=name;
+  const hl=document.getElementById("homeLevel");
+  const hx=document.getElementById("homeXpText");
+  const hb=document.getElementById("homeXpBar");
+  const hc=document.getElementById("homeCompleted");
+  const ha=document.getElementById("homeAccuracy");
+  const hs=document.getElementById("homeStars");
+  if(hl)hl.textContent=`Nível ${lv}`;
+  if(hx)hx.textContent=`${xp||0} XP • ⭐ ${totalStars||0}`;
+  if(hb)hb.style.width=pct+"%";
+  if(hc)hc.textContent=completedMissions?.size||0;
+  if(ha)ha.textContent=attempts?Math.round((wins/attempts)*100)+"%":"0%";
+  if(hs)hs.textContent=totalStars||0;
+}
+function showStudentGameHome(){
+  if(authRole!=="student" && authUser?.role!=="student")return;
+  clearStudentViewClasses();
+  document.body.classList.add("student-home");
+  refreshStudentHome();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+function openStudentMissions(showMap=false){
+  clearStudentViewClasses();
+  document.body.classList.add("student-missions");
+  const layout=document.getElementById("missionLayout");
+  if(layout)layout.classList.toggle("show-map",!!showMap);
+  const b=document.getElementById("mobileMapButton");
+  if(b)b.textContent=showMap?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
+  renderMission?.();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function openStudentFree(){
+  clearStudentViewClasses();
+  document.body.classList.add("student-free");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function toggleMobileMap(){
+  const l=document.getElementById("missionLayout"),b=document.getElementById("mobileMapButton");
+  if(!l)return;
+  const on=l.classList.toggle("show-map");
+  if(b)b.textContent=on?"✕ Ocultar mapa de fases":"🗺️ Mostrar mapa de fases";
+}
+
+/* Override mode switching so it cannot re-open old stacked panels */
+const _switchModeCore=switchMode;
+switchMode=function(mode){
+  if(authRole==="student" || authUser?.role==="student"){
+    if(mode==="free")return openStudentFree();
+    return openStudentMissions(false);
+  }
+  return _switchModeCore(mode);
+};
+
+const _afterCloudAuthV38=afterCloudAuth;
+afterCloudAuth=async function(){
+  await _afterCloudAuthV38();
+  if(authRole==="student")setTimeout(showStudentGameHome,80);
+};
+
+const _afterAuthV38=afterAuth;
+afterAuth=function(){
+  _afterAuthV38();
+  if(authUser?.role==="student")setTimeout(showStudentGameHome,80);
+};
+
+const _updateUIV38=updateUI;
+updateUI=function(){
+  _updateUIV38();
+  refreshStudentHome();
+};
+
+/* If a restored student session renders immediately, force HOME after full load */
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    if(authRole==="student" || authUser?.role==="student") showStudentGameHome();
+  },250);
+});
 
 </script>
 
