@@ -2008,6 +2008,19 @@ body.student-missions .app,body.student-free .app{padding-bottom:88px!important}
 #authScreen{z-index:11000!important}
 #versionBadge{background:#17517c!important;color:#79efff!important}
 
+
+/* ===== V42 • PROFESSOR ROUTING FIX ===== */
+body.teacher-mode #teacherDashboard{display:block!important}
+body.teacher-mode .app,
+body.teacher-mode #studentGameHome,
+body.teacher-mode #gameTopnav,
+body.teacher-mode #studentSessionActions{display:none!important}
+.teacher-dashboard{background:
+ radial-gradient(circle at 18% 10%,rgba(105,66,255,.16),transparent 26%),
+ radial-gradient(circle at 88% 16%,rgba(24,193,255,.10),transparent 24%),
+ linear-gradient(160deg,#050c18,#08172d 55%,#06101f)!important;
+ min-height:100vh}
+
 </style>
 </head>
 <body>
@@ -2171,7 +2184,7 @@ body.student-missions .app,body.student-free .app{padding-bottom:88px!important}
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v41</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">v42</div></header>
 
 
 <section id="studentGameHome">
@@ -2401,7 +2414,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build v41 • laboratório virtual</footer>
+<footer>LabQuímica • build v42 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -2712,6 +2725,9 @@ function openTeacherDashboard(){
 }
 function closeTeacherDashboard(){
   document.getElementById("teacherDashboard").style.display="none";
+  if(authRole==="teacher"){
+    authScreen.style.display="flex";
+  }
 }
 function generateClassCode(){
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -3237,7 +3253,12 @@ async function afterCloudAuth(){
   if(authRole==="student"){
     showStudentGameHome();
   }else if(authRole==="teacher"){
+    document.body.classList.remove("student-home","student-missions","student-free","teacher-mode");
+    document.body.classList.add("teacher-mode");
     document.querySelector(".app").style.display="none";
+    teacherDashboard.style.display="block";
+    await renderCloudTeacherDashboard();
+    window.scrollTo({top:0,behavior:"auto"});
   }
 }
 
