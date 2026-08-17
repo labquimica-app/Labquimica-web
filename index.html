@@ -3857,6 +3857,194 @@ body.student-free .layout{
   #authScreen{scroll-behavior:auto!important}
 }
 
+
+/* ===== STABLE 21 • FIX MOBILE LOGIN ===== */
+@media(max-width:650px){
+  html,body{
+    overflow-x:hidden!important;
+    width:100%!important;
+  }
+
+  #authScreen{
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    min-height:100svh!important;
+    width:100%!important;
+    padding:24px 12px 34px!important;
+    box-sizing:border-box!important;
+    background-position:42% center!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+
+  #authScreen::before{
+    background:
+      linear-gradient(to bottom,rgba(2,10,20,.38),rgba(2,10,20,.58)),
+      linear-gradient(90deg,rgba(2,10,20,.18),rgba(2,10,20,.18))!important;
+  }
+
+  .stable20-auth-copy,
+  .stable20-bottom-features,
+  #authScreen .auth-lab-scene{
+    display:none!important;
+  }
+
+  #authScreen .auth-card{
+    position:relative!important;
+    inset:auto!important;
+    float:none!important;
+    transform:none!important;
+
+    width:calc(100vw - 24px)!important;
+    min-width:0!important;
+    max-width:430px!important;
+    height:auto!important;
+    min-height:0!important;
+
+    margin:0 auto!important;
+    padding:22px 16px 20px!important;
+    box-sizing:border-box!important;
+
+    display:block!important;
+    overflow:visible!important;
+
+    border-radius:22px!important;
+    background:linear-gradient(155deg,rgba(7,27,50,.95),rgba(4,17,32,.96))!important;
+    border:1px solid rgba(56,194,255,.44)!important;
+    box-shadow:
+      0 20px 55px rgba(0,0,0,.48),
+      0 0 28px rgba(35,177,255,.12)!important;
+  }
+
+  #authScreen .auth-card::before{
+    width:54px!important;
+    height:54px!important;
+    font-size:28px!important;
+    margin:0 auto 10px!important;
+  }
+
+  #authScreen .start-logo{
+    display:none!important;
+  }
+
+  #authScreen .product-pill{
+    display:table!important;
+    margin:0 auto 12px!important;
+    font-size:11px!important;
+    padding:7px 12px!important;
+    max-width:100%!important;
+    white-space:normal!important;
+    text-align:center!important;
+  }
+
+  #authScreen .auth-card h1{
+    font-size:28px!important;
+    line-height:1.12!important;
+    margin:0 0 10px!important;
+    text-align:center!important;
+    white-space:normal!important;
+    overflow:visible!important;
+  }
+
+  #authScreen .auth-card > p.muted{
+    font-size:14px!important;
+    line-height:1.45!important;
+    text-align:center!important;
+    margin:0 0 16px!important;
+  }
+
+  #authScreen .auth-role{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:10px!important;
+    width:100%!important;
+    margin:0 0 14px!important;
+  }
+
+  #authScreen .auth-role button{
+    min-width:0!important;
+    width:100%!important;
+    min-height:52px!important;
+    padding:10px 8px!important;
+    font-size:15px!important;
+    white-space:normal!important;
+  }
+
+  #authScreen .auth-form{
+    width:100%!important;
+    display:grid!important;
+    gap:10px!important;
+  }
+
+  #authScreen .auth-form input{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    min-height:50px!important;
+    padding:12px 14px!important;
+    font-size:16px!important;
+    box-sizing:border-box!important;
+  }
+
+  #authScreen .profile-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:10px!important;
+    width:100%!important;
+    margin-top:14px!important;
+  }
+
+  #authScreen .profile-actions > button{
+    width:100%!important;
+    min-width:0!important;
+    min-height:48px!important;
+    padding:10px 8px!important;
+    font-size:15px!important;
+    white-space:normal!important;
+  }
+
+  #authScreen #forgotPasswordBtn{
+    grid-column:1/-1!important;
+    width:auto!important;
+    min-height:auto!important;
+    margin:2px auto 0!important;
+    padding:8px 10px!important;
+    font-size:14px!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    border:0!important;
+    color:#4ea9ff!important;
+    text-decoration:underline!important;
+  }
+
+  #authScreen .auth-status,
+  #authScreen .online-ready-note{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    margin-top:12px!important;
+    padding:12px!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+    border-radius:13px!important;
+    overflow-wrap:anywhere!important;
+  }
+}
+
+@media(max-width:380px){
+  #authScreen{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  #authScreen .auth-card{
+    width:calc(100vw - 16px)!important;
+    padding:18px 12px!important;
+  }
+  #authScreen .auth-card h1{font-size:25px!important}
+  #authScreen .auth-role button{font-size:14px!important}
+}
+
 </style>
 </head>
 <body>
@@ -4134,7 +4322,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 20</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 21</div></header>
 
 
 <section id="studentGameHome">
@@ -4371,7 +4559,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 20 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 21 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
