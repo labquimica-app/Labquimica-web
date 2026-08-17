@@ -4045,6 +4045,63 @@ body.student-free .layout{
   #authScreen .auth-role button{font-size:14px!important}
 }
 
+
+/* ===== STABLE 22 • AUTH HIDE + ANÁLISE PÓS-MISSÃO ===== */
+#authScreen.auth-hidden{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  height:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:0!important;
+  margin:0!important;
+}
+
+.learning{
+  transition:border-color .25s ease,box-shadow .25s ease,background .25s ease!important;
+}
+.learning.learning-complete{
+  border-color:rgba(48,216,170,.62)!important;
+  box-shadow:0 0 0 2px rgba(48,216,170,.08),0 16px 46px rgba(0,0,0,.22)!important;
+}
+.learning-result-status{
+  margin-top:16px;
+  padding:13px 15px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.4;
+}
+.learning-result-status.success{
+  color:#dffff3;
+  background:rgba(19,104,80,.34);
+  border:1px solid rgba(61,211,164,.38);
+}
+.learning-next-btn{
+  width:100%;
+  margin-top:14px;
+  min-height:50px;
+  border:0;
+  border-radius:14px;
+  font-weight:900;
+  font-size:15px;
+  color:#fff;
+  background:linear-gradient(90deg,#20b9e8,#6b46f5);
+  box-shadow:0 10px 28px rgba(55,112,255,.20);
+}
+.learning-next-btn[hidden],
+.learning-result-status[hidden]{display:none!important}
+
+@media(max-width:650px){
+  .learning-next-btn{
+    position:relative!important;
+    z-index:2!important;
+    font-size:16px!important;
+    min-height:54px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4322,7 +4379,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 21</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 22</div></header>
 
 
 <section id="studentGameHome">
@@ -4516,6 +4573,8 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
   <div class="metric" id="metricExcess"><span id="labelExcess">Interpretação</span><b id="excess">Faça sua previsão</b></div>
   <h3 style="margin-top:16px">📚 Conceito</h3><p id="concept" class="muted"></p>
   <div class="eq" id="equation"></div>
+  <div id="learningResultStatus" class="learning-result-status" hidden></div>
+  <button id="nextMissionFromAnalysis" class="learning-next-btn" hidden onclick="advanceFromLearningPanel()">➡️ Próxima fase</button>
 </aside>
 </div>
 </div>
@@ -4559,7 +4618,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 21 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 22 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -4738,7 +4797,7 @@ function restoreAuth(){
 function logoutLocal(){
   localStorage.removeItem(AUTH_KEY);authUser=null;
   userMenu.style.display="none";
-  authScreen.style.display="flex";
+  authScreen.classList.remove("auth-hidden");authScreen.style.display="flex";
 }
 function updateUserMenu(){
   if(!authUser){userMenu.style.display="none";return}
@@ -4965,8 +5024,26 @@ function updateLearningPanel(stage="ready") {
   if(!la||!m)return;
   if(m.stoich){
     la.textContent="n reagente A"; lb.textContent="n reagente B"; ll.textContent="Limitante"; le.textContent="Excesso";
-    if(tube.length<2){molA.textContent=molB.textContent="Aguardando"; limiting.textContent="Aguardando mistura"; excess.textContent="Aguardando mistura";}
-    else calcStoich();
+    if(tube.length<2){
+      molA.textContent=molB.textContent="Aguardando";
+      limiting.textContent="Aguardando mistura";
+      excess.textContent="Aguardando mistura";
+    } else {
+      calcStoich();
+      if(stage==="success"){
+        concept.textContent=m.concept||"Relação estequiométrica confirmada experimentalmente.";
+        equation.textContent=m.eq||m.equation||"Equação/conclusão registrada após a experiência.";
+        document.querySelector(".learning")?.classList.add("learning-complete");
+        const status=document.getElementById("learningResultStatus");
+        const nextBtn=document.getElementById("nextMissionFromAnalysis");
+        if(status){
+          status.hidden=false;
+          status.className="learning-result-status success";
+          status.textContent="✅ Proporção analisada. Confira limitante, excesso, conceito e equação.";
+        }
+        if(nextBtn)nextBtn.hidden=false;
+      }
+    }
   } else {
     la.textContent="Reagente A"; lb.textContent="Reagente B"; ll.textContent="Evidência"; le.textContent="Interpretação";
     molA.textContent=tube[0]?R[tube[0].id].f:"Aguardando";
@@ -4976,6 +5053,15 @@ function updateLearningPanel(stage="ready") {
       excess.textContent="Hipótese confirmada";
       concept.textContent=m.concept||"Conceito consolidado pela evidência experimental.";
       equation.textContent=m.eq||m.equation||"Equação/conclusão registrada após a experiência.";
+      document.querySelector(".learning")?.classList.add("learning-complete");
+      const status=document.getElementById("learningResultStatus");
+      const nextBtn=document.getElementById("nextMissionFromAnalysis");
+      if(status){
+        status.hidden=false;
+        status.className="learning-result-status success";
+        status.textContent="✅ Experimento concluído. Analise os resultados abaixo antes de avançar.";
+      }
+      if(nextBtn)nextBtn.hidden=false;
     } else {
       limiting.textContent=tube.length>=2?"Pronto para executar":"Aguardando experimento";
       excess.textContent=prediction?"Previsão registrada":"Faça sua previsão";
@@ -5101,7 +5187,14 @@ function renderMission(){document.body.classList.remove('result-open');clearTran
  missionText.textContent=m.investigation?(m.case||m.text):m.text;
  objective.textContent=m.investigation?"Planeje um teste, registre uma previsão e interprete a evidência experimental.":"Escolha entre os reagentes disponíveis, faça uma previsão e teste sua hipótese experimentalmente.";
  challengeBox.textContent="🧩 "+(mission<=5?"Não há combinação indicada: decida quais reagentes podem produzir a evidência solicitada.":mission<=10?"Use regras de ocorrência de reação e elimine os reagentes distratores.":mission<=15?"Além de escolher os reagentes, ajuste volume e concentração pela estequiometria.":mission<=20?"Você pode precisar testar possibilidades. Uma reação qualquer não basta: a evidência deve sustentar sua conclusão.":"Integre escolha de reagentes, previsão, evidência e controle quantitativo sem receber a combinação pronta.");
- mechanic.textContent=m.mechanic||"Decisão experimental";concept.textContent="O conceito será revelado após a conclusão da etapa.";equation.textContent="Equação: descubra experimentalmente antes da correção.";updateLearningPanel("ready");
+ mechanic.textContent=m.mechanic||"Decisão experimental";concept.textContent="O conceito será revelado após a conclusão da etapa.";
+equation.textContent="Equação: descubra experimentalmente antes da correção.";
+const lrs=document.getElementById("learningResultStatus");
+const lnb=document.getElementById("nextMissionFromAnalysis");
+if(lrs){lrs.hidden=true;lrs.textContent="";lrs.className="learning-result-status";}
+if(lnb)lnb.hidden=true;
+document.querySelector(".learning")?.classList.remove("learning-complete");
+updateLearningPanel("ready");
  shelf.innerHTML="";
  const defaultPool=['hcl','naoh','agno3','nacl','bacl2','na2so4','na2co3','ki','pbno3','nh3','cuso4'];
  const reagentPool=(m.available||defaultPool).filter(id=>R[id]);
@@ -5142,7 +5235,7 @@ function addReagent(){
  logMsg(`Adicionado ${v.toFixed(1)} mL de ${R[selected].f} ${c.toFixed(2)} mol/L.`);
 }
 function updateContents(){contents.innerHTML=tube.length?tube.map(x=>`${R[x.id].f}: ${x.v.toFixed(1)} mL · ${(x.n*1000).toFixed(2)} mmol`).join("<br>"):"Recipiente vazio."}
-function setPrediction(p,btn){prediction=p;document.querySelectorAll("#predictions button").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected")}
+function setPrediction(p,btn){prediction=p;document.querySelectorAll("#predictions button").forEach(x=>x.classList.remove("selected"));btn.classList.add("selected");updateLearningPanel("ready")}
 function clearVessel(doLog=true){
  if(effectTimer)clearTimeout(effectTimer);tube=[];selected=null;prediction=null;resetProcedure();tempVal=25;temp.textContent="25.0";selectedInfo.textContent="Selecione um reagente.";contents.textContent="Recipiente vazio.";
  document.querySelectorAll("#predictions button").forEach(x=>x.classList.remove("selected"));molA.textContent=molB.textContent=limiting.textContent=excess.textContent="—";advMolA.textContent=advMolB.textContent=advLimiting.textContent=advExcess.textContent="—";
@@ -5230,8 +5323,42 @@ function performMissionAction(){
  buildReport(m,earnedStars);checkAchievements();saveProgress(true);saveCloudExperiment(true);
  updateUI();buildMissionList();
  logMsg("✅ Fase concluída. "+earnedStars+" estrelas conquistadas.","good");
- effectTimer=setTimeout(()=>showModal("✅ ACERTO! Missão concluída",m.concept+reportHTML(),false,true),700);
+ effectTimer=setTimeout(()=>showMissionReviewPrompt(m),700);
 }
+
+function showMissionReviewPrompt(m){
+  clearTransientMessages?.();
+  document.body.classList.add("result-open");
+  modal.innerHTML=`
+    <div class="bigfx">🧪</div>
+    <h2>✅ Experimento concluído!</h2>
+    <p class="muted">A reação foi executada corretamente. Agora confira a análise experimental no painel: evidência, interpretação, conceito e equação.</p>
+    <button class="primary" onclick="closeMissionReviewPrompt()">🔬 Ver análise</button>`;
+  overlay.style.display="flex";
+}
+
+function closeMissionReviewPrompt(){
+  document.body.classList.remove("result-open");
+  overlay.style.display="none";
+  const panel=document.querySelector(".learning");
+  if(panel){
+    setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"start"}),80);
+  }
+}
+
+function advanceFromLearningPanel(){
+  const btn=document.getElementById("nextMissionFromAnalysis");
+  if(btn){btn.disabled=true;btn.textContent="Carregando próxima fase…";}
+  if(mission<Object.keys(M).length){
+    mission=mission+1;
+    renderMission();
+    buildMissionList();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }else{
+    finishGame();
+  }
+}
+
 function runEffect(kind,color){
  const l=document.getElementById("liquid"),p=document.getElementById("precip"),b=document.getElementById("bubbles");
  flash.className="flash active";
@@ -5334,7 +5461,7 @@ async function restoreAuth(){
 async function logoutLocal(){
   await cloud.auth.signOut();
   cloudUser=null;cloudProfile=null;cloudClass=null;authUser=null;
-  userMenu.style.display="none";authScreen.style.display="flex";
+  userMenu.style.display="none";authScreen.classList.remove("auth-hidden");authScreen.style.display="flex";
 }
 
 async function fetchCloudProfile(){
@@ -5379,6 +5506,7 @@ async function afterCloudAuth(){
     if(code)await joinCloudClass(code);else await findStudentClass();
     await loadCloudProgress();
   }
+  authScreen.classList.add("auth-hidden");
   authScreen.style.display="none";
   updateUserMenu();updateProfileUI();updateUI();buildMissionList?.();renderMission?.();
   if(authRole==="student"){
