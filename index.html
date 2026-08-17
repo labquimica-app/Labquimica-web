@@ -2493,7 +2493,7 @@ body.teacher-mode .app{display:none!important}
 }
 
 
-/* ===== STABLE 9 • PAINEL PROFESSOR ISOLADO ===== */
+/* ===== STABLE 10 • PAINEL PROFESSOR ISOLADO ===== */
 .teacher-stable-shell{max-width:1180px;margin:0 auto;padding:14px}
 .teacher-stable-top{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
@@ -2579,6 +2579,405 @@ body.teacher-mode .app{display:none!important}
   .teacher-stable-actions{width:100%}
   .teacher-stable-actions button{flex:1}
 }
+
+
+/* ===== STABLE 10 • CORREÇÕES VISUAIS DESKTOP ===== */
+@media (min-width:761px){
+  /* O selo de build era um marcador técnico e sobrepunha o mini perfil. */
+  #versionBadge{display:none!important}
+
+  header{flex-wrap:nowrap!important;align-items:center!important}
+  .brand{min-width:0;flex:1 1 auto}
+  .stats{flex:0 1 auto;flex-wrap:nowrap!important}
+
+  .playerMini{
+    flex:0 0 auto!important;
+    min-width:196px!important;
+    max-width:250px!important;
+    min-height:58px!important;
+    box-sizing:border-box!important;
+    padding:7px 12px!important;
+    overflow:visible!important;
+  }
+  .playerMiniAvatar{
+    flex:0 0 43px!important;
+    width:43px!important;height:43px!important;
+  }
+  .playerMini>div:last-child{
+    min-width:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    line-height:1.2!important;
+  }
+  .playerMini b,.playerMini span{
+    position:static!important;
+    display:block!important;
+    width:100%!important;
+    margin:0!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .playerMini b{font-size:13px!important;line-height:1.25!important}
+  .playerMini span{font-size:10px!important;line-height:1.35!important;margin-top:2px!important}
+
+  /* Falha: cada elemento ocupa sua própria faixa, sem emojis empilhados. */
+  .fail-card{
+    width:min(620px,calc(100vw - 48px))!important;
+    max-height:calc(100vh - 42px)!important;
+    overflow:auto!important;
+    padding:24px 28px 26px!important;
+  }
+  .fail-card:before{width:210px!important;height:210px!important;left:-86px!important;top:-92px!important}
+  .fail-burst{
+    position:relative!important;
+    z-index:2!important;
+    display:block!important;
+    font-size:48px!important;
+    line-height:1!important;
+    margin:0 auto 8px!important;
+    transform-origin:center!important;
+  }
+  .fail-avatar{
+    position:relative!important;
+    z-index:3!important;
+    width:88px!important;height:88px!important;
+    margin:0 auto 14px!important;
+    font-size:50px!important;
+    border-width:4px!important;
+  }
+  .fail-avatar:after{
+    right:-16px!important;bottom:-6px!important;
+    font-size:32px!important;
+  }
+  .fail-card h2{font-size:24px!important;margin:2px 0 10px!important;line-height:1.2!important}
+  .fail-card .fail-reason{margin:10px 0!important;padding:12px 16px!important;line-height:1.35!important}
+  .fail-card .science-note{max-width:560px!important;margin:11px auto 16px!important;line-height:1.45!important}
+}
+
+@media (min-width:761px) and (max-width:1120px){
+  .pill{min-width:88px!important;padding:9px 10px!important}
+  .playerMini{min-width:180px!important;max-width:210px!important}
+  .brand h1{font-size:30px!important}
+}
+
+
+/* ===== STABLE 11 • DESKTOP RESPONSIVO + FEEDBACK SEM SOBREPOSIÇÃO ===== */
+#versionBadge{display:none!important}
+
+@media (min-width:761px){
+  header{
+    display:grid!important;
+    grid-template-columns:minmax(280px,1fr) auto minmax(210px,260px)!important;
+    align-items:center!important;
+    gap:14px!important;
+  }
+  header .brand{min-width:0!important}
+  header .stats{
+    min-width:0!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    justify-content:center!important;
+    gap:8px!important;
+  }
+  header .playerMini{
+    min-width:210px!important;
+    width:100%!important;
+    max-width:260px!important;
+    min-height:58px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    display:grid!important;
+    grid-template-columns:44px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:7px 11px!important;
+    justify-self:end!important;
+  }
+  header .playerMiniAvatar{
+    width:44px!important;height:44px!important;min-width:44px!important;
+    font-size:27px!important;
+  }
+  header .playerMini>div:last-child{
+    min-width:0!important;
+    width:100%!important;
+    display:block!important;
+  }
+  header .playerMini b,
+  header .playerMini span{
+    position:static!important;
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  header .playerMini b{font-size:13px!important;line-height:1.25!important}
+  header .playerMini span{font-size:10px!important;line-height:1.35!important;margin-top:3px!important}
+
+  .fail-card{
+    width:min(660px,calc(100vw - 56px))!important;
+    max-height:calc(100vh - 40px)!important;
+    overflow:auto!important;
+    padding:24px 30px 28px!important;
+  }
+  .fail-card:before{
+    width:180px!important;height:180px!important;
+    left:-72px!important;top:-78px!important;
+    opacity:.6!important;
+  }
+  .fail-visual{
+    position:relative!important;
+    z-index:3!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:18px!important;
+    min-height:100px!important;
+    margin:0 auto 12px!important;
+  }
+  .fail-burst,.fail-avatar,.fail-thumb{
+    position:relative!important;
+    inset:auto!important;
+    margin:0!important;
+    transform:none;
+    flex:0 0 auto!important;
+  }
+  .fail-burst{
+    font-size:58px!important;
+    line-height:1!important;
+  }
+  .fail-avatar{
+    width:92px!important;height:92px!important;
+    font-size:54px!important;
+    border-width:4px!important;
+  }
+  .fail-avatar:after{content:none!important;display:none!important}
+  .fail-thumb{
+    display:block!important;
+    font-size:52px!important;
+    line-height:1!important;
+    filter:drop-shadow(0 5px 5px rgba(0,0,0,.18));
+    animation:thumbDrop .65s .2s both;
+  }
+  .fail-card h2{font-size:25px!important;margin:4px 0 10px!important;line-height:1.2!important}
+  .fail-card .fail-reason{margin:10px 0!important;padding:12px 16px!important;line-height:1.35!important}
+  .fail-card .science-note{max-width:590px!important;margin:11px auto 17px!important;line-height:1.45!important}
+}
+
+@media (min-width:761px) and (max-width:1120px){
+  header{
+    grid-template-columns:minmax(260px,1fr) auto!important;
+  }
+  header .playerMini{
+    grid-column:1/-1!important;
+    justify-self:end!important;
+    width:230px!important;
+    max-width:230px!important;
+  }
+  header .pill{min-width:84px!important;padding:8px 9px!important}
+  header .brand h1{font-size:29px!important}
+}
+
+@media (max-width:760px){
+  .fail-visual{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    margin:0 auto 8px!important;
+  }
+  .fail-avatar:after{content:none!important;display:none!important}
+  .fail-burst{font-size:42px!important}
+  .fail-avatar{width:76px!important;height:76px!important;font-size:44px!important;margin:0!important}
+  .fail-thumb{display:block!important;font-size:38px!important}
+}
+
+
+/* ===== STABLE 12 • EXECUTAR ETAPA MAIS RESPONSIVO ===== */
+.controls .primary{
+  transition:transform .12s ease,filter .12s ease,box-shadow .12s ease!important;
+}
+.controls .primary:active,
+.controls .primary.executing-step{
+  transform:scale(.985)!important;
+  filter:brightness(1.12)!important;
+  box-shadow:0 0 0 4px rgba(74,179,255,.12),0 8px 22px rgba(0,0,0,.18)!important;
+}
+.controls .primary.executing-step::after{
+  content:" • processando";
+  font-size:.72em;
+  opacity:.85;
+}
+
+
+/* ===== STABLE 15 • CORREÇÕES VISUAIS DESKTOP DOS PRINTS ===== */
+
+/* 1) TELA FINAL: contraste forte e coerente com o laboratório */
+.end-screen{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(101,64,255,.20),transparent 25%),
+    radial-gradient(circle at 82% 20%,rgba(25,190,255,.14),transparent 26%),
+    linear-gradient(150deg,#06101f,#091a31 58%,#061424)!important;
+}
+.end-card{
+  color:#eaf7ff!important;
+  background:linear-gradient(145deg,#0b203b,#07172b)!important;
+  border:1px solid rgba(65,185,245,.24)!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.48),0 0 40px rgba(32,169,255,.05)!important;
+}
+.end-card h1{color:#ffffff!important}
+.end-card>p{color:#b4cbe0!important}
+.end-stats div{
+  color:#9eb9ce!important;
+  background:#0c2949!important;
+  border:1px solid rgba(63,156,212,.22)!important;
+}
+.end-stats b{color:#ffffff!important}
+.end-card>div[style*="background:linear-gradient"],
+.end-card>div[style*="background:#fffaf0"]{
+  background:#0b2948!important;
+  border:1px solid rgba(69,158,210,.21)!important;
+  color:#eaf7ff!important;
+}
+.end-card>div[style*="background"] b{color:#ffffff!important}
+.end-card>div[style*="background"] small{color:#aec5d8!important}
+.end-card .student-card{
+  background:#09233f!important;
+  border:1px solid rgba(63,153,207,.22)!important;
+  color:#dceeff!important;
+}
+.end-card .student-card .row{color:#b7cde0!important}
+.end-card .student-card .row b,
+.end-card .student-card strong{color:#fff!important}
+.end-btn{
+  color:#fff!important;
+  background:linear-gradient(135deg,#6546ff,#1ca3ff)!important;
+  box-shadow:0 10px 28px rgba(53,115,255,.24)!important;
+}
+
+/* 2) LABORATÓRIO FINAL / ANÁLISE: remove caixas branco-sobre-branco */
+.final-lab{
+  color:#e8f6ff!important;
+  background:linear-gradient(145deg,#0b2746,#0b1c35)!important;
+  border:1px solid rgba(64,183,239,.24)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.final-lab h4{color:#ffffff!important}
+.final-step{
+  color:#98b4ca!important;
+  background:#0b233e!important;
+  border:1px solid rgba(63,144,196,.20)!important;
+}
+.final-step.current{
+  color:#fff!important;
+  background:linear-gradient(135deg,#30245e,#103858)!important;
+  border-color:#8b67ff!important;
+  box-shadow:0 0 0 2px rgba(139,103,255,.12)!important
+}
+.final-step.done{
+  color:#e6fff5!important;
+  background:#0d3b34!important;
+  border-color:#39a47b!important
+}
+.final-brief{
+  color:#c6dbeb!important;
+  background:#081f39!important;
+  border:1px solid rgba(55,139,191,.17)!important;
+}
+.final-score span{
+  color:#b8cfe0!important;
+  background:#0a2847!important;
+  border:1px solid rgba(57,151,209,.18)!important;
+}
+.final-score b{color:#fff!important}
+
+/* métricas estequiométricas */
+.analysis-panel{
+  padding:10px!important;
+  border-radius:15px!important;
+  background:#071b32!important;
+  border:1px solid rgba(58,155,216,.16)!important;
+}
+.analysis-cell{
+  min-height:64px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  background:#0b2a4a!important;
+  border:1px solid rgba(63,157,214,.20)!important;
+}
+.analysis-cell span{color:#9eb8cc!important}
+.analysis-cell b{color:#ffffff!important;font-size:15px!important}
+
+/* evita qualquer painel claro legado na coluna principal da missão */
+body.student-missions .card,
+body.student-free .card{
+  color:#e9f7ff!important;
+}
+body.student-missions .final-lab *,
+body.student-free .final-lab *{
+  text-shadow:none!important;
+}
+
+/* 3) BARRA VOLTAR/SAIR: desktop compacta, sem cobrir bancada */
+@media (min-width:761px){
+  #studentSessionActions,
+  .student-session-actions{
+    left:auto!important;
+    right:18px!important;
+    width:430px!important;
+    max-width:calc(100vw - 36px)!important;
+    bottom:18px!important;
+    padding:6px!important;
+    border-radius:14px!important;
+  }
+  #studentSessionActions button,
+  .student-session-actions button{
+    padding:9px 12px!important;
+    font-size:11px!important;
+    min-height:38px!important;
+  }
+  body.student-missions .app,
+  body.student-free .app{
+    padding-bottom:68px!important;
+  }
+}
+
+/* mobile continua ocupando a largura disponível */
+@media (max-width:760px){
+  #studentSessionActions,
+  .student-session-actions{
+    left:10px!important;
+    right:10px!important;
+    width:auto!important;
+  }
+}
+
+/* bancada: garante área útil antes da barra inferior */
+.labstage{
+  margin-bottom:8px!important;
+}
+body.student-missions .layout,
+body.student-free .layout{
+  padding-bottom:4px!important;
+}
+
+/* melhora leitura dos textos pequenos do laboratório em monitores */
+@media (min-width:1000px){
+  .muted{line-height:1.42!important}
+  .log p{line-height:1.35!important}
+  .reagent span,.reagent small{line-height:1.25!important}
+}
+
+
+/* STABLE 15 • MARCADOR DE DEPLOY PARA TESTE */
+#versionBadge{display:block!important;background:#7c2cff!important;color:#fff!important;border-color:#b998ff!important;box-shadow:0 4px 18px rgba(124,44,255,.35)!important}
 
 </style>
 </head>
@@ -2759,7 +3158,7 @@ body.teacher-mode .app{display:none!important}
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 9</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 15</div></header>
 
 
 <section id="studentGameHome">
@@ -2996,7 +3395,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 9 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 15 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -3040,34 +3439,34 @@ const R={
 };
 
 const M={
-1:{chapter:"Nível 1 • Evidências",title:"A reação aconteceu?",text:"Produza uma evidência clara de neutralização entre ácido e base fortes.",obj:"HCl + NaOH em proporção aproximadamente 1:1.",challenge:"Preveja o aumento de temperatura antes de misturar.",ids:["hcl","naoh"],pred:"calor",eq:"HCl + NaOH → NaCl + H₂O",concept:"Neutralizações entre ácido e base fortes são exotérmicas.",stoich:[1,1],strict:true},
-2:{chapter:"Nível 1 • Evidências",title:"Cristais brancos",text:"Escolha dois reagentes que formem um sólido insolúvel branco.",obj:"Produzir AgCl.",challenge:"Não confunda dissolução com formação de precipitado.",ids:["agno3","nacl"],pred:"precipitado",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"AgCl apresenta baixa solubilidade em água.",stoich:[1,1]},
-3:{chapter:"Nível 1 • Evidências",title:"Efervescência",text:"Produza uma reação com liberação de gás.",obj:"Gerar CO₂ a partir de carbonato.",challenge:"A evidência principal deve ser a formação de bolhas.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂(g)",concept:"Ácidos reagem com carbonatos liberando dióxido de carbono.",stoich:[1,2]},
-4:{chapter:"Nível 1 • Evidências",title:"Azul profundo",text:"Produza uma alteração visual intensa envolvendo íons cobre.",obj:"CuSO₄ + NH₃.",challenge:"Preveja corretamente a mudança de cor.",ids:["cuso4","nh3"],pred:"cor",eq:"Cu²⁺ + NH₃ ⇌ complexo azul",concept:"Complexos metálicos podem apresentar cores características.",color:"blue"},
-5:{chapter:"Nível 1 • Evidências",title:"Nada aconteceu?",text:"Escolha uma mistura que permaneça sem evidência macroscópica importante.",obj:"NaCl + Na₂SO₄.",challenge:"Reconhecer ausência de evidência também faz parte da investigação.",ids:["nacl","na2so4"],pred:"nenhuma",eq:"Íons permanecem predominantemente em solução.",concept:"Nem toda mistura de soluções apresenta reação observável.",boss:true},
+1:{chapter:"Nível 1 • Evidências",title:"A reação aconteceu?",text:"Investigue quais soluções disponíveis podem produzir uma neutralização entre um ácido forte e uma base forte.",obj:"HCl + NaOH em proporção aproximadamente 1:1.",challenge:"Preveja o aumento de temperatura antes de misturar.",ids:["hcl","naoh"],pred:"calor",eq:"HCl + NaOH → NaCl + H₂O",concept:"Neutralizações entre ácido e base fortes são exotérmicas.",stoich:[1,1],strict:true},
+2:{chapter:"Nível 1 • Evidências",title:"Cristais brancos",text:"Entre as soluções disponíveis, planeje uma mistura capaz de gerar um precipitado branco e justifique sua previsão.",obj:"Produzir AgCl.",challenge:"Não confunda dissolução com formação de precipitado.",ids:["agno3","nacl"],pred:"precipitado",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"AgCl apresenta baixa solubilidade em água.",stoich:[1,1]},
+3:{chapter:"Nível 1 • Evidências",title:"Efervescência",text:"Descubra uma combinação de soluções capaz de produzir efervescência por transformação química.",obj:"Gerar CO₂ a partir de carbonato.",challenge:"A evidência principal deve ser a formação de bolhas.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂(g)",concept:"Ácidos reagem com carbonatos liberando dióxido de carbono.",stoich:[1,2]},
+4:{chapter:"Nível 1 • Evidências",title:"Azul profundo",text:"Investigue uma transformação que produza uma mudança intensa de coloração em um sistema contendo cobre.",obj:"CuSO₄ + NH₃.",challenge:"Preveja corretamente a mudança de cor.",ids:["cuso4","nh3"],pred:"cor",eq:"Cu²⁺ + NH₃ ⇌ complexo azul",concept:"Complexos metálicos podem apresentar cores características.",color:"blue"},
+5:{chapter:"Nível 1 • Evidências",title:"Nada aconteceu?",text:"Identifique uma combinação que, apesar da mistura de soluções, não apresente evidência macroscópica significativa.",obj:"NaCl + Na₂SO₄.",challenge:"Reconhecer ausência de evidência também faz parte da investigação.",ids:["nacl","na2so4"],pred:"nenhuma",eq:"Íons permanecem predominantemente em solução.",concept:"Nem toda mistura de soluções apresenta reação observável.",boss:true},
 
-6:{chapter:"Nível 2 • Dupla troca",title:"Detectando sulfato",text:"Use precipitação para confirmar a presença de sulfato.",obj:"BaCl₂ + Na₂SO₄.",challenge:"Associe o sólido branco à formação de BaSO₄.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ é pouco solúvel e pode indicar a presença de sulfato.",stoich:[1,1]},
-7:{chapter:"Nível 2 • Dupla troca",title:"Precipitado amarelo",text:"Produza um precipitado colorido.",obj:"Pb(NO₃)₂ + KI.",challenge:"A proporção correta é 1:2.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ forma precipitado amarelo.",stoich:[1,2],strict:true,color:"yellow"},
-8:{chapter:"Nível 2 • Dupla troca",title:"Precipitação sem desperdício",text:"Produza AgCl com excesso mínimo.",obj:"Ajustar AgNO₃ e NaCl à razão molar 1:1.",challenge:"Tolerância de ±10%.",ids:["agno3","nacl"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"A proporção estequiométrica reduz excesso de reagentes.",stoich:[1,1],strict:true},
-9:{chapter:"Nível 2 • Dupla troca",title:"Carbonato em análise",text:"Planeje a liberação de CO₂ quantitativamente.",obj:"Na₂CO₃:HCl = 1:2 em mol.",challenge:"Volume sozinho não determina a proporção; considere concentração.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A estequiometria deve ser calculada em quantidade de matéria.",stoich:[1,2],strict:true},
-10:{chapter:"Nível 2 • Dupla troca",title:"Chefe: três evidências",text:"Identifique qual combinação gera precipitado entre as opções disponíveis.",obj:"Selecionar BaCl₂ + Na₂SO₄ e prever o fenômeno.",challenge:"Reagentes distratores estão disponíveis.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"A ocorrência de dupla troca depende da formação de produto que favoreça a reação.",boss:true},
+6:{chapter:"Nível 2 • Dupla troca",title:"Detectando sulfato",text:"Planeje um teste de precipitação que possa fornecer evidência para a presença de sulfato.",obj:"BaCl₂ + Na₂SO₄.",challenge:"Associe o sólido branco à formação de BaSO₄.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ é pouco solúvel e pode indicar a presença de sulfato.",stoich:[1,1]},
+7:{chapter:"Nível 2 • Dupla troca",title:"Precipitado amarelo",text:"Escolha reagentes capazes de formar um precipitado de cor característica.",obj:"Pb(NO₃)₂ + KI.",challenge:"Determine a proporção adequada a partir da equação e das quantidades disponíveis.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ forma precipitado amarelo.",stoich:[1,2],strict:true,color:"yellow"},
+8:{chapter:"Nível 2 • Dupla troca",title:"Precipitação sem desperdício",text:"Planeje uma precipitação com o menor excesso possível de reagentes.",obj:"Ajustar AgNO₃ e NaCl à razão molar 1:1.",challenge:"Tolerância de ±10%.",ids:["agno3","nacl"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"A proporção estequiométrica reduz excesso de reagentes.",stoich:[1,1],strict:true},
+9:{chapter:"Nível 2 • Dupla troca",title:"Carbonato em análise",text:"Planeje quantitativamente uma reação de formação de gás usando volume, concentração e equação balanceada.",obj:"Na₂CO₃:HCl = 1:2 em mol.",challenge:"Volume sozinho não determina a proporção; considere concentração.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A estequiometria deve ser calculada em quantidade de matéria.",stoich:[1,2],strict:true},
+10:{chapter:"Nível 2 • Dupla troca",title:"Chefe: três evidências",text:"Analise as opções e descubra qual combinação fornece uma evidência de precipitação compatível com dupla troca.",obj:"Selecionar BaCl₂ + Na₂SO₄ e prever o fenômeno.",challenge:"Reagentes distratores estão disponíveis.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"A ocorrência de dupla troca depende da formação de produto que favoreça a reação.",boss:true},
 
-11:{chapter:"Nível 3 • Estequiometria",title:"Mols, não mililitros",text:"Faça a neutralização considerando volume e concentração.",obj:"Obter quantidades molares equivalentes de HCl e NaOH.",challenge:"Tolerância de ±10%.",ids:["hcl","naoh"],pred:"calor",eq:"H⁺ + OH⁻ → H₂O",concept:"n = C·V permite comparar quantidades de matéria.",stoich:[1,1],strict:true},
-12:{chapter:"Nível 3 • Estequiometria",title:"Dobro de ácido",text:"Faça carbonato reagir completamente.",obj:"Para cada 1 mol de Na₂CO₃, use 2 mol de HCl.",challenge:"Ajuste os controles quantitativos antes de executar.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Coeficientes da equação indicam a razão entre quantidades de matéria.",stoich:[1,2],strict:true},
-13:{chapter:"Nível 3 • Estequiometria",title:"Iodeto em dobro",text:"Forme PbI₂ com quantidade adequada de iodeto.",obj:"Pb(NO₃)₂:KI = 1:2.",challenge:"Evite excesso superior a 10%.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃",concept:"O reagente em proporção insuficiente limita a formação de produto.",stoich:[1,2],strict:true,color:"yellow"},
-14:{chapter:"Nível 3 • Estequiometria",title:"Precisão analítica",text:"Produza BaSO₄ com quantidades praticamente equivalentes.",obj:"Razão molar Ba²⁺:SO₄²⁻ próxima de 1:1.",challenge:"Tolerância reduzida para ±5%.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄",concept:"Maior precisão reduz desperdício e melhora a interpretação quantitativa.",stoich:[1,1],strict:true,ultra:true},
-15:{chapter:"Nível 3 • Estequiometria",title:"Chefe: economia de reagentes",text:"Produza CO₂ com excesso mínimo.",obj:"Razão Na₂CO₃:HCl exatamente próxima de 1:2.",challenge:"Tolerância de apenas ±5%.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Planejamento estequiométrico otimiza o uso de reagentes.",stoich:[1,2],strict:true,ultra:true,boss:true},
+11:{chapter:"Nível 3 • Estequiometria",title:"Mols, não mililitros",text:"Planeje uma neutralização usando quantidade de matéria, não apenas volume.",obj:"Obter quantidades molares equivalentes de HCl e NaOH.",challenge:"Tolerância de ±10%.",ids:["hcl","naoh"],pred:"calor",eq:"H⁺ + OH⁻ → H₂O",concept:"n = C·V permite comparar quantidades de matéria.",stoich:[1,1],strict:true},
+12:{chapter:"Nível 3 • Estequiometria",title:"Dobro de ácido",text:"Determine experimentalmente as quantidades necessárias para consumir completamente o reagente limitante em uma reação com carbonato.",obj:"Consumir completamente o reagente limitante com base na equação balanceada.",challenge:"Ajuste os controles quantitativos antes de executar.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Coeficientes da equação indicam a razão entre quantidades de matéria.",stoich:[1,2],strict:true},
+13:{chapter:"Nível 3 • Estequiometria",title:"Iodeto em dobro",text:"Planeje a formação de um precipitado amarelo controlando a proporção estequiométrica.",obj:"Obter PbI₂ com o menor excesso possível.",challenge:"Evite excesso superior a 10%.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃",concept:"O reagente em proporção insuficiente limita a formação de produto.",stoich:[1,2],strict:true,color:"yellow"},
+14:{chapter:"Nível 3 • Estequiometria",title:"Precisão analítica",text:"Realize uma precipitação quantitativa com alta precisão e mínimo excesso.",obj:"Obter precipitação quantitativa com mínimo excesso.",challenge:"Tolerância reduzida para ±5%.",ids:["bacl2","na2so4"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄",concept:"Maior precisão reduz desperdício e melhora a interpretação quantitativa.",stoich:[1,1],strict:true,ultra:true},
+15:{chapter:"Nível 3 • Estequiometria",title:"Chefe: economia de reagentes",text:"Planeje uma formação de gás com controle estequiométrico rigoroso e mínimo excesso.",obj:"Gerar gás com controle rigoroso do reagente limitante.",challenge:"Tolerância de apenas ±5%.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Planejamento estequiométrico otimiza o uso de reagentes.",stoich:[1,2],strict:true,ultra:true,boss:true},
 
-16:{investigation:true,case:"Uma solução desconhecida foi recolhida. Você precisa investigar qual ânion pode estar presente.",clues:['O professor informou que a amostra contém apenas um dos ânions: Cl⁻, SO₄²⁻, CO₃²⁻ ou I⁻.', 'Escolha um reagente de teste capaz de produzir uma evidência característica.'],hypothesis:"cloreto",available:['agno3', 'bacl2', 'hcl', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido A",text:"O frasco desconhecido produz precipitado branco com AgNO₃. Identifique a espécie compatível.",obj:"Escolher NaCl e AgNO₃.",challenge:"Use a evidência experimental para inferir a presença de Cl⁻.",ids:["nacl","agno3"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Testes de precipitação podem identificar íons em solução.",investigation:true},
-17:{investigation:true,case:"Outra amostra desconhecida reage de forma característica com um ácido forte.",clues:['Você pode testar a amostra com diferentes reagentes.', 'Procure uma evidência que diferencie carbonato de outros ânions comuns.'],hypothesis:"carbonato",available:['hcl', 'agno3', 'bacl2', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido B",text:"O desconhecido libera gás quando recebe ácido.",obj:"Identificar comportamento de carbonato.",challenge:"Escolha Na₂CO₃ + HCl.",ids:["na2co3","hcl"],pred:"gas",eq:"CO₃²⁻ + 2H⁺ → H₂O + CO₂",concept:"Efervescência com ácido é evidência compatível com carbonato.",investigation:true},
-18:{investigation:true,case:"Uma terceira amostra precisa ser analisada para verificar a presença de sulfato.",clues:['Pense em um cátion que forme um composto pouco solúvel com SO₄²⁻.', 'Nem todo precipitado branco indica o mesmo ânion.'],hypothesis:"sulfato",available:['bacl2', 'agno3', 'hcl', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido C",text:"Uma amostra produz sólido branco ao receber Ba²⁺.",obj:"Identificar sulfato.",challenge:"Escolha Na₂SO₄ + BaCl₂.",ids:["na2so4","bacl2"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Resultados de testes seletivos ajudam a identificar espécies desconhecidas.",investigation:true},
+16:{investigation:true,case:"Uma solução desconhecida foi recolhida. Você precisa investigar qual ânion pode estar presente.",clues:['A amostra contém apenas um dos ânions: Cl⁻, SO₄²⁻, CO₃²⁻ ou I⁻.', 'Planeje um teste que ajude a distinguir as possibilidades.'],hypothesis:"cloreto",available:['agno3', 'bacl2', 'hcl', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido A",text:"Investigue o frasco desconhecido e escolha um teste que permita diferenciar os ânions possíveis.",obj:"Escolher NaCl e AgNO₃.",challenge:"Use a evidência experimental para inferir a presença de Cl⁻.",ids:["nacl","agno3"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Testes de precipitação podem identificar íons em solução.",investigation:true},
+17:{investigation:true,case:"Outra amostra desconhecida reage de forma característica com um ácido forte.",clues:['Você pode testar a amostra com diferentes reagentes.', 'Compare o comportamento esperado dos ânions possíveis antes de escolher o teste.'],hypothesis:"carbonato",available:['hcl', 'agno3', 'bacl2', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido B",text:"Investigue a amostra desconhecida e determine qual teste produz uma evidência útil para sua identificação.",obj:"Identificar comportamento de carbonato.",challenge:"Escolha um teste que produza uma evidência diagnóstica e registre sua previsão antes de executar.",ids:["na2co3","hcl"],pred:"gas",eq:"CO₃²⁻ + 2H⁺ → H₂O + CO₂",concept:"Efervescência com ácido é evidência compatível com carbonato.",investigation:true},
+18:{investigation:true,case:"Uma terceira amostra precisa ser analisada para verificar a presença de sulfato.",clues:['Escolha um teste com poder de diferenciação entre os ânions possíveis.', 'Nem toda evidência visual é exclusiva de uma única espécie: interprete com cuidado.'],hypothesis:"sulfato",available:['bacl2', 'agno3', 'hcl', 'pbno3', 'nacl', 'na2so4', 'na2co3', 'ki'],chapter:"Nível 4 • Investigação",title:"Frasco desconhecido C",text:"Investigue a amostra e selecione um teste que permita sustentar ou rejeitar a hipótese de sulfato.",obj:"Identificar sulfato.",challenge:"Selecione um reagente de teste capaz de fornecer evidência útil para confirmar ou rejeitar a hipótese.",ids:["na2so4","bacl2"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Resultados de testes seletivos ajudam a identificar espécies desconhecidas.",investigation:true},
 19:{investigation:true,case:"Uma solução azul contém íons cobre. Você deve confirmar seu comportamento por formação de complexo.",clues:['Escolha um reagente que intensifique a coloração do sistema.', 'A evidência principal não é precipitação nem gás.'],hypothesis:"base",available:['nh3', 'naoh', 'hcl', 'agno3', 'cuso4', 'nacl'],chapter:"Nível 4 • Investigação",title:"Teste confirmatório",text:"Diferencie uma simples mistura de uma reação observável.",obj:"Escolher CuSO₄ + NH₃ e prever mudança de cor.",challenge:"A evidência deve ser compatível com formação de complexo.",ids:["cuso4","nh3"],pred:"cor",eq:"Cu²⁺ + NH₃ ⇌ complexo azul",concept:"Um teste confirmatório busca uma evidência característica.",color:"blue",investigation:true},
-20:{investigation:true,case:"Você recebeu uma amostra suspeita de conter iodeto. Produza uma evidência confirmatória convincente.",clues:['O produto esperado deve apresentar cor característica.', 'Use uma razão estequiométrica adequada para maximizar a evidência.'],hypothesis:"iodeto",available:['pbno3', 'agno3', 'bacl2', 'hcl', 'ki', 'nacl', 'na2so4', 'na2co3'],chapter:"Nível 4 • Investigação",title:"Chefe: laudo químico",text:"Emita um resultado experimental convincente para presença de iodeto.",obj:"Produzir PbI₂ amarelo.",challenge:"Previsão correta + reagentes corretos + razão 1:2.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"Um laudo deve relacionar procedimento, evidência e conclusão.",stoich:[1,2],strict:true,color:"yellow",boss:true},
+20:{investigation:true,case:"Você recebeu uma amostra suspeita de conter iodeto. Produza uma evidência confirmatória convincente.",clues:['O produto esperado deve apresentar cor característica.', 'Use uma razão estequiométrica adequada para maximizar a evidência.'],hypothesis:"iodeto",available:['pbno3', 'agno3', 'bacl2', 'hcl', 'ki', 'nacl', 'na2so4', 'na2co3'],chapter:"Nível 4 • Investigação",title:"Chefe: laudo químico",text:"Emita um resultado experimental convincente para presença de iodeto.",obj:"Produzir PbI₂ amarelo.",challenge:"Defina reagentes, previsão e quantidades sem receber a proporção pronta.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"Um laudo deve relacionar procedimento, evidência e conclusão.",stoich:[1,2],strict:true,color:"yellow",boss:true},
 
-21:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final I — Neutralização",text:"Execute uma neutralização precisa.",obj:"HCl + NaOH 1:1.",challenge:"Tolerância de ±5% e previsão correta.",ids:["hcl","naoh"],pred:"calor",eq:"HCl + NaOH → NaCl + H₂O",concept:"Controle quantitativo e previsão devem concordar com a observação.",stoich:[1,1],strict:true,ultra:true},
-22:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final II — Precipitação",text:"Produza AgCl com precisão.",obj:"AgNO₃ + NaCl 1:1.",challenge:"Tolerância de ±5%.",ids:["agno3","nacl"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"A análise experimental exige controle de variáveis.",stoich:[1,1],strict:true,ultra:true},
-23:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final III — Formação de gás",text:"Produza CO₂ sem excesso relevante.",obj:"Na₂CO₃:HCl = 1:2.",challenge:"Tolerância de ±5%.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A relação entre equação balanceada e experimento deve ser quantitativa.",stoich:[1,2],strict:true,ultra:true},
-24:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final IV — Identificação conclusiva",text:"Conclua uma análise completa: selecione reagentes, faça a previsão e execute a precipitação colorida com precisão.",obj:"Pb(NO₃)₂ + KI em razão 1:2.",challenge:"Última etapa: tolerância ±5%. Não há atalho para concluir o módulo.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"Você integrou previsão, estequiometria, evidência experimental e interpretação química.",stoich:[1,2],strict:true,ultra:true,color:"yellow",boss:true}
+21:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final I — Neutralização",text:"Planeje e execute uma neutralização precisa sem receber previamente a combinação de reagentes.",obj:"HCl + NaOH 1:1.",challenge:"Tolerância de ±5% e previsão correta.",ids:["hcl","naoh"],pred:"calor",eq:"HCl + NaOH → NaCl + H₂O",concept:"Controle quantitativo e previsão devem concordar com a observação.",stoich:[1,1],strict:true,ultra:true},
+22:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final II — Precipitação",text:"Planeje uma precipitação precisa a partir das propriedades dos íons disponíveis.",obj:"Planejar uma precipitação quantitativa com mínimo excesso.",challenge:"Tolerância de ±5%.",ids:["agno3","nacl"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"A análise experimental exige controle de variáveis.",stoich:[1,1],strict:true,ultra:true},
+23:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final III — Formação de gás",text:"Planeje uma reação de formação de gás com mínimo excesso a partir dos reagentes disponíveis.",obj:"Planejar formação de gás com controle quantitativo dos reagentes.",challenge:"Tolerância de ±5%.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A relação entre equação balanceada e experimento deve ser quantitativa.",stoich:[1,2],strict:true,ultra:true},
+24:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final IV — Identificação conclusiva",text:"Conclua uma análise completa: selecione reagentes, registre a previsão, controle as quantidades e interprete a evidência obtida.",obj:"Concluir a identificação usando evidência e controle estequiométrico.",challenge:"Última etapa: tolerância ±5%. Não há atalho para concluir o módulo.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"Você integrou previsão, estequiometria, evidência experimental e interpretação química.",stoich:[1,2],strict:true,ultra:true,color:"yellow",boss:true}
 };
 
 const FREE_REACTIONS={
@@ -3510,9 +3909,14 @@ function finalLabSuccess(){
 }
 
 function renderMission(){document.body.classList.remove('result-open');clearTransientMessages();
- const m=M[mission];missionTitle.textContent=m.title;missionText.textContent=m.text;objective.textContent=m.obj;challengeBox.textContent="🧩 "+m.challenge;mechanic.textContent=m.mechanic;concept.textContent=m.concept;equation.textContent=m.eq;
+ const m=M[mission];missionTitle.textContent=m.title;
+ missionText.textContent=m.investigation?(m.case||m.text):m.text;
+ objective.textContent=m.investigation?"Planeje um teste, registre uma previsão e interprete a evidência experimental.":"Escolha entre os reagentes disponíveis, faça uma previsão e teste sua hipótese experimentalmente.";
+ challengeBox.textContent="🧩 "+(mission<=5?"Não há combinação indicada: decida quais reagentes podem produzir a evidência solicitada.":mission<=10?"Use regras de ocorrência de reação e elimine os reagentes distratores.":mission<=15?"Além de escolher os reagentes, ajuste volume e concentração pela estequiometria.":mission<=20?"Você pode precisar testar possibilidades. Uma reação qualquer não basta: a evidência deve sustentar sua conclusão.":"Integre escolha de reagentes, previsão, evidência e controle quantitativo sem receber a combinação pronta.");
+ mechanic.textContent=m.mechanic||"Decisão experimental";concept.textContent="O conceito será revelado após a conclusão da etapa.";equation.textContent="Equação: descubra experimentalmente antes da correção.";
  shelf.innerHTML="";
- const reagentPool=m.investigation?(m.available||m.ids):m.ids;
+ const defaultPool=['hcl','naoh','agno3','nacl','bacl2','na2so4','na2co3','ki','pbno3','nh3','cuso4'];
+ const reagentPool=(m.available||defaultPool).filter(id=>R[id]);
  reagentPool.forEach(id=>{
   const b=document.createElement("button");b.className="reagent";b.innerHTML=`🧴 <b>${R[id].f}</b><small>${R[id].name}</small>`;
   b.onclick=()=>{selected=id;document.querySelectorAll(".reagent").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selectedInfo.textContent=`Selecionado: ${R[id].f} — ${R[id].name}`};
@@ -3577,13 +3981,14 @@ function investigationHypothesisCorrect(m){
 
 function performMissionAction(){
  const m=M[mission],present=[...new Set(tube.map(x=>x.id))];
+ const unexpected=present.filter(id=>!m.ids.includes(id));
 
- if(!m.ids.every(id=>present.includes(id))){
+ if(!m.ids.every(id=>present.includes(id)) || unexpected.length){
    if(m.investigation){
      addEvidence("O teste escolhido não produziu a evidência confirmatória esperada.");
      consequenceError("reagent","Esse teste não confirma a hipótese correta. Reavalie as pistas e escolha outro reagente.");
    }else{
-     consequenceError("reagent","Os reagentes escolhidos não atendem ao objetivo desta fase.");
+     consequenceError("reagent","A combinação escolhida não produz a evidência necessária para resolver esta etapa. Limpe a bancada, reveja as propriedades químicas e teste outra hipótese.");
    }
    return;
  }
@@ -3636,7 +4041,7 @@ function performMissionAction(){
  buildReport(m,earnedStars);checkAchievements();saveProgress(true);saveCloudExperiment(true);
  updateUI();buildMissionList();
  logMsg("✅ Fase concluída. "+earnedStars+" estrelas conquistadas.","good");
- effectTimer=setTimeout(()=>showModal("✅ ACERTO! Missão concluída",m.concept+reportHTML(),false,true),5200);
+ effectTimer=setTimeout(()=>showModal("✅ ACERTO! Missão concluída",m.concept+reportHTML(),false,true),1800);
 }
 function runEffect(kind,color){
  const l=document.getElementById("liquid"),p=document.getElementById("precip"),b=document.getElementById("bubbles");
@@ -4146,13 +4551,14 @@ async function saveCloudProgress(){
 /* feedback explícito para qualquer tentativa */
 function performMissionAction(){
  const m=M[mission],present=[...new Set(tube.map(x=>x.id))];
+ const unexpected=present.filter(id=>!m.ids.includes(id));
 
- if(!m.ids.every(id=>present.includes(id))){
+ if(!m.ids.every(id=>present.includes(id)) || unexpected.length){
    showMissionStatus("bad","Reagentes não correspondem à missão","A combinação escolhida não produz a evidência solicitada. O experimento foi interrompido.","🧴");
    if(m.investigation)addEvidence("O teste escolhido não produziu a evidência confirmatória esperada.");
    consequenceError("reagent",m.investigation?
      "Esse teste não confirma a hipótese correta. Reavalie as pistas e escolha outro reagente.":
-     "Os reagentes escolhidos não atendem ao objetivo desta fase.");
+     "A combinação escolhida não produz a evidência necessária para resolver esta etapa. Limpe a bancada, reveja as propriedades químicas e teste outra hipótese.");
    return;
  }
  if(!prediction){
@@ -4195,7 +4601,7 @@ function performMissionAction(){
      /* só depois entra o feedback de game, sem esconder o precipitado imediatamente */
      consequenceError("stoich",
        "O fenômeno ocorreu, mas as quantidades estão fora da proporção exigida. Recalcule os mols e tente reduzir o excesso.",
-       {delay:3200,scienceNote:"🧪 Quimicamente, a reação pode ocorrer mesmo com excesso de um reagente. O 💥 é apenas a sinalização visual de que a MISSÃO do jogo falhou por imprecisão."}
+       {delay:1800,scienceNote:"🧪 Quimicamente, a reação pode ocorrer mesmo com excesso de um reagente. O 💥 é apenas a sinalização visual de que a MISSÃO do jogo falhou por imprecisão."}
      );
      return;
    }
@@ -4220,7 +4626,7 @@ function performMissionAction(){
  buildReport(m,earnedStars);checkAchievements();saveProgress(true);saveCloudExperiment(true);
  updateUI();buildMissionList();
  logMsg("✅ Fase concluída. "+earnedStars+" estrelas conquistadas.","good");
- effectTimer=setTimeout(()=>showModal("✅ MISSÃO CONCLUÍDA!",m.concept+reportHTML(),false,true),5200);
+ effectTimer=setTimeout(()=>showModal("✅ MISSÃO CONCLUÍDA!",m.concept+reportHTML(),false,true),1900);
 }
 
 /* painel do professor: mostra fase atual, concluídas, XP e última atividade */
@@ -4235,7 +4641,7 @@ function showReactionFeedback(type,title,message,icon="🧪",duration=6500){
  document.getElementById("externalReactionFeedbackIcon").textContent=icon;
  document.getElementById("externalReactionFeedbackTitle").textContent=title;
  document.getElementById("externalReactionFeedbackText").textContent=message;
- externalFeedbackTimer=setTimeout(()=>p.className="",duration);
+ externalFeedbackTimer=setTimeout(()=>p.className="",Math.min(duration,3200));
 }
 showMissionStatus=function(type,title,message,icon){showReactionFeedback(type,title,message,icon)};
 function updateHub(){
@@ -4321,15 +4727,28 @@ const _performMissionActionV43=performMissionAction;
 performMissionAction=function(){
   const beforeWins=wins;
   const beforeCompleted=completedMissions?.size||0;
+
+  /* feedback imediato: o clique respondeu */
+  const btn=document.querySelector('.controls .primary');
+  if(btn){
+    btn.classList.add('executing-step');
+    btn.setAttribute('aria-busy','true');
+  }
+
   const result=_performMissionActionV43();
+
   setTimeout(()=>{
+    if(btn){
+      btn.classList.remove('executing-step');
+      btn.removeAttribute('aria-busy');
+    }
     const successNow=(wins>beforeWins)||((completedMissions?.size||0)>beforeCompleted);
     if(successNow){
       const m=M[mission];
-      /* only show after chemical effect is visible */
-      setTimeout(()=>showGameSuccess(m,3),1200);
+      showGameSuccess(m,3);
     }
-  },4300);
+  },1750);
+
   return result;
 };
 
@@ -4799,6 +5218,160 @@ performMissionAction=function(){
 
 })();
 
+
+
+/* ===== STABLE 11 • PROGRESSO ÚNICO E PORTÁVEL ENTRE TURMAS ===== */
+function stable11ProgressScore(row){
+  const completed=Array.isArray(row?.completed_phases)?row.completed_phases.length:0;
+  return [
+    Number(row?.max_unlocked||0),
+    completed,
+    Number(row?.xp||0),
+    Number(row?.current_phase||0),
+    new Date(row?.updated_at||0).getTime()||0
+  ];
+}
+
+function stable11MergeProgress(rows){
+  const list=(rows||[]).filter(Boolean);
+  if(!list.length)return null;
+
+  const completed=new Set();
+  const achievementsSet=new Set();
+  let best=list[0];
+
+  for(const row of list){
+    (row.completed_phases||[]).forEach(x=>completed.add(Number(x)));
+    (row.achievements||[]).forEach(x=>achievementsSet.add(x));
+
+    const a=stable11ProgressScore(row), b=stable11ProgressScore(best);
+    for(let i=0;i<a.length;i++){
+      if(a[i]>b[i]){best=row;break}
+      if(a[i]<b[i])break;
+    }
+  }
+
+  const maxUnlocked=Math.max(1,...list.map(r=>Number(r.max_unlocked||1)));
+  const currentPhase=Math.max(1,...list.map(r=>Number(r.current_phase||1)));
+  return {
+    current_phase:Math.min(24,Math.max(currentPhase,maxUnlocked)),
+    max_unlocked:Math.min(24,maxUnlocked),
+    completed_phases:[...completed].filter(n=>Number.isFinite(n)).sort((a,b)=>a-b),
+    xp:Math.max(0,...list.map(r=>Number(r.xp||0))),
+    credits:Math.max(0,...list.map(r=>Number(r.credits||0))),
+    stars:Math.max(0,...list.map(r=>Number(r.stars||0))),
+    wins:Math.max(0,...list.map(r=>Number(r.wins||0))),
+    errors:Math.max(0,...list.map(r=>Number(r.errors||0))),
+    best_streak:Math.max(0,...list.map(r=>Number(r.best_streak||0))),
+    achievements:[...achievementsSet],
+    final_failures:Math.max(0,...list.map(r=>Number(r.final_failures||0))),
+    source_row_id:best?.id||null
+  };
+}
+
+async function stable11WriteProgressRow(classId, basePayload){
+  if(!cloudUser)return false;
+  let q=cloud.from("module_progress")
+    .select("id")
+    .eq("user_id",cloudUser.id)
+    .eq("module_slug","reacoes-quimicas");
+
+  if(classId)q=q.eq("class_id",classId);
+  else q=q.is("class_id",null);
+
+  const {data:existing,error:findError}=await q.order("updated_at",{ascending:false}).limit(1);
+  if(findError){
+    console.warn("STABLE11: falha ao localizar progresso",findError);
+    return false;
+  }
+
+  const payload={
+    ...basePayload,
+    user_id:cloudUser.id,
+    class_id:classId||null,
+    module_slug:"reacoes-quimicas",
+    updated_at:new Date().toISOString()
+  };
+
+  if(existing?.length){
+    const {error}=await cloud.from("module_progress").update(payload).eq("id",existing[0].id);
+    if(error){console.warn("STABLE11: falha ao atualizar progresso",error);return false}
+  }else{
+    const {error}=await cloud.from("module_progress").insert(payload);
+    if(error){console.warn("STABLE11: falha ao inserir progresso",error);return false}
+  }
+  return true;
+}
+
+async function loadCloudProgress(){
+  if(!cloudUser||authRole!=="student")return false;
+
+  const {data,error}=await cloud.from("module_progress")
+    .select("*")
+    .eq("user_id",cloudUser.id)
+    .eq("module_slug","reacoes-quimicas")
+    .order("updated_at",{ascending:false});
+
+  if(error||!data?.length){
+    if(error)console.warn("STABLE11: falha ao carregar progresso",error);
+    return false;
+  }
+
+  const s=stable11MergeProgress(data);
+  if(!s)return false;
+
+  mission=s.current_phase||1;
+  maxUnlocked=s.max_unlocked||1;
+  completedMissions=new Set(s.completed_phases||[]);
+  xp=s.xp||0;
+  credits=s.credits||0;
+  totalStars=s.stars||0;
+  wins=s.wins||0;
+  errors=s.errors||0;
+  bestStreak=s.best_streak||0;
+  achievements=new Set(s.achievements||[]);
+  finalFailures=s.final_failures||0;
+
+  /* Migração automática: mantém uma cópia geral e outra na turma atual.
+     Isso preserva o progresso ao trocar de turma e mantém o painel da professora funcionando. */
+  const canonical={
+    current_phase:mission,
+    max_unlocked:maxUnlocked,
+    completed_phases:[...completedMissions],
+    xp,credits,stars:totalStars,wins,errors,best_streak:bestStreak,
+    achievements:[...achievements],
+    final_failures:finalFailures
+  };
+  await stable11WriteProgressRow(null,canonical);
+  if(cloudClass?.id)await stable11WriteProgressRow(cloudClass.id,canonical);
+
+  return true;
+}
+
+async function saveCloudProgress(){
+  if(!cloudUser||authRole!=="student")return;
+  if(typeof teacherLabMode!=="undefined" && teacherLabMode)return;
+
+  if(!cloudClass){
+    try{await findStudentClass()}catch(e){console.warn("STABLE11: turma não localizada",e)}
+  }
+
+  const payload={
+    current_phase:mission,
+    max_unlocked:maxUnlocked,
+    completed_phases:[...completedMissions],
+    xp,credits,stars:totalStars,wins,errors,best_streak:bestStreak,
+    achievements:[...achievements],
+    final_failures:finalFailures
+  };
+
+  /* Registro geral = fonte portátil da conta. */
+  await stable11WriteProgressRow(null,payload);
+
+  /* Espelho da turma = permite que a professora acompanhe o mesmo progresso. */
+  if(cloudClass?.id)await stable11WriteProgressRow(cloudClass.id,payload);
+}
+
 </script>
 
 
@@ -4820,8 +5393,11 @@ performMissionAction=function(){
 
 <div id="gameFailOverlay" class="game-fail-overlay">
   <div class="fail-card">
-    <div class="fail-burst">💥</div>
-    <div class="fail-avatar">🥼😵‍💫</div>
+    <div class="fail-visual" aria-hidden="true">
+      <div class="fail-burst">💥</div>
+      <div class="fail-avatar">😵‍💫</div>
+      <div class="fail-thumb">👎</div>
+    </div>
     <h2 id="gameFailTitle">Missão não concluída</h2>
     <div id="gameFailReason" class="fail-reason"></div>
     <div id="gameFailScience" class="science-note"></div>
