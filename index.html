@@ -4102,6 +4102,15 @@ body.student-free .layout{
   }
 }
 
+
+/* ===== STABLE 23 • TEMPO DE OBSERVAÇÃO + RESULTADOS ===== */
+.learning.learning-complete{
+  scroll-margin-top:16px!important;
+}
+.learning-result-status.success{
+  font-size:14px!important;
+}
+
 </style>
 </head>
 <body>
@@ -4379,7 +4388,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 22</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 23</div></header>
 
 
 <section id="studentGameHome">
@@ -4618,7 +4627,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 22 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 23 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -4691,6 +4700,70 @@ const M={
 23:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final III — Formação de gás",text:"Planeje uma reação de formação de gás com mínimo excesso a partir dos reagentes disponíveis.",obj:"Planejar formação de gás com controle quantitativo dos reagentes.",challenge:"Tolerância de ±5%.",ids:["na2co3","hcl"],pred:"gas",eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A relação entre equação balanceada e experimento deve ser quantitativa.",stoich:[1,2],strict:true,ultra:true},
 24:{chapter:"Nível 5 • Laboratório Final",title:"Dossiê Final IV — Identificação conclusiva",text:"Conclua uma análise completa: selecione reagentes, registre a previsão, controle as quantidades e interprete a evidência obtida.",obj:"Concluir a identificação usando evidência e controle estequiométrico.",challenge:"Última etapa: tolerância ±5%. Não há atalho para concluir o módulo.",ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"Você integrou previsão, estequiometria, evidência experimental e interpretação química.",stoich:[1,2],strict:true,ultra:true,color:"yellow",boss:true}
 };
+
+/* ===== STABLE 23 • SOLUÇÕES QUIMICAMENTE VÁLIDAS POR MISSÃO =====
+   Missões sem "solutions" continuam com uma única resposta intencional.
+   Nas missões abaixo, mais de uma combinação atende ao objetivo químico. */
+M[2].obj="Produzir um precipitado branco e identificar o sólido formado.";
+M[2].solutions=[
+  {ids:["agno3","nacl"],pred:"precipitado",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"A formação de AgCl branco evidencia uma reação de precipitação."},
+  {ids:["agno3","hcl"],pred:"precipitado",eq:"AgNO₃ + HCl → AgCl(s) + HNO₃",concept:"Cl⁻ também pode ser fornecido por HCl; AgCl forma precipitado branco."},
+  {ids:["bacl2","na2so4"],pred:"precipitado",eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"BaSO₄ é pouco solúvel e forma precipitado branco."},
+  {ids:["pbno3","na2so4"],pred:"precipitado",eq:"Pb(NO₃)₂ + Na₂SO₄ → PbSO₄(s) + 2NaNO₃",concept:"PbSO₄ apresenta baixa solubilidade e pode formar precipitado branco."}
+];
+
+M[5].obj="Selecionar uma mistura de eletrólitos solúveis sem evidência macroscópica.";
+M[5].solutions=[
+  {ids:["nacl","na2so4"],pred:"nenhuma",eq:"Íons permanecem predominantemente em solução.",concept:"Misturar sais solúveis pode não produzir reação macroscópica observável."},
+  {ids:["nacl","ki"],pred:"nenhuma",eq:"Na⁺, K⁺, Cl⁻ e I⁻ permanecem em solução.",concept:"A ausência de precipitado, gás ou espécie pouco ionizada indica ausência de evidência macroscópica."},
+  {ids:["na2so4","ki"],pred:"nenhuma",eq:"Na⁺, K⁺, SO₄²⁻ e I⁻ permanecem em solução.",concept:"Nem toda combinação de eletrólitos gera uma transformação observável."}
+];
+
+M[6].obj="Obter evidência para sulfato por formação de um sulfato pouco solúvel.";
+M[6].solutions=[
+  {ids:["bacl2","na2so4"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ é muito pouco solúvel e fornece forte evidência para sulfato."},
+  {ids:["pbno3","na2so4"],pred:"precipitado",eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"PbSO₄ é pouco solúvel e também pode fornecer evidência de sulfato."}
+];
+
+M[8].obj="Produzir um precipitado usando proporções estequiométricas e mínimo excesso.";
+M[8].solutions=[
+  {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"A proporção 1:1 minimiza excesso na precipitação de AgCl."},
+  {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"A razão 1:1 entre Ba²⁺ e SO₄²⁻ minimiza excesso na formação de BaSO₄."},
+  {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"A razão molar 1:1 permite precipitação de PbSO₄ com pouco excesso."}
+];
+
+M[10].obj="Selecionar uma dupla troca que produza evidência macroscópica de precipitação.";
+M[10].solutions=[
+  {ids:["bacl2","na2so4"],pred:"precipitado",eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"A formação de BaSO₄ favorece a ocorrência da dupla troca."},
+  {ids:["agno3","nacl"],pred:"precipitado",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"A formação de AgCl pouco solúvel favorece a dupla troca."},
+  {ids:["pbno3","ki"],pred:"precipitado",color:"yellow",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"A formação de PbI₂ pouco solúvel fornece evidência de dupla troca."}
+];
+
+M[16].solutions=[
+  {ids:["nacl","agno3"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"AgNO₃ é um teste clássico para Cl⁻ pela formação de AgCl branco."},
+  {ids:["nacl","pbno3"],pred:"precipitado",eq:"Pb²⁺ + 2Cl⁻ → PbCl₂(s)",concept:"Pb²⁺ também pode precipitar Cl⁻ em condições adequadas; o teste é menos seletivo que AgNO₃."}
+];
+
+M[18].solutions=[
+  {ids:["na2so4","bacl2"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ muito pouco solúvel fornece evidência forte para sulfato."},
+  {ids:["na2so4","pbno3"],pred:"precipitado",eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"PbSO₄ pouco solúvel também pode indicar a presença de sulfato."}
+];
+
+M[20].solutions=[
+  {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],color:"yellow",eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"PbI₂ forma precipitado amarelo característico."},
+  {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],color:"yellow",eq:"Ag⁺ + I⁻ → AgI(s)",concept:"AgI forma precipitado amarelo-pálido e também evidencia iodeto."}
+];
+
+M[22].obj="Planejar uma precipitação quantitativa válida com mínimo excesso.";
+M[22].solutions=[
+  {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Controle quantitativo permite precipitar AgCl com mínimo excesso."},
+  {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Controle quantitativo permite precipitar BaSO₄ com mínimo excesso."}
+];
+
+M[24].solutions=[
+  {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],color:"yellow",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ amarelo confirma iodeto quando procedimento e estequiometria são coerentes."},
+  {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],color:"yellow",eq:"AgNO₃ + KI → AgI(s) + KNO₃",concept:"AgI amarelo-pálido também permite uma identificação conclusiva de iodeto."}
+];
 
 const FREE_REACTIONS={
  "agno3+nacl":{kind:"precipitado",label:"⚪ Precipitado branco de AgCl",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃"},
@@ -5332,7 +5405,7 @@ function showMissionReviewPrompt(m){
   modal.innerHTML=`
     <div class="bigfx">🧪</div>
     <h2>✅ Experimento concluído!</h2>
-    <p class="muted">A reação foi executada corretamente. Agora confira a análise experimental no painel: evidência, interpretação, conceito e equação.</p>
+    <p class="muted">Você teve alguns segundos para observar a evidência da reação. Agora confira os dados registrados no painel: evidência, interpretação, conceito e equação.</p>
     <button class="primary" onclick="closeMissionReviewPrompt()">🔬 Ver análise</button>`;
   overlay.style.display="flex";
 }
@@ -6032,6 +6105,193 @@ performMissionAction=function(){
 
 
 
+
+
+/* ===== STABLE 23 • EXECUÇÃO CANÔNICA, OBSERVAÇÃO E ANÁLISE ===== */
+let stable23ActiveSolution=null;
+
+function stable23SameSet(a,b){
+  const aa=[...new Set(a)].sort(), bb=[...new Set(b)].sort();
+  return aa.length===bb.length && aa.every((v,i)=>v===bb[i]);
+}
+
+function stable23Solutions(m){
+  return Array.isArray(m.solutions)&&m.solutions.length
+    ? m.solutions
+    : [{ids:m.ids,pred:m.pred,stoich:m.stoich,color:m.color,eq:m.eq,concept:m.concept}];
+}
+
+function stable23FindSolution(m,present){
+  return stable23Solutions(m).find(s=>stable23SameSet(s.ids,present))||null;
+}
+
+function stable23EvidenceText(sol){
+  if(sol.pred==="precipitado") return sol.color==="yellow" ? "Formação de precipitado amarelo" : "Formação de precipitado";
+  if(sol.pred==="gas") return "Efervescência e liberação de gás";
+  if(sol.pred==="cor") return "Mudança intensa de coloração";
+  if(sol.pred==="calor") return "Aumento de temperatura";
+  return "Ausência de alteração macroscópica";
+}
+
+function stable23RenderAnalysis(m,sol){
+  const q=id=>document.getElementById(id);
+  const a=tube[0], b=tube[1];
+  const la=q("labelA"),lb=q("labelB"),ll=q("labelLimiting"),le=q("labelExcess");
+  const va=q("molA"),vb=q("molB"),vl=q("limiting"),ve=q("excess");
+  const c=q("concept"),e=q("equation");
+  const status=q("learningResultStatus"),next=q("nextMissionFromAnalysis");
+  const panel=document.querySelector(".learning");
+
+  if(!va||!vb||!vl||!ve)return;
+
+  if(sol.stoich && a && b){
+    if(la)la.textContent="n reagente A";
+    if(lb)lb.textContent="n reagente B";
+    if(ll)ll.textContent="Limitante";
+    if(le)le.textContent="Excesso";
+
+    const na=(a.vol/1000)*a.conc, nb=(b.vol/1000)*b.conc;
+    va.textContent=(na*1000).toFixed(2)+" mmol";
+    vb.textContent=(nb*1000).toFixed(2)+" mmol";
+
+    const [sa,sb]=sol.stoich;
+    const ra=na/sa, rb=nb/sb;
+    if(Math.abs(ra-rb)<0.00005){
+      vl.textContent="Nenhum";
+      ve.textContent="≈ 0";
+    }else if(ra<rb){
+      vl.textContent=R[a.id]?.f||a.id;
+      ve.textContent=R[b.id]?.f||b.id;
+    }else{
+      vl.textContent=R[b.id]?.f||b.id;
+      ve.textContent=R[a.id]?.f||a.id;
+    }
+  }else{
+    if(la)la.textContent="Reagente A";
+    if(lb)lb.textContent="Reagente B";
+    if(ll)ll.textContent="Evidência";
+    if(le)le.textContent="Interpretação";
+    va.textContent=a ? `${R[a.id]?.f||a.id} — ${R[a.id]?.name||""}` : "—";
+    vb.textContent=b ? `${R[b.id]?.f||b.id} — ${R[b.id]?.name||""}` : "—";
+    vl.textContent=stable23EvidenceText(sol);
+    ve.textContent=prediction===sol.pred ? "Previsão confirmada pela observação" : "Resultado experimental registrado";
+  }
+
+  if(c)c.textContent=sol.concept||m.concept||"Conceito confirmado experimentalmente.";
+  if(e)e.textContent="Equação: "+(sol.eq||m.eq||"Conclusão registrada pela experiência.");
+
+  if(status){
+    status.hidden=false;
+    status.className="learning-result-status success";
+    status.textContent="✅ Dados registrados. Confira a evidência, a interpretação, o conceito e a equação antes de avançar.";
+  }
+  if(next){
+    next.hidden=false;
+    next.disabled=false;
+    next.textContent="➡️ Próxima fase";
+  }
+  panel?.classList.add("learning-complete");
+}
+
+function stable23EffectiveMission(m,sol){
+  return {...m,...sol,ids:sol.ids||m.ids,pred:sol.pred||m.pred,stoich:sol.stoich||null,color:sol.color||m.color,eq:sol.eq||m.eq,concept:sol.concept||m.concept};
+}
+
+/* Substitui o fluxo legado/duplicado de sucesso. */
+performMissionAction=function(){
+  const m=M[mission];
+  const present=[...new Set(tube.map(x=>x.id))];
+  const sol=stable23FindSolution(m,present);
+
+  const btn=document.querySelector('.controls .primary');
+  if(btn){
+    btn.classList.add('executing-step');
+    btn.setAttribute('aria-busy','true');
+  }
+  setTimeout(()=>{
+    btn?.classList.remove('executing-step');
+    btn?.removeAttribute('aria-busy');
+  },1100);
+
+  if(!sol){
+    if(m.investigation){
+      addEvidence("O teste escolhido não produziu uma evidência suficientemente diagnóstica para esta etapa.");
+      consequenceError("reagent","Esse teste não resolve a investigação proposta. Reavalie as pistas e escolha outro procedimento.");
+    }else{
+      consequenceError("reagent","Essa combinação não atende ao objetivo desta etapa. Algumas fases aceitam mais de uma solução, mas a mistura precisa ser quimicamente compatível com o problema.");
+    }
+    return;
+  }
+
+  if(!prediction){
+    showRibbon("🧠 FAÇA UMA PREVISÃO","bad");
+    logMsg("A etapa foi bloqueada porque nenhuma previsão foi registrada.","bad");
+    return;
+  }
+
+  if(prediction!==sol.pred){
+    if(m.investigation)addEvidence("A evidência observada não correspondeu à previsão registrada.");
+    consequenceError("prediction","Sua previsão não corresponde ao fenômeno esperado para a combinação escolhida.");
+    return;
+  }
+
+  if(m.investigation && !investigationHypothesisCorrect(m)){
+    addEvidence("O teste gerou uma evidência útil, mas a hipótese final escolhida não corresponde ao íon investigado.");
+    consequenceError("hypothesis","A interpretação da evidência está incorreta. Revise o significado químico do resultado.");
+    return;
+  }
+
+  if(sol.stoich){
+    const a=tube[0], b=tube[1];
+    const na=(a.vol/1000)*a.conc, nb=(b.vol/1000)*b.conc;
+    const [sa,sb]=sol.stoich;
+    if(!na||!nb){
+      consequenceError("stoich","As quantidades adicionadas não permitem avaliar corretamente a proporção.");
+      return;
+    }
+    const ratio=(na/sa)/(nb/sb);
+    const tol=m.ultra?.05:(m.strict?.10:.15);
+    if(Math.abs(ratio-1)>tol){
+      runEffect(sol.pred,sol.color);
+      if(m.investigation)addEvidence("O fenômeno ocorreu, mas houve excesso significativo de reagente.");
+      consequenceError("stoich","A reação pode ocorrer, mas há excesso significativo de reagente. Recalcule usando n = C·V e a razão da equação.");
+      return;
+    }
+  }
+
+  stable23ActiveSolution=sol;
+  const effective=stable23EffectiveMission(m,sol);
+
+  runEffect(sol.pred,sol.color);
+
+  if(m.investigation){
+    addEvidence(stable23EvidenceText(sol)+". Hipótese confirmada.");
+  }
+
+  finalLabSuccess();
+  completedMissions.add(mission);
+  if(mission<Object.keys(M).length)maxUnlocked=Math.max(maxUnlocked,mission+1);
+  wins++;streak++;bestStreak=Math.max(bestStreak,streak);
+  const earnedStars=3;
+  totalStars+=earnedStars;
+  xp+=m.boss?130:100;
+  credits+=m.boss?35:25;
+
+  buildReport(effective,earnedStars);
+  checkAchievements();
+  saveProgress(true);
+  saveCloudExperiment(true);
+  updateUI();
+  buildMissionList();
+  logMsg("✅ Fase concluída. Observe a reação antes de abrir a análise.","good");
+
+  /* O painel é preenchido imediatamente, mas não rouba a atenção da reação. */
+  stable23RenderAnalysis(m,sol);
+
+  /* 4,2 s para observar precipitado/gás/cor/temperatura antes do feedback. */
+  clearTimeout(effectTimer);
+  effectTimer=setTimeout(()=>showMissionReviewPrompt(effective),4200);
+};
 
 /* ===== STABLE 3 • PROFESSOR CONTROLLER ÚNICO ===== */
 (function(){
