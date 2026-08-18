@@ -4891,7 +4891,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar"><div class="labChemistAvatar" aria-label="Avatar do laboratório"><span>🧪</span></div></div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 29</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 30</div></header>
 
 
 <section id="studentGameHome">
@@ -5130,7 +5130,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 29 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 30 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -7810,6 +7810,236 @@ performMissionAction=function(){
   buildReport(effective,earnedStars);checkAchievements();saveProgress(true);saveCloudExperiment(true);updateUI();buildMissionList();stable23RenderAnalysis(m,sol);
   clearTimeout(effectTimer);effectTimer=setTimeout(()=>showMissionReviewPrompt(effective),5200);
 };
+
+
+/* ===== STABLE 30 • MOTOR ÚNICO DE VALIDAÇÃO DAS 24 MISSÕES ===== */
+
+/* Cada missão recebe todas as soluções quimicamente válidas compatíveis com o enunciado.
+   Quando há apenas um caminho adequado, permanece uma única solução. */
+const STABLE30_SOLUTIONS = {
+  1:[
+    {ids:["hcl","naoh"],pred:"calor",stoich:[1,1],eq:"HCl + NaOH → NaCl + H₂O",concept:"Neutralizações entre ácido e base fortes são exotérmicas."}
+  ],
+  2:[
+    {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"AgCl é um precipitado branco pouco solúvel."},
+    {ids:["agno3","hcl"],pred:"precipitado",stoich:[1,1],eq:"AgNO₃ + HCl → AgCl(s) + HNO₃",concept:"Cl⁻ fornecido por HCl também precipita AgCl branco."},
+    {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"BaSO₄ forma precipitado branco."},
+    {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb(NO₃)₂ + Na₂SO₄ → PbSO₄(s) + 2NaNO₃",concept:"PbSO₄ é pouco solúvel e branco."},
+    {ids:["bacl2","na2co3"],pred:"precipitado",stoich:[1,1],eq:"BaCl₂ + Na₂CO₃ → BaCO₃(s) + 2NaCl",concept:"BaCO₃ é um precipitado branco."},
+    {ids:["pbno3","na2co3"],pred:"precipitado",stoich:[1,1],eq:"Pb(NO₃)₂ + Na₂CO₃ → PbCO₃(s) + 2NaNO₃",concept:"PbCO₃ forma precipitado branco."}
+  ],
+  3:[
+    {ids:["na2co3","hcl"],pred:"gas",stoich:[1,2],eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂(g)",concept:"Ácidos reagem com carbonatos liberando CO₂."}
+  ],
+  4:[
+    {ids:["cuso4","nh3"],pred:"cor",eq:"Cu²⁺ + NH₃ ⇌ complexo azul intenso",concept:"NH₃ forma complexo azul intenso com Cu²⁺.",color:"blue"}
+  ],
+  5:[
+    {ids:["nacl","na2so4"],pred:"nenhuma",eq:"Íons permanecem em solução.",concept:"Não há evidência macroscópica significativa."},
+    {ids:["nacl","ki"],pred:"nenhuma",eq:"Na⁺, K⁺, Cl⁻ e I⁻ permanecem em solução.",concept:"Os sais permanecem solúveis."},
+    {ids:["na2so4","ki"],pred:"nenhuma",eq:"Na⁺, K⁺, SO₄²⁻ e I⁻ permanecem em solução.",concept:"Não se forma precipitado, gás ou espécie pouco ionizada."},
+    {ids:["nacl","bacl2"],pred:"nenhuma",eq:"Íons permanecem em solução.",concept:"A mistura não produz evidência macroscópica."},
+    {ids:["bacl2","ki"],pred:"nenhuma",eq:"Ba²⁺, K⁺, Cl⁻ e I⁻ permanecem em solução.",concept:"Os produtos possíveis permanecem solúveis."}
+  ],
+  6:[
+    {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ fornece forte evidência para sulfato."},
+    {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"PbSO₄ também fornece evidência de sulfato."}
+  ],
+  7:[
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ é amarelo intenso.",color:"yellow"},
+    {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],eq:"AgNO₃ + KI → AgI(s) + KNO₃",concept:"AgI é amarelo-pálido.",color:"yellow"}
+  ],
+  8:[
+    {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Razão 1:1 minimiza excesso."},
+    {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Razão 1:1 minimiza excesso."},
+    {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"Razão 1:1 minimiza excesso."},
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"Razão 1:2 minimiza excesso.",color:"yellow"},
+    {ids:["bacl2","na2co3"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + CO₃²⁻ → BaCO₃(s)",concept:"Razão 1:1 minimiza excesso."}
+  ],
+  9:[
+    {ids:["na2co3","hcl"],pred:"gas",stoich:[1,2],eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"A proporção deve ser calculada em mol."}
+  ],
+  10:[
+    {ids:["bacl2","na2so4"],pred:"precipitado",eq:"BaCl₂ + Na₂SO₄ → BaSO₄(s) + 2NaCl",concept:"BaSO₄ favorece a dupla troca."},
+    {ids:["agno3","nacl"],pred:"precipitado",eq:"AgNO₃ + NaCl → AgCl(s) + NaNO₃",concept:"AgCl favorece a dupla troca."},
+    {ids:["pbno3","ki"],pred:"precipitado",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ fornece evidência de dupla troca.",color:"yellow"},
+    {ids:["pbno3","na2so4"],pred:"precipitado",eq:"Pb(NO₃)₂ + Na₂SO₄ → PbSO₄(s) + 2NaNO₃",concept:"PbSO₄ fornece evidência de dupla troca."},
+    {ids:["bacl2","na2co3"],pred:"precipitado",eq:"BaCl₂ + Na₂CO₃ → BaCO₃(s) + 2NaCl",concept:"BaCO₃ fornece evidência de dupla troca."}
+  ],
+  11:[
+    {ids:["hcl","naoh"],pred:"calor",stoich:[1,1],eq:"H⁺ + OH⁻ → H₂O",concept:"n=C·V permite obter equivalência molar."}
+  ],
+  12:[
+    {ids:["na2co3","hcl"],pred:"gas",stoich:[1,2],eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Coeficientes indicam a razão molar."}
+  ],
+  13:[
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"KI deve estar em dobro molar para minimizar excesso.",color:"yellow"}
+  ],
+  14:[
+    {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Precipitação quantitativa 1:1."},
+    {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Precipitação quantitativa 1:1."},
+    {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"Precipitação quantitativa 1:1."}
+  ],
+  15:[
+    {ids:["na2co3","hcl"],pred:"gas",stoich:[1,2],eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Controle estequiométrico rigoroso reduz excesso."}
+  ],
+  16:[
+    {ids:["nacl","agno3"],pred:"precipitado",eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"AgNO₃ é teste clássico para Cl⁻."},
+    {ids:["nacl","pbno3"],pred:"precipitado",eq:"Pb²⁺ + 2Cl⁻ → PbCl₂(s)",concept:"Pb²⁺ também pode precipitar Cl⁻."}
+  ],
+  17:[
+    {ids:["na2co3","hcl"],pred:"gas",eq:"CO₃²⁻ + 2H⁺ → H₂O + CO₂(g)",concept:"Efervescência com ácido é compatível com carbonato."}
+  ],
+  18:[
+    {ids:["na2so4","bacl2"],pred:"precipitado",eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"BaSO₄ confirma sulfato."},
+    {ids:["na2so4","pbno3"],pred:"precipitado",eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"PbSO₄ também sustenta a hipótese de sulfato."}
+  ],
+  19:[
+    {ids:["cuso4","nh3"],pred:"cor",eq:"Cu²⁺ + NH₃ ⇌ complexo azul intenso",concept:"A formação do complexo fornece evidência confirmatória.",color:"blue"}
+  ],
+  20:[
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"PbI₂ amarelo confirma iodeto.",color:"yellow"},
+    {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + I⁻ → AgI(s)",concept:"AgI amarelo-pálido também confirma iodeto.",color:"yellow"}
+  ],
+  21:[
+    {ids:["hcl","naoh"],pred:"calor",stoich:[1,1],eq:"HCl + NaOH → NaCl + H₂O",concept:"Neutralização quantitativa precisa."}
+  ],
+  22:[
+    {ids:["agno3","nacl"],pred:"precipitado",stoich:[1,1],eq:"Ag⁺ + Cl⁻ → AgCl(s)",concept:"Precipitação quantitativa 1:1."},
+    {ids:["bacl2","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Ba²⁺ + SO₄²⁻ → BaSO₄(s)",concept:"Precipitação quantitativa 1:1."},
+    {ids:["pbno3","na2so4"],pred:"precipitado",stoich:[1,1],eq:"Pb²⁺ + SO₄²⁻ → PbSO₄(s)",concept:"Precipitação quantitativa 1:1."},
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb²⁺ + 2I⁻ → PbI₂(s)",concept:"Precipitação quantitativa 1:2.",color:"yellow"}
+  ],
+  23:[
+    {ids:["na2co3","hcl"],pred:"gas",stoich:[1,2],eq:"Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂",concept:"Formação quantitativa de gás exige razão 1:2."}
+  ],
+  24:[
+    {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ amarelo permite identificação conclusiva.",color:"yellow"},
+    {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],eq:"AgNO₃ + KI → AgI(s) + KNO₃",concept:"AgI também permite identificação conclusiva de iodeto.",color:"yellow"}
+  ]
+};
+
+Object.entries(STABLE30_SOLUTIONS).forEach(([n,solutions])=>{
+  if(M[n]) M[n].solutions=solutions;
+});
+
+function stable30DistinctIds(){
+  return [...new Set((tube||[]).map(x=>x?.id).filter(Boolean))].sort();
+}
+function stable30SamePair(a,b){
+  const aa=[...new Set(a||[])].sort(),bb=[...new Set(b||[])].sort();
+  return aa.length===bb.length && aa.every((v,i)=>v===bb[i]);
+}
+function stable30FindSolution(m){
+  const present=stable30DistinctIds();
+  const sols=(m.solutions&&m.solutions.length)?m.solutions:[{ids:m.ids,pred:m.pred,stoich:m.stoich,eq:m.eq,concept:m.concept,color:m.color}];
+  return sols.find(s=>stable30SamePair(s.ids,present))||null;
+}
+function stable30Totals(){
+  const totals={};
+  (tube||[]).forEach(x=>{
+    if(!x?.id)return;
+    const n=(Number(x.v ?? x.vol)||0)/1000*(Number(x.c ?? x.conc)||0);
+    totals[x.id]=(totals[x.id]||0)+n;
+  });
+  return totals;
+}
+function stable30StoichRatio(sol){
+  if(!sol?.stoich||!sol?.ids||sol.ids.length!==2)return null;
+  const t=stable30Totals();
+  const n0=t[sol.ids[0]]||0,n1=t[sol.ids[1]]||0;
+  if(!(n0>0&&n1>0))return null;
+  return (n0/sol.stoich[0])/(n1/sol.stoich[1]);
+}
+function stable30IsQuantitative(m){
+  return !!(m.strict||m.ultra||/estequi|quantit|proporção|excesso|limitante|precis|mols|dobro/i.test(
+    `${m.title||""} ${m.text||""} ${m.obj||""} ${m.challenge||""}`
+  ));
+}
+function stable30Tolerance(m){
+  if(m.ultra)return .05;
+  if(m.strict)return .10;
+  return .15;
+}
+
+/* Reseta os controles quantitativos ao trocar de missão para evitar que uma concentração
+   usada numa fase anterior faça uma fase nova parecer "errada". */
+const stable30RenderMissionBase=renderMission;
+renderMission=function(){
+  stable30RenderMissionBase();
+  if(typeof volume!=="undefined" && volume) volume.value="10";
+  if(typeof conc!=="undefined" && conc) conc.value="1.00";
+};
+
+/* Esta é a ÚNICA validação que deve prevalecer. Todas as versões anteriores ficam inertes
+   porque esta atribuição aparece por último no documento. */
+performMissionAction=function(){
+  const m=M[mission];
+  const sol=stable30FindSolution(m);
+
+  const btn=document.querySelector('.controls .primary');
+  if(btn){btn.classList.add('executing-step');btn.setAttribute('aria-busy','true')}
+  setTimeout(()=>{btn?.classList.remove('executing-step');btn?.removeAttribute('aria-busy')},900);
+
+  if(!sol){
+    consequenceError("reagent","A combinação escolhida não atende ao objetivo químico desta missão. Quando existem várias soluções válidas, todas são aceitas.");
+    return;
+  }
+
+  if(!prediction){
+    showRibbon("🧠 FAÇA UMA PREVISÃO","bad");
+    logMsg("Registre uma previsão antes de executar.","bad");
+    return;
+  }
+  if(prediction!==sol.pred){
+    consequenceError("prediction","Os reagentes podem estar corretos, mas a previsão selecionada não corresponde à evidência esperada.");
+    return;
+  }
+
+  if(m.investigation && !investigationHypothesisCorrect(m)){
+    consequenceError("hypothesis","O teste é quimicamente válido, mas a hipótese/conclusão selecionada não corresponde à investigação.");
+    return;
+  }
+
+  if(sol.stoich && stable30IsQuantitative(m)){
+    const ratio=stable30StoichRatio(sol);
+    if(!ratio){
+      consequenceError("stoich","Não foi possível calcular a proporção. Confira volume e concentração dos reagentes adicionados.");
+      return;
+    }
+    const tol=stable30Tolerance(m);
+    if(Math.abs(ratio-1)>tol){
+      runEffect(sol.pred,sol.color);
+      const pct=Math.round(tol*100);
+      consequenceError("stoich",`A reação ocorre, mas esta missão exige controle quantitativo. Ajuste as quantidades para a proporção ${sol.stoich[0]}:${sol.stoich[1]} (tolerância ±${pct}%).`);
+      return;
+    }
+  }
+
+  stable23ActiveSolution=sol;
+  const effective=stable23EffectiveMission(m,sol);
+  runEffect(sol.pred,sol.color);
+  if(m.investigation)addEvidence(stable23EvidenceText(sol)+". Hipótese confirmada.");
+
+  finalLabSuccess();
+  completedMissions.add(mission);
+  if(mission<Object.keys(M).length)maxUnlocked=Math.max(maxUnlocked,mission+1);
+  wins++;streak++;bestStreak=Math.max(bestStreak,streak);
+  const earnedStars=3;
+  totalStars+=earnedStars;xp+=m.boss?130:100;credits+=m.boss?35:25;
+
+  buildReport(effective,earnedStars);
+  checkAchievements();
+  saveProgress(true);
+  saveCloudExperiment(true);
+  updateUI();
+  buildMissionList();
+  stable23RenderAnalysis(m,sol);
+
+  clearTimeout(effectTimer);
+  effectTimer=setTimeout(()=>showMissionReviewPrompt(effective),5200);
+};
+
 </script>
 
 </body>
