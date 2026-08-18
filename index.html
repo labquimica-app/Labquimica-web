@@ -4353,6 +4353,267 @@ body.student-free .layout{
   }
 }
 
+
+/* ===== STABLE 26 • LOGIN LIMPO SEM MOCKUP DE FUNDO ===== */
+
+/* Remove DEFINITIVAMENTE a imagem antiga que já continha textos/formulário */
+#authScreen{
+  background-image:none!important;
+  background:
+    radial-gradient(circle at 16% 18%,rgba(39,101,255,.20),transparent 28%),
+    radial-gradient(circle at 63% 48%,rgba(17,188,255,.12),transparent 30%),
+    radial-gradient(circle at 83% 12%,rgba(124,65,236,.16),transparent 24%),
+    linear-gradient(145deg,#020914 0%,#06172c 52%,#020b16 100%)!important;
+}
+
+/* Cenário químico real em CSS/HTML, sem texto desenhado em imagem */
+#authScreen .auth-lab-scene{
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  left:31%!important;
+  top:50%!important;
+  width:min(470px,34vw)!important;
+  height:68vh!important;
+  transform:translate(-50%,-50%)!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  opacity:.94!important;
+  background:
+    radial-gradient(circle at 50% 68%,rgba(20,194,255,.18),transparent 28%),
+    linear-gradient(180deg,rgba(5,27,52,.72),rgba(2,11,22,.88))!important;
+  border:1px solid rgba(55,189,255,.18)!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.34),inset 0 0 70px rgba(25,148,255,.06)!important;
+}
+#authScreen .auth-lab-scene .auth-orb,
+#authScreen .auth-lab-scene .auth-molecule,
+#authScreen .auth-lab-scene .auth-lab-grid,
+#authScreen .auth-lab-scene .auth-neon-sign,
+#authScreen .auth-lab-scene .auth-lab-shelf,
+#authScreen .auth-lab-scene .auth-spark{
+  display:none!important;
+}
+
+/* Béquer central mais forte */
+#authScreen .auth-beaker-center{
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  bottom:auto!important;
+  width:230px!important;
+  height:300px!important;
+  transform:translate(-50%,-46%) scale(1.05)!important;
+  opacity:1!important;
+  filter:drop-shadow(0 0 28px rgba(42,198,255,.30))!important;
+}
+#authScreen .auth-beaker-center .beaker-body{
+  width:178px!important;
+  height:228px!important;
+  left:26px!important;
+}
+#authScreen .auth-beaker-center .beaker-rim{
+  left:36px!important;
+  width:158px!important;
+}
+#authScreen .auth-beaker-center .beaker-liquid{
+  height:58%!important;
+  background:linear-gradient(180deg,rgba(58,111,255,.82),rgba(24,207,255,.86),rgba(16,226,178,.78))!important;
+}
+#authScreen .beaker-vapor{display:block!important}
+
+/* Frasco esquerdo e tubo direito ficam discretos como fundo */
+#authScreen .auth-flask-left{
+  display:block!important;
+  left:7%!important;
+  bottom:8%!important;
+  transform:scale(.68)!important;
+  opacity:.48!important;
+}
+#authScreen .auth-tube-right{
+  display:block!important;
+  right:7%!important;
+  bottom:9%!important;
+  transform:scale(.72)!important;
+  opacity:.52!important;
+}
+#authScreen .auth-lab-bench{
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  bottom:2%!important;
+  width:88%!important;
+  height:100px!important;
+  transform:translateX(-50%) perspective(500px) rotateX(60deg)!important;
+  background:linear-gradient(180deg,rgba(17,52,83,.75),rgba(4,18,33,.92))!important;
+  border:1px solid rgba(55,175,232,.16)!important;
+  border-radius:24px!important;
+}
+
+/* Coluna editorial esquerda */
+.stable20-auth-copy{
+  display:block!important;
+  position:absolute!important;
+  z-index:3!important;
+  left:4.5vw!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:min(330px,23vw)!important;
+}
+.stable20-brand{margin-bottom:20px!important}
+.stable20-brand-icon{width:50px!important;height:50px!important;font-size:29px!important}
+.stable20-logo{font-size:34px!important}
+.stable20-subtitle{font-size:12px!important}
+.stable20-tagline{font-size:23px!important;line-height:1.15!important}
+.stable20-intro{font-size:14px!important;line-height:1.45!important;margin-bottom:18px!important}
+.stable20-feature-list{gap:11px!important}
+.stable20-feature{grid-template-columns:38px 1fr!important;gap:9px!important}
+.stable20-feature i{width:38px!important;height:38px!important;font-size:18px!important}
+.stable20-feature b{font-size:14px!important}
+.stable20-feature span{font-size:11px!important}
+
+/* Um ÚNICO formulário real à direita */
+#authScreen .auth-card{
+  display:block!important;
+  position:absolute!important;
+  z-index:5!important;
+  top:50%!important;
+  right:4.5vw!important;
+  left:auto!important;
+  bottom:auto!important;
+  transform:translateY(-50%)!important;
+  width:min(420px,32vw)!important;
+  min-width:360px!important;
+  max-width:420px!important;
+  max-height:86vh!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  margin:0!important;
+  padding:22px!important;
+  box-sizing:border-box!important;
+  border-radius:24px!important;
+  background:linear-gradient(155deg,rgba(8,29,54,.96),rgba(4,16,31,.97))!important;
+  border:1px solid rgba(52,199,255,.44)!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.48),0 0 30px rgba(37,170,255,.10)!important;
+  backdrop-filter:blur(18px)!important;
+}
+#authScreen .auth-card::before{
+  width:52px!important;height:52px!important;font-size:27px!important;margin:0 auto 9px!important;
+}
+#authScreen .auth-card .start-logo{display:none!important}
+#authScreen .auth-card h1{font-size:27px!important;margin:0 0 6px!important}
+#authScreen .auth-card>p.muted{font-size:12px!important;line-height:1.4!important;margin:0 0 11px!important}
+#authScreen .auth-role{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:0 0 10px!important}
+#authScreen .auth-role button{min-height:42px!important;padding:8px!important;font-size:12px!important}
+#authScreen .auth-form{display:grid!important;gap:8px!important}
+#authScreen .auth-form input{min-height:44px!important;padding:9px 11px!important;font-size:13px!important}
+#authScreen .profile-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:10px!important}
+#authScreen .profile-actions>button{min-height:42px!important;padding:8px!important;font-size:12px!important}
+#authScreen #forgotPasswordBtn{
+  grid-column:1/-1!important;
+  min-height:auto!important;
+  padding:5px!important;
+  margin:0 auto!important;
+  background:transparent!important;border:0!important;box-shadow:none!important
+}
+#authScreen .auth-status,#authScreen .online-ready-note{
+  margin-top:8px!important;padding:9px 10px!important;font-size:10px!important;line-height:1.3!important
+}
+
+/* Tira a faixa inferior do login desktop. Ela era outro elemento competindo pelo espaço. */
+.stable20-bottom-features{display:none!important}
+
+/* Notebook médio: cena some, ficam duas colunas limpas */
+@media(min-width:761px) and (max-width:1180px){
+  #authScreen{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 390px!important;
+    gap:30px!important;
+    align-items:center!important;
+    padding:28px 34px!important;
+  }
+  .stable20-auth-copy{
+    position:relative!important;left:auto!important;top:auto!important;transform:none!important;
+    width:min(330px,100%)!important;justify-self:start!important;
+  }
+  #authScreen .auth-lab-scene{
+    display:none!important;
+  }
+  #authScreen .auth-card{
+    position:relative!important;top:auto!important;right:auto!important;left:auto!important;transform:none!important;
+    width:390px!important;min-width:0!important;max-width:390px!important;justify-self:end!important;
+    max-height:90vh!important;
+  }
+}
+
+/* Celular: somente formulário central + fundo químico suave */
+@media(max-width:760px){
+  #authScreen{
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    min-height:100svh!important;
+    padding:24px 10px 34px!important;
+    overflow-y:auto!important;
+    background:
+      radial-gradient(circle at 50% 18%,rgba(34,119,255,.20),transparent 32%),
+      radial-gradient(circle at 50% 80%,rgba(21,202,174,.11),transparent 30%),
+      linear-gradient(160deg,#020914,#06162a 62%,#020a14)!important;
+  }
+  .stable20-auth-copy{display:none!important}
+  #authScreen .auth-lab-scene{
+    display:block!important;
+    position:fixed!important;
+    inset:0!important;
+    width:100vw!important;height:100vh!important;
+    transform:none!important;border:0!important;border-radius:0!important;
+    opacity:.18!important;
+    pointer-events:none!important;
+  }
+  #authScreen .auth-beaker-center{
+    left:50%!important;top:68%!important;transform:translate(-50%,-50%) scale(.92)!important;
+  }
+  #authScreen .auth-flask-left,#authScreen .auth-tube-right{display:none!important}
+  #authScreen .auth-card{
+    position:relative!important;top:auto!important;right:auto!important;left:auto!important;transform:none!important;
+    width:calc(100vw - 20px)!important;min-width:0!important;max-width:430px!important;
+    max-height:none!important;overflow:visible!important;padding:20px 15px!important;
+  }
+}
+
+
+/* ===== STABLE 28 • AVATAR VETORIAL CONSISTENTE ===== */
+.labChemistAvatar{
+  width:100%;height:100%;display:block;
+}
+.playerMiniAvatar,
+.homeAvatar{
+  overflow:hidden!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  background:none!important;
+}
+.playerMiniAvatar .labChemistAvatar{
+  width:48px!important;height:48px!important;
+}
+.homeAvatar .labChemistAvatar{
+  width:86px!important;height:86px!important;
+}
+.layout>aside.panel:last-child:before{
+  content:""!important;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%236657ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2316bdf2%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Ccircle%20cx%3D%2260%22%20cy%3D%2260%22%20r%3D%2256%22%20fill%3D%22url%28%23g%29%22%20stroke%3D%22%2343d7ff%22%20stroke-width%3D%224%22%2F%3E%0A%3Ccircle%20cx%3D%2248%22%20cy%3D%2245%22%20r%3D%2219%22%20fill%3D%22%23f3c47d%22%2F%3E%0A%3Cpath%20d%3D%22M29%2043c2-18%2012-27%2027-27%2013%200%2023%207%2028%2019-9-6-18-8-27-6-7%201-14%206-20%2014z%22%20fill%3D%22%234a2f24%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2245%22%20r%3D%222.5%22%20fill%3D%22%2325222a%22%2F%3E%3Ccircle%20cx%3D%2254%22%20cy%3D%2245%22%20r%3D%222.5%22%20fill%3D%22%2325222a%22%2F%3E%0A%3Cpath%20d%3D%22M42%2055c5%204%2010%204%2015%200%22%20fill%3D%22none%22%20stroke%3D%22%239f5e4b%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M28%2092c2-18%2013-28%2029-28s28%2010%2031%2028%22%20fill%3D%22%23eef7ff%22%20stroke%3D%22%23cbddea%22%20stroke-width%3D%222%22%2F%3E%0A%3Cpath%20d%3D%22M47%2067l10%2013%2010-13%22%20fill%3D%22%23d5ecfa%22%2F%3E%3Cpath%20d%3D%22M56%2079h4v13h-4z%22%20fill%3D%22%2327c7ef%22%2F%3E%0A%3Crect%20x%3D%2282%22%20y%3D%2251%22%20width%3D%229%22%20height%3D%2228%22%20rx%3D%224%22%20fill%3D%22%23dcebf4%22%20stroke%3D%22%2393b4c9%22%20stroke-width%3D%222%22%2F%3E%0A%3Cpath%20d%3D%22M86%2044h14v7H86zM95%2044l8%206-5%205-8-6z%22%20fill%3D%22%23dcebf4%22%20stroke%3D%22%2393b4c9%22%20stroke-width%3D%222%22%2F%3E%0A%3Cpath%20d%3D%22M87%2079h17v7H87zM96%2054v25%22%20stroke%3D%22%2393b4c9%22%20stroke-width%3D%224%22%2F%3E%0A%3Cpath%20d%3D%22M89%2062c8%203%2012%209%2013%2017%22%20fill%3D%22none%22%20stroke%3D%22%2393b4c9%22%20stroke-width%3D%224%22%2F%3E%0A%3C%2Fsvg%3E")!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  color:transparent!important;
+  font-size:0!important;
+}
+@media(max-width:760px){
+  .playerMiniAvatar .labChemistAvatar{width:42px!important;height:42px!important}
+  .homeAvatar .labChemistAvatar{width:78px!important;height:78px!important}
+}
+
 </style>
 </head>
 <body>
@@ -4629,13 +4890,53 @@ body.student-free .layout{
 <div class="app">
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
-  <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 25</div></header>
+  <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar"><svg class="labChemistAvatar" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="avbg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#6657ff"/>
+    <stop offset="1" stop-color="#16bdf2"/>
+  </linearGradient>
+</defs>
+<circle cx="60" cy="60" r="56" fill="url(#avbg)" stroke="#43d7ff" stroke-width="4"/>
+<circle cx="48" cy="45" r="19" fill="#f3c47d"/>
+<path d="M29 43c2-18 12-27 27-27 13 0 23 7 28 19-9-6-18-8-27-6-7 1-14 6-20 14z" fill="#4a2f24"/>
+<circle cx="42" cy="45" r="2.5" fill="#25222a"/>
+<circle cx="54" cy="45" r="2.5" fill="#25222a"/>
+<path d="M42 55c5 4 10 4 15 0" fill="none" stroke="#9f5e4b" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M28 92c2-18 13-28 29-28s28 10 31 28" fill="#eef7ff" stroke="#cbddea" stroke-width="2"/>
+<path d="M47 67l10 13 10-13" fill="#d5ecfa"/>
+<path d="M56 79h4v13h-4z" fill="#27c7ef"/>
+<rect x="82" y="51" width="9" height="28" rx="4" fill="#dcebf4" stroke="#93b4c9" stroke-width="2"/>
+<path d="M86 44h14v7H86zM95 44l8 6-5 5-8-6z" fill="#dcebf4" stroke="#93b4c9" stroke-width="2"/>
+<path d="M87 79h17v7H87zM96 54v25" stroke="#93b4c9" stroke-width="4"/>
+<path d="M89 62c8 3 12 9 13 17" fill="none" stroke="#93b4c9" stroke-width="4"/>
+</svg></div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 28</div></header>
 
 
 <section id="studentGameHome">
   <div class="homeWelcome">
-    <div class="homeAvatar">🧑‍🔬</div>
+    <div class="homeAvatar"><svg class="labChemistAvatar" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="avbg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#6657ff"/>
+    <stop offset="1" stop-color="#16bdf2"/>
+  </linearGradient>
+</defs>
+<circle cx="60" cy="60" r="56" fill="url(#avbg)" stroke="#43d7ff" stroke-width="4"/>
+<circle cx="48" cy="45" r="19" fill="#f3c47d"/>
+<path d="M29 43c2-18 12-27 27-27 13 0 23 7 28 19-9-6-18-8-27-6-7 1-14 6-20 14z" fill="#4a2f24"/>
+<circle cx="42" cy="45" r="2.5" fill="#25222a"/>
+<circle cx="54" cy="45" r="2.5" fill="#25222a"/>
+<path d="M42 55c5 4 10 4 15 0" fill="none" stroke="#9f5e4b" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M28 92c2-18 13-28 29-28s28 10 31 28" fill="#eef7ff" stroke="#cbddea" stroke-width="2"/>
+<path d="M47 67l10 13 10-13" fill="#d5ecfa"/>
+<path d="M56 79h4v13h-4z" fill="#27c7ef"/>
+<rect x="82" y="51" width="9" height="28" rx="4" fill="#dcebf4" stroke="#93b4c9" stroke-width="2"/>
+<path d="M86 44h14v7H86zM95 44l8 6-5 5-8-6z" fill="#dcebf4" stroke="#93b4c9" stroke-width="2"/>
+<path d="M87 79h17v7H87zM96 54v25" stroke="#93b4c9" stroke-width="4"/>
+<path d="M89 62c8 3 12 9 13 17" fill="none" stroke="#93b4c9" stroke-width="4"/>
+</svg></div>
     <h2>Bem-vindo de volta, <span id="homeStudentName">Aluno</span>!</h2>
     <p>Seu laboratório está pronto. Continue sua investigação química de onde parou.</p>
     <div class="homeXpBox">
@@ -4869,7 +5170,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 25 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 28 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -7375,6 +7676,73 @@ async function saveCloudProgress(){
 
   return stable17SaveQueue;
 }
+
+
+
+/* ===== STABLE 27 • CORREÇÃO PRECIPITADO AMARELO ===== */
+function stable27NormIds(ids){return [...new Set((ids||[]).map(String))].sort()}
+function stable27FindSolution(m,present){
+  const pp=stable27NormIds(present);
+  const sols=(Array.isArray(m.solutions)&&m.solutions.length)?m.solutions:[{ids:m.ids,pred:m.pred,stoich:m.stoich,color:m.color,eq:m.eq,concept:m.concept}];
+  return sols.find(s=>{const ss=stable27NormIds(s.ids);return ss.length===pp.length&&ss.every((v,i)=>v===pp[i])})||null;
+}
+function stable27StoichForTube(sol){
+  if(!sol?.stoich||!tube||tube.length<2)return null;
+  const ids=sol.ids||[]; if(ids.length!==2||sol.stoich.length!==2)return null;
+  const a=tube[0].id,b=tube[1].id;
+  if(a===ids[0]&&b===ids[1])return {coeff0:sol.stoich[0],coeff1:sol.stoich[1]};
+  if(a===ids[1]&&b===ids[0])return {coeff0:sol.stoich[1],coeff1:sol.stoich[0]};
+  return null;
+}
+Object.values(M).forEach(m=>{
+  if((m.title||"").toLowerCase().includes("precipitado amarelo")){
+    m.solutions=[
+      {ids:["pbno3","ki"],pred:"precipitado",stoich:[1,2],color:"yellow",eq:"Pb(NO₃)₂ + 2KI → PbI₂(s) + 2KNO₃",concept:"PbI₂ forma precipitado amarelo intenso."},
+      {ids:["agno3","ki"],pred:"precipitado",stoich:[1,1],color:"yellow",eq:"AgNO₃ + KI → AgI(s) + KNO₃",concept:"AgI forma precipitado amarelo-pálido."}
+    ];
+  }
+});
+if(typeof stable23FindSolution==="function")stable23FindSolution=stable27FindSolution;
+
+performMissionAction=function(){
+  const m=M[mission],present=[...new Set(tube.map(x=>x.id))],sol=stable27FindSolution(m,present);
+  const btn=document.querySelector('.controls .primary');
+  if(btn){btn.classList.add('executing-step');btn.setAttribute('aria-busy','true')}
+  setTimeout(()=>{btn?.classList.remove('executing-step');btn?.removeAttribute('aria-busy')},1100);
+
+  if(!sol){consequenceError("reagent","Essa combinação não atende ao objetivo desta etapa.");return}
+  if(!prediction){showRibbon("🧠 FAÇA UMA PREVISÃO","bad");logMsg("Registre uma previsão antes de executar.","bad");return}
+  if(prediction!==sol.pred){consequenceError("prediction","Sua previsão não corresponde ao fenômeno esperado.");return}
+  if(m.investigation&&!investigationHypothesisCorrect(m)){consequenceError("hypothesis","A interpretação da evidência está incorreta.");return}
+
+  if(sol.stoich){
+    const a=tube[0],b=tube[1],na=(a.vol/1000)*a.conc,nb=(b.vol/1000)*b.conc,map=stable27StoichForTube(sol);
+    if(!na||!nb||!map){consequenceError("stoich","Não foi possível avaliar as quantidades.");return}
+    const ratio=(na/map.coeff0)/(nb/map.coeff1);
+    const isQuantitative=!!(m.strict||m.ultra||/estequi|quantit|proporção|excesso|limitante/i.test((m.title||"")+" "+(m.obj||"")));
+    if(isQuantitative){
+      const tol=m.ultra?.05:(m.strict?.10:.15);
+      if(Math.abs(ratio-1)>tol){
+        runEffect(sol.pred,sol.color);
+        consequenceError("stoich","A reação ocorreu, mas a proporção não atende ao objetivo quantitativo desta fase.");
+        return;
+      }
+    }
+  }
+
+  stable23ActiveSolution=sol;
+  const effective=stable23EffectiveMission(m,sol);
+  runEffect(sol.pred,sol.color);
+  if(m.investigation)addEvidence(stable23EvidenceText(sol)+". Hipótese confirmada.");
+  finalLabSuccess();
+  completedMissions.add(mission);
+  if(mission<Object.keys(M).length)maxUnlocked=Math.max(maxUnlocked,mission+1);
+  wins++;streak++;bestStreak=Math.max(bestStreak,streak);
+  const earnedStars=3;totalStars+=earnedStars;xp+=m.boss?130:100;credits+=m.boss?35:25;
+  buildReport(effective,earnedStars);checkAchievements();saveProgress(true);saveCloudExperiment(true);updateUI();buildMissionList();
+  stable23RenderAnalysis(m,sol);
+  clearTimeout(effectTimer);effectTimer=setTimeout(()=>showMissionReviewPrompt(effective),4200);
+};
 
 </script>
 
