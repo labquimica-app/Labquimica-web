@@ -4252,6 +4252,107 @@ body.student-free .layout{
   .stable24-actions{grid-template-columns:1fr}
 }
 
+
+/* ===== STABLE 25 • DESKTOP MISSÕES SEM SOBREPOSIÇÃO ===== */
+
+/* Desktop/notebook: Voltar/Sair entram no fluxo normal, nunca cobrem conteúdo */
+@media(min-width:761px){
+  #studentSessionActions,
+  .student-session-actions{
+    position:static!important;
+    left:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    top:auto!important;
+    width:min(460px,100%)!important;
+    margin:0 0 12px auto!important;
+    padding:6px!important;
+    display:none;
+    gap:8px!important;
+    border-radius:14px!important;
+    background:rgba(4,17,33,.78)!important;
+    border:1px solid rgba(55,177,233,.20)!important;
+    box-shadow:none!important;
+    backdrop-filter:blur(10px)!important;
+  }
+  body.student-missions #studentSessionActions,
+  body.student-free #studentSessionActions{
+    display:flex!important;
+  }
+  #studentSessionActions button{
+    min-height:40px!important;
+    padding:9px 12px!important;
+    font-size:11px!important;
+  }
+
+  /* não precisamos mais reservar espaço para uma barra fixa */
+  body.student-missions .app,
+  body.student-free .app{
+    padding-bottom:28px!important;
+  }
+}
+
+/* Notebook/desktop: melhora a proporção entre mapa, bancada e análise */
+@media(min-width:1101px){
+  body.student-missions .layout{
+    grid-template-columns:220px minmax(560px,1fr) minmax(340px,390px)!important;
+    gap:18px!important;
+    align-items:start!important;
+  }
+  body.student-missions .workspace{
+    grid-template-columns:minmax(300px,.92fr) minmax(340px,1.08fr)!important;
+    gap:16px!important;
+  }
+  body.student-missions .layout>aside.panel:last-child{
+    min-width:0!important;
+    width:100%!important;
+  }
+  body.student-missions .learning{
+    padding:20px!important;
+  }
+  body.student-missions .learning .analysis-panel{
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+  body.student-missions .learning .analysis-cell{
+    min-height:58px!important;
+  }
+}
+
+/* Notebook com largura intermediária: análise vai para baixo em largura total,
+   evitando aquela coluna espremida à direita. */
+@media(min-width:761px) and (max-width:1180px){
+  body.student-missions .layout{
+    grid-template-columns:210px minmax(0,1fr)!important;
+    gap:14px!important;
+  }
+  body.student-missions .layout>aside.panel:last-child{
+    grid-column:1/-1!important;
+    width:100%!important;
+    margin-top:4px!important;
+  }
+  body.student-missions .workspace{
+    grid-template-columns:1fr 1fr!important;
+    gap:14px!important;
+  }
+  body.student-missions .learning .analysis-panel{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* Mobile mantém a barra fixa, mas com conteúdo realmente protegido */
+@media(max-width:760px){
+  body.student-missions .app,
+  body.student-free .app{
+    padding-bottom:118px!important;
+  }
+  #studentSessionActions{
+    left:10px!important;
+    right:10px!important;
+    bottom:calc(10px + env(safe-area-inset-bottom))!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4529,7 +4630,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 24</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 25</div></header>
 
 
 <section id="studentGameHome">
@@ -4768,7 +4869,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 24 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 25 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
