@@ -4111,6 +4111,147 @@ body.student-free .layout{
   font-size:14px!important;
 }
 
+
+/* ===== STABLE 24 • TELA FINAL PREMIUM ===== */
+.final-screen-open{overflow:hidden!important}
+.stable24-final-screen{
+  position:fixed;inset:0;z-index:99999;
+  overflow:auto;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(38,91,255,.16),transparent 22%),
+    radial-gradient(circle at 82% 12%,rgba(123,57,235,.14),transparent 22%),
+    linear-gradient(180deg,#020814,#041326 52%,#020913);
+  color:#eef8ff;
+  padding:18px;
+}
+.stable24-final-shell{
+  width:min(980px,100%);
+  margin:auto;
+}
+.stable24-topbar{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:14px
+}
+.stable24-topbar button{
+  border:1px solid rgba(76,160,239,.35);background:#08203c;color:#dff2ff;
+  border-radius:14px;min-height:44px;font-weight:800
+}
+.stable24-topbar button:last-child{justify-self:end}
+.stable24-brand{text-align:center;font-size:25px;font-weight:1000}
+.stable24-brand span{color:#26c8ff}
+.stable24-brand small{display:block;font-size:11px;font-weight:500;color:#9fb9ce;margin-top:2px}
+
+.stable24-hero{
+  position:relative;overflow:hidden;text-align:center;
+  padding:28px 20px 22px;border:1px solid rgba(66,179,238,.38);border-radius:26px;
+  background:
+    radial-gradient(circle at 15% 45%,rgba(12,115,220,.20),transparent 22%),
+    linear-gradient(150deg,#07192f,#071329 68%,#0a1730);
+  box-shadow:0 22px 70px rgba(0,0,0,.34);
+}
+.stable24-flask{position:absolute;left:6%;bottom:8%;font-size:120px;opacity:.32;filter:drop-shadow(0 0 20px #1ebfff)}
+.stable24-trophy{font-size:54px;filter:drop-shadow(0 0 18px rgba(255,190,54,.30))}
+.stable24-hero h1{margin:6px 0 8px;font-size:34px}
+.stable24-hero h1 span{
+  display:block;font-size:48px;
+  background:linear-gradient(90deg,#28d6ff,#6f75ff,#c751f0);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.stable24-hero p{color:#c8d9e7;max-width:680px;margin:0 auto 18px}
+.stable24-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(77,183,240,.28);border-bottom:1px solid rgba(77,183,240,.20)
+}
+.stable24-metrics div{padding:13px;border-right:1px solid rgba(77,183,240,.20)}
+.stable24-metrics div:nth-child(3n){border-right:0}
+.stable24-metrics b{display:block;font-size:24px;color:#42e48f}
+.stable24-metrics div:nth-child(3n) b{color:#ffcb4c}
+.stable24-metrics span{display:block;font-size:11px;color:#a9bfd0;margin-top:3px}
+
+.stable24-performance{
+  display:grid;grid-template-columns:230px 1fr;gap:16px;margin-top:16px;
+  padding:18px;border:1px solid rgba(72,167,226,.26);border-radius:22px;
+  background:#06172c;
+}
+.stable24-quality{display:grid;place-items:center}
+.stable24-quality-ring{
+  width:180px;height:180px;border-radius:50%;display:grid;place-items:center;text-align:center;
+  padding:20px;border:5px solid #6b4cf6;box-shadow:0 0 0 4px rgba(37,196,255,.28),0 0 28px rgba(76,84,255,.40) inset
+}
+.stable24-quality-ring span{font-size:30px}
+.stable24-quality-ring small{font-size:11px;color:#cfe7f7;line-height:1.2}
+.stable24-quality-ring strong{color:#45e794;font-size:20px}
+.stable24-quality-ring div{color:#ffd34c;letter-spacing:2px}
+.stable24-performance-list h2{font-size:18px;color:#2fd8ff}
+.stable24-performance-list ul{list-style:none;padding:0;margin:10px 0 14px;display:grid;gap:8px}
+.stable24-performance-list li{color:#d8e7f2;font-size:13px}
+.stable24-achievement{
+  padding:12px;border-radius:14px;background:linear-gradient(90deg,#102555,#0a3681);
+  border:1px solid rgba(53,139,255,.45);text-align:center
+}
+.stable24-achievement b{display:block;color:#5ecfff}
+.stable24-achievement span{font-size:11px;color:#bcd5e7}
+
+.stable24-next{
+  margin-top:16px;padding:18px;border-radius:22px;border:1px solid rgba(72,167,226,.26);background:#06172c
+}
+.stable24-next h2{text-align:center;font-size:16px;color:#ffe7ae}
+.stable24-modules{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.stable24-modules>div{text-align:center}
+.stable24-modules i{
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;
+  font-style:normal;font-size:26px;background:#0b2849;border:2px solid #2cc9ff
+}
+.stable24-modules b{display:block;font-size:12px}
+.stable24-modules span{display:block;font-size:10px;color:#adc5d7;margin-top:2px}
+
+.stable24-bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.stable24-certificate,.stable24-summary{
+  border-radius:20px;border:1px solid rgba(72,167,226,.26);background:#06172c;padding:16px
+}
+.stable24-certificate h3,.stable24-summary h3{text-align:center;color:#ffdb69;margin:0 0 12px;font-size:14px}
+.stable24-paper{
+  position:relative;text-align:center;padding:22px 18px;border-radius:10px;
+  background:#f5ead2;color:#2b2b33;border:4px double #c89632;
+  box-shadow:inset 0 0 28px rgba(171,120,34,.13)
+}
+.stable24-paper small{letter-spacing:.14em}
+.stable24-paper h2{font-family:serif;font-size:21px;margin:4px 0}
+.stable24-paper p{font-size:10px;color:#4c4540}
+.stable24-paper strong{display:block;font-family:cursive;font-size:27px;color:#49369a;margin:6px 0}
+.stable24-seal{font-size:34px}
+.stable24-summary>div{
+  display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:12px
+}
+.stable24-summary>div b{color:#49e58d}
+.stable24-summary .stable24-congrats{
+  display:block;text-align:center;margin-top:12px;padding:11px;border:1px solid rgba(52,144,230,.36);border-radius:12px;color:#d8efff
+}
+
+.stable24-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 26px}
+.stable24-actions button{min-height:52px;border-radius:14px;font-weight:900;color:#fff;border:1px solid rgba(255,255,255,.12)}
+.stable24-actions .redo{background:#0b3159}
+.stable24-actions .report{background:linear-gradient(90deg,#4b2398,#6735cf)}
+.stable24-actions .review{background:linear-gradient(90deg,#087c45,#0aa35f)}
+
+@media(max-width:700px){
+  .stable24-final-screen{padding:10px}
+  .stable24-topbar{grid-template-columns:1fr 1fr}
+  .stable24-brand{grid-column:1/-1;grid-row:1}
+  .stable24-topbar button{grid-row:2}
+  .stable24-topbar button:last-child{justify-self:stretch}
+  .stable24-hero h1{font-size:25px}
+  .stable24-hero h1 span{font-size:35px}
+  .stable24-flask{font-size:90px;left:-6%;opacity:.22}
+  .stable24-metrics{grid-template-columns:repeat(2,1fr)}
+  .stable24-metrics div{border-right:1px solid rgba(77,183,240,.20)}
+  .stable24-metrics div:nth-child(2n){border-right:0}
+  .stable24-performance{grid-template-columns:1fr}
+  .stable24-modules{grid-template-columns:repeat(3,1fr)}
+  .stable24-bottom-grid{grid-template-columns:1fr}
+  .stable24-actions{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -4388,7 +4529,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar">🧑‍🔬</div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 23</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 24</div></header>
 
 
 <section id="studentGameHome">
@@ -4627,7 +4768,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 23 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 24 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -5069,24 +5210,165 @@ function restartGame(){
   mission=1;maxUnlocked=1;completedMissions=new Set();xp=0;credits=180;wins=0;errors=0;streak=0;bestStreak=0;totalStars=0;achievements=new Set();finalFailures=0;finalProceduresDone=0;
   updateProfileUI();
 }
+
 function finishGame(){
-  if(completedMissions.size<Object.keys(M).length){
-    showRibbon("🔒 Complete todas as fases antes de finalizar.","bad");
-    return;
+  const total=Object.keys(M).length;
+  const done=completedMissions.size;
+  const precision=(wins+errors)>0?Math.round((wins/(wins+errors))*100):100;
+  const starsMax=total*3;
+  const quality=precision>=95&&errors===0?"EXCELENTE!":precision>=85?"MUITO BOM!":precision>=70?"BOM":"EM EVOLUÇÃO";
+  const qualityStars=precision>=95?5:precision>=85?4:precision>=70?3:2;
+  const finalMsg=`Você concluiu ${done}/${total} fases${done===total?" e o Laboratório Final":""}. Qualidade experimental final: ${quality} • Falhas registradas: ${errors}.`;
+  const studentName=studentProfile?.name||cloudUser?.user_metadata?.name||cloudUser?.email?.split("@")[0]||"Aluno(a)";
+  const totalTimeLabel="—";
+  const avgTimeLabel="—";
+
+  if(done===total){
+    achievements.add("Mestre do Laboratório");
+    saveProgress(true);
+    saveCloudProgress?.();
   }
 
-  const total=wins+errors;
-  const acc=total?Math.round((wins/total)*100):100;
-  document.getElementById("endXp").textContent=xp;
-  document.getElementById("endWins").textContent=wins;
-  document.getElementById("endErrors").textContent=errors;
-  document.getElementById("endAccuracy").textContent=acc+"%";document.getElementById("endStars").textContent=totalStars+"/"+(Object.keys(M).length*3);document.getElementById("endMessage").innerHTML="Você concluiu as 24 fases e o <b>Laboratório Final</b>.<br>Qualidade experimental final: <b>"+Math.max(0,100-finalFailures*10)+"%</b> • Falhas no exame: <b>"+finalFailures+"</b>.";
-  document.getElementById("endMessage").textContent=
-    acc>=90?"Excelente desempenho: você concluiu a campanha com domínio experimental.":
-    acc>=70?"Bom desempenho: você concluiu a campanha, mas ainda há espaço para aperfeiçoar decisões experimentais.":
-    "As 24 fases foram concluídas. Refaça as fases para melhorar previsão, proporções e interpretação.";
-  saveProgress(true);updateProfileUI();document.getElementById("endScreen").style.display="flex";
+  document.body.classList.add("final-screen-open");
+
+  const certStars="★".repeat(qualityStars)+"☆".repeat(5-qualityStars);
+
+  document.body.insertAdjacentHTML("beforeend",`
+    <div id="stable24FinalScreen" class="stable24-final-screen">
+      <div class="stable24-final-shell">
+
+        <div class="stable24-topbar">
+          <button onclick="closeStable24Final()">🎯 Missões</button>
+          <div class="stable24-brand">Lab<span>Química</span><small>Laboratório Virtual Interativo</small></div>
+          <button onclick="closeStable24Final();openFreeMode?.()">🧪 Modo Livre</button>
+        </div>
+
+        <section class="stable24-hero">
+          <div class="stable24-flask">⚗️</div>
+          <div class="stable24-trophy">🏆</div>
+          <h1>MÓDULO 1 <span>CONCLUÍDO!</span></h1>
+          <p>${finalMsg}</p>
+
+          <div class="stable24-metrics">
+            <div><b>${done} / ${total}</b><span>Fases concluídas</span></div>
+            <div><b>${precision}%</b><span>Precisão</span></div>
+            <div><b>${errors}</b><span>Erros</span></div>
+            <div><b>${totalStars} / ${starsMax}</b><span>Estrelas conquistadas</span></div>
+            <div><b>${xp.toLocaleString("pt-BR")} XP</b><span>Experiência total</span></div>
+            <div><b>${credits}</b><span>Créditos finais</span></div>
+          </div>
+        </section>
+
+        <section class="stable24-performance">
+          <div class="stable24-quality">
+            <div class="stable24-quality-ring">
+              <span>⚗️</span>
+              <small>QUALIDADE<br>EXPERIMENTAL</small>
+              <strong>${quality}</strong>
+              <div>${certStars}</div>
+            </div>
+          </div>
+
+          <div class="stable24-performance-list">
+            <h2>📈 DESEMPENHO GERAL</h2>
+            <ul>
+              <li>📊 Hipóteses testadas e registradas</li>
+              <li>🧪 Regras de ocorrência aplicadas</li>
+              <li>🔬 Evidências experimentais interpretadas</li>
+              <li>🧠 Conceitos químicos consolidados</li>
+              <li>🏆 Laboratório Final concluído</li>
+            </ul>
+            ${done===total?`<div class="stable24-achievement">⭐ <b>MESTRE DO LABORATÓRIO</b><span>Conquista desbloqueada!</span></div>`:""}
+          </div>
+        </section>
+
+        <section class="stable24-next">
+          <h2>PRÓXIMOS MÓDULOS DA SUA JORNADA</h2>
+          <div class="stable24-modules">
+            <div><i>⚗️</i><b>Módulo 2</b><span>Funções Inorgânicas</span></div>
+            <div><i>⚖️</i><b>Módulo 3</b><span>Estequiometria</span></div>
+            <div><i>🧪</i><b>Módulo 4</b><span>Soluções</span></div>
+            <div><i>🔋</i><b>Módulo 5</b><span>Eletroquímica</span></div>
+            <div><i>🧬</i><b>Módulo 6</b><span>Química Orgânica</span></div>
+          </div>
+        </section>
+
+        <section class="stable24-bottom-grid">
+          <div class="stable24-certificate">
+            <h3>CERTIFICADO INTERNO</h3>
+            <div class="stable24-paper">
+              <small>CERTIFICADO DE</small>
+              <h2>EXCELÊNCIA QUÍMICA</h2>
+              <p>Conferido a</p>
+              <strong>${studentName}</strong>
+              <p>por concluir o Módulo 1 do LabQuímica demonstrando domínio de conceitos, investigação e raciocínio químico.</p>
+              <div class="stable24-seal">⚗️</div>
+            </div>
+          </div>
+
+          <div class="stable24-summary">
+            <h3>RESUMO DO ALUNO</h3>
+            <div><span>🧪 Total de missões</span><b>${total}</b></div>
+            <div><span>✅ Missões concluídas</span><b>${done}</b></div>
+            <div><span>❌ Erros registrados</span><b>${errors}</b></div>
+            <div><span>🏅 Melhor sequência</span><b>${bestStreak}</b></div>
+            <div><span>⭐ Estrelas</span><b>${totalStars}</b></div>
+            <div><span>💎 Créditos</span><b>${credits}</b></div>
+            <div class="stable24-congrats">🧪 Parabéns! Seu trabalho, análise e curiosidade fizeram de você um excelente cientista.</div>
+          </div>
+        </section>
+
+        <div class="stable24-actions">
+          <button class="redo" onclick="stable24RedoModule()">↻ Refazer módulo</button>
+          <button class="report" onclick="stable24OpenReport()">📄 Ver meu relatório</button>
+          <button class="review" onclick="stable24ReviewPhases()">⏩ Revisar fases</button>
+        </div>
+      </div>
+    </div>
+  `);
 }
+
+function closeStable24Final(){
+  document.getElementById("stable24FinalScreen")?.remove();
+  document.body.classList.remove("final-screen-open");
+}
+
+function stable24RedoModule(){
+  closeStable24Final();
+  mission=1;
+  maxUnlocked=1;
+  completedMissions=new Set();
+  xp=0;credits=180;wins=0;errors=0;streak=0;bestStreak=0;totalStars=0;
+  achievements=new Set();
+  saveProgress(true);
+  saveCloudProgress?.();
+  renderMission();
+  buildMissionList();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function stable24ReviewPhases(){
+  closeStable24Final();
+  document.getElementById("missionList")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function stable24OpenReport(){
+  const total=Object.keys(M).length;
+  const precision=(wins+errors)>0?Math.round((wins/(wins+errors))*100):100;
+  modal.innerHTML=`
+    <div class="bigfx">📄</div>
+    <h2>Relatório do Módulo 1</h2>
+    <p><b>Fases concluídas:</b> ${completedMissions.size}/${total}</p>
+    <p><b>Precisão:</b> ${precision}%</p>
+    <p><b>Erros:</b> ${errors}</p>
+    <p><b>Melhor sequência:</b> ${bestStreak}</p>
+    <p><b>Estrelas:</b> ${totalStars}</p>
+    <p><b>XP:</b> ${xp}</p>
+    <p><b>Créditos:</b> ${credits}</p>
+    <button class="primary" onclick="overlay.style.display='none'">Fechar</button>`;
+  overlay.style.display="flex";
+}
+
 
 
 function setProcedure(v,btn){ procedureChoice="testtube"; }
