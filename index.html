@@ -4891,7 +4891,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar"><div class="labChemistAvatar" aria-label="Avatar do laboratório"><span>🧪</span></div></div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 30</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 32</div></header>
 
 
 <section id="studentGameHome">
@@ -5130,7 +5130,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 30 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 32 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -6374,9 +6374,9 @@ cloud.auth.onAuthStateChange((event)=>{
     const ok=await restoreAuth();
     if(!ok)authScreen.style.display="flex";
   }else{
-    try{await cloud.auth.signOut({scope:"local"})}catch(e){}
-    cloudUser=null;cloudProfile=null;cloudClass=null;authUser=null;
-    authScreen.style.display="flex";
+    /* STABLE 32: não deslogar em abertura normal; a sessão persistente será restaurada abaixo. */
+    const ok=await restoreAuth();
+    if(!ok)authScreen.style.display="flex";
   }
   updateProfileUI();updateUserMenu();
 })();
@@ -8039,6 +8039,172 @@ performMissionAction=function(){
   clearTimeout(effectTimer);
   effectTimer=setTimeout(()=>showMissionReviewPrompt(effective),5200);
 };
+
+
+
+/* ===== STABLE 31 • CORREÇÃO MISSÃO 19 / HIPÓTESE DE COMPLEXO ===== */
+
+/* Corrige a hipótese científica da missão 19. */
+if(M[19]){
+  M[19].hypothesis="complexo_cobre";
+  M[19].case="Uma solução azul contém íons Cu²⁺. Confirme a presença do cobre por formação de um complexo de cor característica.";
+  M[19].obj="Selecionar CuSO₄ + NH₃(aq), prever mudança de cor e concluir pela formação do complexo de cobre(II).";
+  M[19].challenge="A evidência confirmatória é a intensificação da coloração azul pela formação do complexo com NH₃.";
+}
+
+/* Opções de hipótese adequadas a cada investigação. */
+function stable31ConfigureHypothesis(m){
+  const sel=document.getElementById("hypothesisSelect");
+  if(!sel || !m?.investigation)return;
+
+  if(mission===19){
+    sel.innerHTML=`
+      <option value="">Selecione uma conclusão</option>
+      <option value="complexo_cobre">Formação de complexo de Cu²⁺ com NH₃</option>
+      <option value="precipitado_cobre">Formação de precipitado de cobre</option>
+      <option value="gas">Liberação de gás</option>
+      <option value="sem_reacao">Ausência de reação observável</option>
+    `;
+  }else{
+    sel.innerHTML=`
+      <option value="">Selecione uma hipótese</option>
+      <option value="cloreto">A amostra contém cloreto (Cl⁻)</option>
+      <option value="sulfato">A amostra contém sulfato (SO₄²⁻)</option>
+      <option value="carbonato">A amostra contém carbonato (CO₃²⁻)</option>
+      <option value="iodeto">A amostra contém iodeto (I⁻)</option>
+    `;
+  }
+  sel.value="";
+}
+
+/* Aplica após cada renderização da missão. */
+const stable31RenderMissionBase=renderMission;
+renderMission=function(){
+  stable31RenderMissionBase();
+  stable31ConfigureHypothesis(M[mission]);
+};
+
+/* Reforça a checagem da hipótese da missão 19 com o novo valor correto. */
+const stable31InvestigationHypothesisCorrectBase=investigationHypothesisCorrect;
+investigationHypothesisCorrect=function(m){
+  if(!m?.investigation)return true;
+  const val=document.getElementById("hypothesisSelect")?.value||"";
+  if(mission===19)return val==="complexo_cobre";
+  return stable31InvestigationHypothesisCorrectBase(m);
+};
+
+
+
+/* ===== STABLE 32 • SESSÃO + PROGRESSO RESILIENTES ===== */
+
+/* 1) Nunca desloga automaticamente numa abertura normal.
+      Supabase já está configurado com persistSession:true. */
+async function stable32RestoreOrShowLogin(){
+  try{
+    const {data:{session},error}=await cloud.auth.getSession();
+    if(error)console.warn("STABLE32 getSession:",error);
+
+    if(session?.user){
+      cloudUser=session.user;
+      await afterCloudAuth();
+      return true;
+    }
+  }catch(e){
+    console.warn("STABLE32 restore:",e);
+  }
+
+  v41HideAllStudentViews?.();
+  const app=document.querySelector(".app");
+  if(app)app.style.display="none";
+  const auth=document.getElementById("authScreen");
+  if(auth){
+    auth.classList.remove("auth-hidden");
+    auth.style.display="flex";
+  }
+  return false;
+}
+
+/* 2) O avanço de fase também é progresso e precisa ser persistido imediatamente. */
+advanceFromLearningPanel=async function(){
+  const btn=document.getElementById("nextMissionFromAnalysis");
+  if(btn){btn.disabled=true;btn.textContent="Salvando progresso…";}
+
+  if(mission<Object.keys(M).length){
+    mission=mission+1;
+    maxUnlocked=Math.max(maxUnlocked,mission);
+
+    /* primeiro fallback local — síncrono e imediato */
+    try{stable17SaveLocalFallback?.()}catch(e){}
+
+    /* depois nuvem */
+    try{await saveCloudProgress?.()}catch(e){
+      console.warn("STABLE32: falha ao salvar avanço",e);
+    }
+
+    renderMission();
+    buildMissionList();
+    refreshStudentHome?.();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }else{
+    try{await saveCloudProgress?.()}catch(e){}
+    finishGame();
+  }
+};
+
+/* 3) Salva a missão atual assim que o aluno abre uma fase manualmente. */
+if(typeof openMission==="function"){
+  const stable32OpenMissionBase=openMission;
+  openMission=function(n){
+    const result=stable32OpenMissionBase(n);
+    try{
+      stable17SaveLocalFallback?.();
+      saveCloudProgress?.();
+    }catch(e){}
+    return result;
+  };
+}
+
+/* 4) Snapshot local frequente para sobreviver a suspensão/descarga da aba no celular. */
+function stable32EmergencyLocalSave(){
+  try{stable17SaveLocalFallback?.()}catch(e){}
+}
+
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="hidden"){
+    stable32EmergencyLocalSave();
+    /* Não esperamos rede aqui; apenas disparamos se ainda houver tempo. */
+    try{saveCloudProgress?.()}catch(e){}
+  }
+});
+
+window.addEventListener("pagehide",()=>{
+  stable32EmergencyLocalSave();
+  try{saveCloudProgress?.()}catch(e){}
+});
+
+/* 5) Quando a aba volta e a sessão ainda existe, garante que a UI não permaneça na tela de login. */
+document.addEventListener("visibilitychange",async()=>{
+  if(document.visibilityState!=="visible")return;
+  try{
+    const {data:{session}}=await cloud.auth.getSession();
+    if(session?.user && !cloudUser){
+      cloudUser=session.user;
+      await afterCloudAuth();
+    }
+  }catch(e){
+    console.warn("STABLE32 resume session",e);
+  }
+});
+
+/* 6) Corrige o bootstrap legado que forçava signOut.
+      Esta rotina roda por último e restaura a sessão persistida. */
+setTimeout(async()=>{
+  const authRedirect=location.hash.includes("access_token=") ||
+                     location.hash.includes("type=recovery") ||
+                     location.search.includes("code=");
+  /* tanto abertura normal quanto redirect tentam restaurar sessão */
+  await stable32RestoreOrShowLogin();
+},0);
 
 </script>
 
