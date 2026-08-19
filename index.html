@@ -4891,7 +4891,7 @@ body.student-free .layout{
 <header>
   <div class="brand"><div class="logo">🧪</div><div><h1>LabQuímica</h1><p>Laboratório virtual interativo • campanha avançada • mecânicas experimentais reais</p></div></div>
   <div class="stats"><span class="pill">⭐ XP <b id="xp">0</b></span><span class="pill">💎 Créditos <b id="credits">200</b></span><span class="pill">🏅 Nível <b id="level">1</b></span></div><div class="playerMini"><div class="playerMiniAvatar"><div class="labChemistAvatar" aria-label="Avatar do laboratório"><span>🧪</span></div></div><div><b id="playerMiniName">Aluno</b><span id="playerMiniLevel">Químico em treinamento</span></div></div>
-<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 32</div></header>
+<div id="versionBadge" style="position:absolute;right:12px;top:8px;z-index:99;padding:4px 8px;border-radius:999px;background:#12385c;color:#65e6ff;border:1px solid #2aaee8;font:900 9px/1 system-ui;letter-spacing:.5px">STABLE 33</div></header>
 
 
 <section id="studentGameHome">
@@ -5130,7 +5130,7 @@ color:#ffdce4;border-radius:11px;padding:8px 11px;font-weight:900;font-size:10px
 </div>
 </div>
 
-<footer>LabQuímica • build STABLE 32 • laboratório virtual</footer>
+<footer>LabQuímica • build STABLE 33 • laboratório virtual</footer>
 </div>
 
 <div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
@@ -8205,6 +8205,77 @@ setTimeout(async()=>{
   /* tanto abertura normal quanto redirect tentam restaurar sessão */
   await stable32RestoreOrShowLogin();
 },0);
+
+
+
+/* ===== STABLE 33 • SALVAMENTO NÃO-BLOQUEANTE ===== */
+
+/* Evita que uma chamada de rede lenta congele o avanço do aluno. */
+function stable33WithTimeout(promise,ms=2500){
+  return Promise.race([
+    Promise.resolve(promise),
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error("timeout")),ms))
+  ]);
+}
+
+async function stable33CloudSaveInBackground(){
+  try{
+    await stable33WithTimeout(saveCloudProgress?.(),2500);
+  }catch(e){
+    console.warn("STABLE33: salvamento em nuvem ficou para a próxima sincronização",e);
+  }
+}
+
+/* Avança imediatamente; nuvem salva em segundo plano. */
+advanceFromLearningPanel=function(){
+  const btn=document.getElementById("nextMissionFromAnalysis");
+  if(btn){
+    btn.disabled=true;
+    btn.textContent="Abrindo próxima fase…";
+  }
+
+  if(mission<Object.keys(M).length){
+    mission=mission+1;
+    maxUnlocked=Math.max(maxUnlocked,mission);
+
+    /* persistência imediata local */
+    try{stable17SaveLocalFallback?.()}catch(e){}
+    try{saveProgress?.(true)}catch(e){}
+
+    /* renderiza sem esperar internet */
+    renderMission();
+    buildMissionList();
+    refreshStudentHome?.();
+    window.scrollTo({top:0,behavior:"smooth"});
+
+    /* nuvem depois */
+    stable33CloudSaveInBackground();
+  }else{
+    try{stable17SaveLocalFallback?.()}catch(e){}
+    try{saveProgress?.(true)}catch(e){}
+    stable33CloudSaveInBackground();
+    finishGame();
+  }
+};
+
+/* Também torna o salvamento de mudança manual de missão não-bloqueante. */
+if(typeof openMission==="function"){
+  const stable33OpenMissionBase=openMission;
+  openMission=function(n){
+    const result=stable33OpenMissionBase(n);
+    try{stable17SaveLocalFallback?.()}catch(e){}
+    try{saveProgress?.(true)}catch(e){}
+    stable33CloudSaveInBackground();
+    return result;
+  };
+}
+
+/* Sincronização discreta ao retornar à aba, sem bloquear a UI. */
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible"){
+    stable33CloudSaveInBackground();
+  }
+});
 
 </script>
 
